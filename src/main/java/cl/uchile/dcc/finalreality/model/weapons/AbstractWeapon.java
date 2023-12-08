@@ -10,4 +10,19 @@ public abstract class AbstractWeapon implements Weapon {
     this.damage = damage;
     this.weight = weight;
   }
+
+  @Override
+  public String getWeaponName() {
+    return name;
+  }
+
+  @Override
+  public int getDamage() {
+    return damage;
+  }
+
+  @Override
+  public int getWeight() {
+    return weight;
+  }
 }

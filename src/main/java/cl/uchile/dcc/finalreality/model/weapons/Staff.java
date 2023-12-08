@@ -7,4 +7,8 @@ public class Staff extends AbstractWeapon {
     super(name, damage, weight);
     this.magicDamage = magicDamage;
   }
+
+  int getMagicDamage() {
+    return magicDamage;
+  }
 }
