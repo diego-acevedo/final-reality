@@ -6,7 +6,7 @@ import cl.uchile.dcc.finalreality.model.weapons.Weapon;
 
 import java.util.concurrent.BlockingQueue;
 
-public abstract class AbstractPlayerUnit extends AbstractUnit {
+public abstract class AbstractPlayerUnit extends AbstractUnit implements PlayerUnit {
   private Weapon weapon = null;
 
   protected AbstractPlayerUnit(String name, int maxHp, int defense, BlockingQueue<GameUnit> turnsQueue) {
