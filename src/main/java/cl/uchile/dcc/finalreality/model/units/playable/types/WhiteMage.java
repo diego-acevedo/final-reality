@@ -1,7 +1,8 @@
-package cl.uchile.dcc.finalreality.model.units.playable.magicunits;
+package cl.uchile.dcc.finalreality.model.units.playable.types;
 
 import cl.uchile.dcc.finalreality.exceptions.InvalidStatException;
 import cl.uchile.dcc.finalreality.model.units.GameUnit;
+import cl.uchile.dcc.finalreality.model.units.playable.AbstractMage;
 
 import java.util.concurrent.BlockingQueue;
 

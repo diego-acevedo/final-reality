@@ -1,6 +1,8 @@
-package cl.uchile.dcc.finalreality.model.weapons;
+package cl.uchile.dcc.finalreality.model.weapons.types;
 
 import cl.uchile.dcc.finalreality.exceptions.InvalidStatException;
+import cl.uchile.dcc.finalreality.model.weapons.AbstractWeapon;
+import cl.uchile.dcc.finalreality.model.weapons.MagicWeapon;
 
 public class Staff extends AbstractWeapon implements MagicWeapon {
 

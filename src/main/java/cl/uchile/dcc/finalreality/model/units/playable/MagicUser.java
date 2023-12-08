@@ -1,4 +1,4 @@
-package cl.uchile.dcc.finalreality.model.units.playable.magicunits;
+package cl.uchile.dcc.finalreality.model.units.playable;
 
 import cl.uchile.dcc.finalreality.model.units.playable.PlayerUnit;
 

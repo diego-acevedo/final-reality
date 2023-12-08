@@ -1,6 +1,8 @@
-package cl.uchile.dcc.finalreality.model.units;
+package cl.uchile.dcc.finalreality.model.units.enemy;
 
 import cl.uchile.dcc.finalreality.exceptions.InvalidStatException;
+import cl.uchile.dcc.finalreality.model.units.AbstractUnit;
+import cl.uchile.dcc.finalreality.model.units.GameUnit;
 
 import java.util.concurrent.BlockingQueue;
 

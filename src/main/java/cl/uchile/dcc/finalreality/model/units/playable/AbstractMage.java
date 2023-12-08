@@ -1,12 +1,11 @@
-package cl.uchile.dcc.finalreality.model.units.playable.magicunits;
+package cl.uchile.dcc.finalreality.model.units.playable;
 
 import cl.uchile.dcc.finalreality.exceptions.InvalidStatException;
 import cl.uchile.dcc.finalreality.model.units.GameUnit;
-import cl.uchile.dcc.finalreality.model.units.playable.AbstractPlayerUnit;
 
 import java.util.concurrent.BlockingQueue;
 
-public abstract class AbstractMage extends AbstractPlayerUnit {
+public abstract class AbstractMage extends AbstractPlayerUnit implements MagicUser {
 
   protected final int maxMp;
   protected int currentMp;
