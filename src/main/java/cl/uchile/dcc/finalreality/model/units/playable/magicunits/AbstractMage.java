@@ -15,4 +15,12 @@ public abstract class AbstractMage extends AbstractPlayerUnit {
     this.maxMp = maxMp;
     this.currentMp = maxMp;
   }
+
+  public int getMaxMp() {
+    return maxMp;
+  }
+
+  public int getCurrentMp() {
+    return currentMp;
+  }
 }

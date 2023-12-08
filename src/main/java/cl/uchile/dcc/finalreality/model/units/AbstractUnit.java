@@ -18,4 +18,29 @@ public abstract class AbstractUnit implements GameUnit {
     this.defense = defense;
     this.turnsQueue = turnsQueue;
   }
+
+  @Override
+  public String getUnitName() {
+    return name;
+  }
+
+  @Override
+  public int getCurrentHp() {
+    return currentHp;
+  }
+
+  @Override
+  public int getMaxHp() {
+    return maxHp;
+  }
+
+  @Override
+  public int getDefense() {
+    return defense;
+  }
+
+  @Override
+  public BlockingQueue<GameUnit> getTurnsQueue() {
+    return turnsQueue.;
+  }
 }

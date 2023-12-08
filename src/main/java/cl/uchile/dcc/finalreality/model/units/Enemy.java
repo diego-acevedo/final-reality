@@ -9,4 +9,9 @@ public class Enemy extends AbstractUnit {
     super(name, maxHp, defense, turnsQueue);
     this.weight = weight;
   }
+
+  @Override
+  public int getWeight() {
+    return weight;
+  }
 }
