@@ -1,7 +1,11 @@
 package cl.uchile.dcc.finalreality.model.units;
 
+import cl.uchile.dcc.finalreality.exceptions.NullWeaponException;
+
 import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 public abstract class AbstractUnit implements GameUnit {
 
@@ -41,6 +45,24 @@ public abstract class AbstractUnit implements GameUnit {
 
   @Override
   public BlockingQueue<GameUnit> getTurnsQueue() {
-    return turnsQueue.;
+    return turnsQueue;
+  }
+
+  @Override
+  public void waitTurn() throws NullWeaponException {
+    scheduledExecutor = Executors.newSingleThreadScheduledExecutor();
+    scheduledExecutor.schedule(
+        /* command = */ this::addToQueue,
+        /* delay = */ this.getWeight() / 10,
+        /* unit = */ TimeUnit.SECONDS);
+  }
+
+  private void addToQueue() {
+    try {
+      turnsQueue.put(this);
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+    scheduledExecutor.shutdown();
   }
 }

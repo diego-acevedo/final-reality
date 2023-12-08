@@ -19,4 +19,8 @@ public abstract class AbstractPlayerUnit extends AbstractUnit implements PlayerU
   public int getWeight() throws NullWeaponException {
     return weapon.getWeight();
   }
+
+  Weapon getWeapon() {
+    return weapon;
+  }
 }

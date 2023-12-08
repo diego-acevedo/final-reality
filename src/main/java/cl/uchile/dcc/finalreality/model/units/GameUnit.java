@@ -17,4 +17,6 @@ public interface GameUnit {
   BlockingQueue<GameUnit> getTurnsQueue();
 
   int getWeight() throws NullWeaponException;
+
+  void waitTurn() throws NullWeaponException;
 }
