@@ -1,10 +1,12 @@
 package cl.uchile.dcc.finalreality.model.weapons;
 
+import cl.uchile.dcc.finalreality.exceptions.NullWeaponException;
+
 public interface Weapon {
 
-  String getWeaponName();
+  String getWeaponName() throws NullWeaponException;
 
-  int getDamage();
+  int getDamage() throws NullWeaponException;
 
-  int getWeight();
+  int getWeight() throws NullWeaponException;
 }
