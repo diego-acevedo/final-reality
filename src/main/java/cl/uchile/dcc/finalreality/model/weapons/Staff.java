@@ -2,7 +2,7 @@ package cl.uchile.dcc.finalreality.model.weapons;
 
 import cl.uchile.dcc.finalreality.exceptions.InvalidStatException;
 
-public class Staff extends AbstractWeapon {
+public class Staff extends AbstractWeapon implements MagicWeapon {
 
   private final int magicDamage;
   public Staff(String name, int damage, int magicDamage, int weight) throws InvalidStatException {
@@ -11,7 +11,8 @@ public class Staff extends AbstractWeapon {
     this.magicDamage = magicDamage;
   }
 
-  int getMagicDamage() {
+  @Override
+  public int getMagicDamage() {
     return magicDamage;
   }
 }
