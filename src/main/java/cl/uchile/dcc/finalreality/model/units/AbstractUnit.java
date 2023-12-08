@@ -10,8 +10,8 @@ import java.util.concurrent.TimeUnit;
 public abstract class AbstractUnit implements GameUnit {
 
   private int currentHp;
-  protected int maxHp;
-  protected int defense;
+  protected final int maxHp;
+  protected final int defense;
   protected final BlockingQueue<GameUnit> turnsQueue;
   protected final String name;
   private ScheduledExecutorService scheduledExecutor;
@@ -19,6 +19,7 @@ public abstract class AbstractUnit implements GameUnit {
   protected AbstractUnit(String name, int maxHp, int defense, BlockingQueue<GameUnit> turnsQueue) {
     this.name = name;
     this.maxHp = maxHp;
+    this.currentHp = maxHp;
     this.defense = defense;
     this.turnsQueue = turnsQueue;
   }
@@ -64,5 +65,9 @@ public abstract class AbstractUnit implements GameUnit {
       e.printStackTrace();
     }
     scheduledExecutor.shutdown();
+  }
+
+  private void setCurrentHp(int hp) {
+    this.currentHp = Math.max(0, Math.min(maxHp, hp));
   }
 }

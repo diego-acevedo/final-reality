@@ -23,4 +23,8 @@ public abstract class AbstractMage extends AbstractPlayerUnit {
   public int getCurrentMp() {
     return currentMp;
   }
+
+  private void setCurrentMp(int mp) {
+    this.currentMp = Math.max(0, Math.min(maxMp, mp));
+  }
 }
