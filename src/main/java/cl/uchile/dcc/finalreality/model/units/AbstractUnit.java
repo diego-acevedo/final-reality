@@ -15,7 +15,7 @@ public abstract class AbstractUnit implements GameUnit {
   public AbstractUnit(String name, int maxHp, int defense, BlockingQueue<GameUnit> turnsQueue) {
     this.name = name;
     this.maxHp = maxHp;
-    this. defense = defense;
+    this.defense = defense;
     this.turnsQueue = turnsQueue;
   }
 }
