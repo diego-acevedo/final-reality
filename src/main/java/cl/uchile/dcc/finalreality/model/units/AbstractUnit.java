@@ -1,5 +1,6 @@
 package cl.uchile.dcc.finalreality.model.units;
 
+import cl.uchile.dcc.finalreality.exceptions.InvalidStatException;
 import cl.uchile.dcc.finalreality.exceptions.NullWeaponException;
 
 import java.util.concurrent.BlockingQueue;
@@ -16,7 +17,12 @@ public abstract class AbstractUnit implements GameUnit {
   protected final String name;
   private ScheduledExecutorService scheduledExecutor;
 
-  protected AbstractUnit(String name, int maxHp, int defense, BlockingQueue<GameUnit> turnsQueue) {
+  protected AbstractUnit(String name, int maxHp, int defense, BlockingQueue<GameUnit> turnsQueue)
+      throws InvalidStatException {
+    if (name == null) throw new InvalidStatException("Cannot assign null value to name.");
+    if (maxHp < 1) throw new InvalidStatException("Max HP cannot be less than 1.");
+    if (defense < 0) throw new InvalidStatException("Cannot assign a negative value to defense.");
+    if (turnsQueue == null) throw new InvalidStatException("Cannot assign null value to turns queue.");
     this.name = name;
     this.maxHp = maxHp;
     this.currentHp = maxHp;
