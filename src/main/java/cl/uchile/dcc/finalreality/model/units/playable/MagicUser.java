@@ -6,4 +6,6 @@ public interface MagicUser extends PlayerUnit {
   int getMaxMp();
 
   int getCurrentMp();
+
+  void setCurrentMp(int mp);
 }

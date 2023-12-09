@@ -1,72 +1,22 @@
 package cl.uchile.dcc.finalreality.model.units.playable.types;
 
 import cl.uchile.dcc.finalreality.exceptions.InvalidStatException;
-import cl.uchile.dcc.finalreality.model.units.AbstractUnitTest;
+import cl.uchile.dcc.finalreality.model.units.playable.AbstractPlayerUnitTest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class ThiefTest extends AbstractUnitTest {
+class ThiefTest extends AbstractPlayerUnitTest<Thief> {
 
-  @Test
-  @DisplayName("Testing name getter")
-  void nameGetterTest() {
-    assertEquals("Thief", thief.getUnitName());
+  @Override
+  public Thief createUnit() throws InvalidStatException {
+    return new Thief(name, 100, 150, turnsQueue);
   }
 
-  @Test
-  @DisplayName("Testing maxHp getter")
-  void maxHpGetterTest() {
-    assertEquals(100, thief.getMaxHp());
-  }
-
-  @Test
-  @DisplayName("Testing currentHp getter")
-  void currentHpGetterTest() {
-    assertEquals(100, thief.getCurrentHp());
-  }
-
-  @Test
-  @DisplayName("Testing defense getter")
-  void defenseGetterTest() {
-    assertEquals(100, thief.getDefense());
-  }
-
-  @Test
-  @DisplayName("Testing turnsQueue getter")
-  void turnsQueueGetterTest() {
-    assertEquals(turnsQueue, thief.getTurnsQueue());
-    assertTrue(thief.getTurnsQueue().contains(thief));
-  }
-
-  @Test
-  @DisplayName("Testing hp setter")
-  void hpSetterTest() {
-    thief.setCurrentHp(50);
-    assertEquals(50, thief.getCurrentHp());
-    thief.setCurrentHp(25);
-    assertEquals(25, thief.getCurrentHp());
-    thief.setCurrentHp(75);
-    assertEquals(75, thief.getCurrentHp());
-  }
-
-  @Test
-  @DisplayName("Testing setting a negative hp")
-  void hpSetterNegativeTest() {
-    thief.setCurrentHp(-100);
-    assertEquals(0, thief.getCurrentHp());
-    thief.setCurrentHp(0);
-    assertEquals(0, thief.getCurrentHp());
-  }
-
-  @Test
-  @DisplayName("Testing setting a hp higher than the max hp")
-  void hpSetterMaxTest() {
-    thief.setCurrentHp(150);
-    assertEquals(100, thief.getCurrentHp());
-    thief.setCurrentHp(100);
-    assertEquals(100, thief.getCurrentHp());
+  @Override
+  public String setName() {
+    return "Thief";
   }
 
   @Test
