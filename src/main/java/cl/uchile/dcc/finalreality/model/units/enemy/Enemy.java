@@ -9,7 +9,7 @@ import java.util.concurrent.BlockingQueue;
 public class Enemy extends AbstractUnit {
 
   private final int weight;
-  protected Enemy(String name, int maxHp, int defense, int weight, BlockingQueue<GameUnit> turnsQueue)
+  public Enemy(String name, int maxHp, int defense, int weight, BlockingQueue<GameUnit> turnsQueue)
       throws InvalidStatException {
     super(name, maxHp, defense, turnsQueue);
     if (weight < 1) throw new InvalidStatException("Weight cannot have a value less than 1.");

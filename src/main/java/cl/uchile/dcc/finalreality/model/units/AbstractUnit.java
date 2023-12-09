@@ -73,7 +73,8 @@ public abstract class AbstractUnit implements GameUnit {
     scheduledExecutor.shutdown();
   }
 
-  private void setCurrentHp(int hp) {
+  @Override
+  public void setCurrentHp(int hp) {
     this.currentHp = Math.max(0, Math.min(maxHp, hp));
   }
 }

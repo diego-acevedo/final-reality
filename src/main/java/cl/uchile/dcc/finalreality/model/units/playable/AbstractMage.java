@@ -13,6 +13,7 @@ public abstract class AbstractMage extends AbstractPlayerUnit implements MagicUs
   protected AbstractMage(String name, int maxHp, int defense, int maxMp, BlockingQueue<GameUnit> turnsQueue)
       throws InvalidStatException {
     super(name, maxHp, defense, turnsQueue);
+    if (maxMp < 1) throw new InvalidStatException("Max HP cannot be less than 1.");
     this.maxMp = maxMp;
     this.currentMp = maxMp;
   }
@@ -25,7 +26,7 @@ public abstract class AbstractMage extends AbstractPlayerUnit implements MagicUs
     return currentMp;
   }
 
-  private void setCurrentMp(int mp) {
+  public void setCurrentMp(int mp) {
     this.currentMp = Math.max(0, Math.min(maxMp, mp));
   }
 }

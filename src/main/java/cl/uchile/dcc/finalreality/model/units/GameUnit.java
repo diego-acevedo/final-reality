@@ -12,6 +12,8 @@ public interface GameUnit {
 
   int getCurrentHp();
 
+  void setCurrentHp(int hp);
+
   int getDefense();
 
   BlockingQueue<GameUnit> getTurnsQueue();
