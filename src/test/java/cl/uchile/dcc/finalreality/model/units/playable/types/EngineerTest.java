@@ -1,6 +1,7 @@
 package cl.uchile.dcc.finalreality.model.units.playable.types;
 
 import cl.uchile.dcc.finalreality.exceptions.InvalidStatException;
+import cl.uchile.dcc.finalreality.exceptions.InvalidWeaponException;
 import cl.uchile.dcc.finalreality.model.units.playable.AbstractPlayerUnitTest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -22,7 +23,7 @@ class EngineerTest extends AbstractPlayerUnitTest<Engineer> {
   @Test
   @DisplayName("Testing equipping an axe")
   @Override
-  public void equipAxeTest() {
+  public void equipAxeTest() throws InvalidWeaponException {
     unit.equip(axe);
     assertEquals(axe, unit.getWeapon());
   }
@@ -30,7 +31,7 @@ class EngineerTest extends AbstractPlayerUnitTest<Engineer> {
   @Test
   @DisplayName("Testing equipping a bow")
   @Override
-  public void equipBowTest() {
+  public void equipBowTest() throws InvalidWeaponException {
     unit.equip(bow);
     assertEquals(bow, unit.getWeapon());
   }

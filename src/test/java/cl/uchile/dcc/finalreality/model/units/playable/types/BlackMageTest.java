@@ -1,6 +1,7 @@
 package cl.uchile.dcc.finalreality.model.units.playable.types;
 
 import cl.uchile.dcc.finalreality.exceptions.InvalidStatException;
+import cl.uchile.dcc.finalreality.exceptions.InvalidWeaponException;
 import cl.uchile.dcc.finalreality.model.units.playable.AbstractMageTest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -22,7 +23,7 @@ class BlackMageTest extends AbstractMageTest<BlackMage> {
   @Test
   @DisplayName("Testing equipping a knife")
   @Override
-  public void equipKnifeTest() {
+  public void equipKnifeTest() throws InvalidWeaponException {
     unit.equip(knife);
     assertEquals(knife, unit.getWeapon());
   }
@@ -30,7 +31,7 @@ class BlackMageTest extends AbstractMageTest<BlackMage> {
   @Test
   @DisplayName("Testing equipping a staff")
   @Override
-  public void equipStaffTest() {
+  public void equipStaffTest() throws InvalidWeaponException {
     unit.equip(staff);
     assertEquals(staff, unit.getWeapon());
   }

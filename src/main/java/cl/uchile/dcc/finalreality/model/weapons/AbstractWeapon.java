@@ -1,6 +1,7 @@
 package cl.uchile.dcc.finalreality.model.weapons;
 
 import cl.uchile.dcc.finalreality.exceptions.InvalidStatException;
+import cl.uchile.dcc.finalreality.model.units.playable.types.BlackMage;
 
 public abstract class AbstractWeapon implements Weapon {
   private final String name;
@@ -30,4 +31,5 @@ public abstract class AbstractWeapon implements Weapon {
   public int getWeight() {
     return weight;
   }
+
 }

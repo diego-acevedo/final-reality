@@ -1,6 +1,8 @@
 package cl.uchile.dcc.finalreality.model.weapons.types;
 
 import cl.uchile.dcc.finalreality.exceptions.InvalidStatException;
+import cl.uchile.dcc.finalreality.exceptions.InvalidWeaponException;
+import cl.uchile.dcc.finalreality.model.units.playable.PlayerUnit;
 import cl.uchile.dcc.finalreality.model.weapons.AbstractWeapon;
 import cl.uchile.dcc.finalreality.model.weapons.MagicWeapon;
 
@@ -16,5 +18,10 @@ public class Staff extends AbstractWeapon implements MagicWeapon {
   @Override
   public int getMagicDamage() {
     return magicDamage;
+  }
+
+  @Override
+  public void equipTo(PlayerUnit unit) throws InvalidWeaponException {
+    unit.equipStaff(this);
   }
 }

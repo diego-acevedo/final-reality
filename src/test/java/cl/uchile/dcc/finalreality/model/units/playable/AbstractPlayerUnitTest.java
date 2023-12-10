@@ -1,6 +1,7 @@
 package cl.uchile.dcc.finalreality.model.units.playable;
 
 import cl.uchile.dcc.finalreality.exceptions.InvalidStatException;
+import cl.uchile.dcc.finalreality.exceptions.InvalidWeaponException;
 import cl.uchile.dcc.finalreality.exceptions.NullWeaponException;
 import cl.uchile.dcc.finalreality.model.units.AbstractUnitTest;
 import cl.uchile.dcc.finalreality.model.units.GameUnit;
@@ -46,31 +47,38 @@ public abstract class AbstractPlayerUnitTest<T extends PlayerUnit> extends Abstr
 
   @Test
   @DisplayName("Testing equipping an axe")
-  public void equipAxeTest() {
+  public void equipAxeTest() throws InvalidWeaponException {
     assertThrows(InvalidWeaponException.class, () -> unit.equip(axe));
   }
 
   @Test
   @DisplayName("Testing equipping a bow")
-  public void equipBowTest() {
+  public void equipBowTest() throws InvalidWeaponException {
     assertThrows(InvalidWeaponException.class, () -> unit.equip(bow));
   }
 
   @Test
   @DisplayName("Testing equipping a knife")
-  public void equipKnifeTest() {
+  public void equipKnifeTest() throws InvalidWeaponException {
     assertThrows(InvalidWeaponException.class, () -> unit.equip(knife));
   }
 
   @Test
   @DisplayName("Testing equipping a staff")
-  public void equipStaffTest() {
+  public void equipStaffTest() throws InvalidWeaponException {
     assertThrows(InvalidWeaponException.class, () -> unit.equip(staff));
   }
 
   @Test
   @DisplayName("Testing equipping a sword")
-  public void equipSwordTest() {
+  public void equipSwordTest() throws InvalidWeaponException {
     assertThrows(InvalidWeaponException.class, () -> unit.equip(sword));
+  }
+
+  @Test
+  @DisplayName("Testing equipping a null weapon")
+  public void equipNullWeaponTest() throws InvalidWeaponException {
+    unit.equip(nullWeapon);
+    assertEquals(nullWeapon, unit.getWeapon());
   }
 }
