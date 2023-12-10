@@ -20,7 +20,7 @@ class KnightTest extends AbstractPlayerUnitTest<Knight> {
   }
 
   @Test
-  @DisplayName("Testing creating an instance of Engineer with invalid parameters")
+  @DisplayName("Testing creating an instance of Knight with invalid parameters")
   void constructorTest() {
     assertThrows(InvalidStatException.class,
         () -> new Knight(null, 100, 100, turnsQueue));

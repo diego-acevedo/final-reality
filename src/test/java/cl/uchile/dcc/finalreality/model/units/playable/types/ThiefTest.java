@@ -20,7 +20,7 @@ class ThiefTest extends AbstractPlayerUnitTest<Thief> {
   }
 
   @Test
-  @DisplayName("Testing creating an instance of Engineer with invalid parameters")
+  @DisplayName("Testing creating an instance of Thief with invalid parameters")
   void constructorTest() {
     assertThrows(InvalidStatException.class,
         () -> new Thief(null, 100, 100, turnsQueue));
