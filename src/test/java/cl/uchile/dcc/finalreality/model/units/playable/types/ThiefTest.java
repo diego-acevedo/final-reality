@@ -20,6 +20,30 @@ class ThiefTest extends AbstractPlayerUnitTest<Thief> {
   }
 
   @Test
+  @DisplayName("Testing equipping a bow")
+  @Override
+  public void equipBowTest() {
+    unit.equip(bow);
+    assertEquals(bow, unit.getWeapon());
+  }
+
+  @Test
+  @DisplayName("Testing equipping a knife")
+  @Override
+  public void equipKnifeTest() {
+    unit.equip(knife);
+    assertEquals(knife, unit.getWeapon());
+  }
+
+  @Test
+  @DisplayName("Testing equipping a sword")
+  @Override
+  public void equipSwordTest() {
+    unit.equip(sword);
+    assertEquals(sword, unit.getWeapon());
+  }
+
+  @Test
   @DisplayName("Testing creating an instance of Thief with invalid parameters")
   void constructorTest() {
     assertThrows(InvalidStatException.class,

@@ -20,6 +20,14 @@ class WhiteMageTest extends AbstractMageTest<WhiteMage> {
   }
 
   @Test
+  @DisplayName("Testing equipping a staff")
+  @Override
+  public void equipStaffTest() {
+    unit.equip(staff);
+    assertEquals(staff, unit.getWeapon());
+  }
+
+  @Test
   @DisplayName("Testing creating an instance of WhiteMage with invalid parameters")
   void constructorTest() {
     assertThrows(InvalidStatException.class,

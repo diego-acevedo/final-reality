@@ -20,6 +20,22 @@ class BlackMageTest extends AbstractMageTest<BlackMage> {
   }
 
   @Test
+  @DisplayName("Testing equipping a knife")
+  @Override
+  public void equipKnifeTest() {
+    unit.equip(knife);
+    assertEquals(knife, unit.getWeapon());
+  }
+
+  @Test
+  @DisplayName("Testing equipping a staff")
+  @Override
+  public void equipStaffTest() {
+    unit.equip(staff);
+    assertEquals(staff, unit.getWeapon());
+  }
+
+  @Test
   @DisplayName("Testing creating an instance of BlackMage with invalid parameters")
   void constructorTest() {
     assertThrows(InvalidStatException.class,

@@ -21,18 +21,21 @@ class NullWeaponTest extends AbstractWeaponTest<NullWeapon> {
 
   @Test
   @DisplayName("Testing name getter")
+  @Override
   void getWeaponNameTest() {
     assertThrows(NullWeaponException.class, () -> weapon.getWeaponName());
   }
 
   @Test
   @DisplayName("Testing damage getter")
+  @Override
   void getDamageTest() {
     assertThrows(NullWeaponException.class, () -> weapon.getDamage());
   }
 
   @Test
   @DisplayName("Testing wight getter")
+  @Override
   void getWeightTest() {
     assertThrows(NullWeaponException.class, () -> weapon.getWeight());
   }

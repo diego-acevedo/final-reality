@@ -45,6 +45,32 @@ public abstract class AbstractPlayerUnitTest<T extends PlayerUnit> extends Abstr
   }
 
   @Test
-  void getWeapon() {
+  @DisplayName("Testing equipping an axe")
+  public void equipAxeTest() {
+    assertThrows(InvalidWeaponException.class, () -> unit.equip(axe));
+  }
+
+  @Test
+  @DisplayName("Testing equipping a bow")
+  public void equipBowTest() {
+    assertThrows(InvalidWeaponException.class, () -> unit.equip(bow));
+  }
+
+  @Test
+  @DisplayName("Testing equipping a knife")
+  public void equipKnifeTest() {
+    assertThrows(InvalidWeaponException.class, () -> unit.equip(knife));
+  }
+
+  @Test
+  @DisplayName("Testing equipping a staff")
+  public void equipStaffTest() {
+    assertThrows(InvalidWeaponException.class, () -> unit.equip(staff));
+  }
+
+  @Test
+  @DisplayName("Testing equipping a sword")
+  public void equipSwordTest() {
+    assertThrows(InvalidWeaponException.class, () -> unit.equip(sword));
   }
 }

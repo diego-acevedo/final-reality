@@ -20,6 +20,22 @@ class EngineerTest extends AbstractPlayerUnitTest<Engineer> {
   }
 
   @Test
+  @DisplayName("Testing equipping an axe")
+  @Override
+  public void equipAxeTest() {
+    unit.equip(axe);
+    assertEquals(axe, unit.getWeapon());
+  }
+
+  @Test
+  @DisplayName("Testing equipping a bow")
+  @Override
+  public void equipBowTest() {
+    unit.equip(bow);
+    assertEquals(bow, unit.getWeapon());
+  }
+
+  @Test
   @DisplayName("Testing creating an instance of Engineer with invalid parameters")
   void constructorTest() {
     assertThrows(InvalidStatException.class,
