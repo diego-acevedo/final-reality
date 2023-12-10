@@ -7,6 +7,7 @@ import cl.uchile.dcc.finalreality.model.units.AbstractUnitTest;
 import cl.uchile.dcc.finalreality.model.units.GameUnit;
 import cl.uchile.dcc.finalreality.model.units.playable.types.Knight;
 import cl.uchile.dcc.finalreality.model.weapons.NullWeapon;
+import cl.uchile.dcc.finalreality.model.weapons.Weapon;
 import cl.uchile.dcc.finalreality.model.weapons.types.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -33,10 +34,17 @@ public abstract class AbstractPlayerUnitTest<T extends PlayerUnit> extends Abstr
     nullWeapon = new NullWeapon();
   }
 
+  public abstract Weapon createWeapon(int weight) throws InvalidStatException;
+
   @Test
   @DisplayName("Testing weight getter")
-  void weightGetterTest() {
-
+  void weightGetterTest() throws NullWeaponException, InvalidWeaponException, InvalidStatException {
+    unit.equip(createWeapon(20));
+    assertEquals(20, unit.getWeight());
+    unit.equip(createWeapon(50));
+    assertEquals(50, unit.getWeight());
+    unit.equip(createWeapon(100));
+    assertEquals(100, unit.getWeight());
   }
 
   @Test

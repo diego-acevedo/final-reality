@@ -3,6 +3,8 @@ package cl.uchile.dcc.finalreality.model.units.playable.types;
 import cl.uchile.dcc.finalreality.exceptions.InvalidStatException;
 import cl.uchile.dcc.finalreality.exceptions.InvalidWeaponException;
 import cl.uchile.dcc.finalreality.model.units.playable.AbstractPlayerUnitTest;
+import cl.uchile.dcc.finalreality.model.weapons.Weapon;
+import cl.uchile.dcc.finalreality.model.weapons.types.Axe;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -18,6 +20,11 @@ class EngineerTest extends AbstractPlayerUnitTest<Engineer> {
   @Override
   public String setName() {
     return "Engineer";
+  }
+
+  @Override
+  public Weapon createWeapon(int weight) throws InvalidStatException {
+    return new Axe("Test", 100, weight);
   }
 
   @Test

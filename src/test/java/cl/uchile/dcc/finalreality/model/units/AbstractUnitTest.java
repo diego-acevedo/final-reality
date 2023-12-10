@@ -3,6 +3,7 @@ package cl.uchile.dcc.finalreality.model.units;
 import cl.uchile.dcc.finalreality.exceptions.InvalidStatException;
 import cl.uchile.dcc.finalreality.model.units.enemy.Enemy;
 import cl.uchile.dcc.finalreality.model.units.playable.types.*;
+import cl.uchile.dcc.finalreality.model.weapons.Weapon;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

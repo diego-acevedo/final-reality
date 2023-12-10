@@ -3,6 +3,8 @@ package cl.uchile.dcc.finalreality.model.units.playable.types;
 import cl.uchile.dcc.finalreality.exceptions.InvalidStatException;
 import cl.uchile.dcc.finalreality.exceptions.InvalidWeaponException;
 import cl.uchile.dcc.finalreality.model.units.playable.AbstractPlayerUnitTest;
+import cl.uchile.dcc.finalreality.model.weapons.Weapon;
+import cl.uchile.dcc.finalreality.model.weapons.types.Bow;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -18,6 +20,11 @@ class ThiefTest extends AbstractPlayerUnitTest<Thief> {
   @Override
   public String setName() {
     return "Thief";
+  }
+
+  @Override
+  public Weapon createWeapon(int weight) throws InvalidStatException {
+    return new Bow("Test", 100, weight);
   }
 
   @Test
