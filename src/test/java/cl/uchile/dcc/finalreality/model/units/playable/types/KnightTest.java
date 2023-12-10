@@ -8,6 +8,8 @@ import cl.uchile.dcc.finalreality.model.weapons.types.Sword;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.concurrent.LinkedBlockingQueue;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class KnightTest extends AbstractPlayerUnitTest<Knight> {
@@ -62,5 +64,18 @@ class KnightTest extends AbstractPlayerUnitTest<Knight> {
         () -> new Knight("Test", 100, -100, turnsQueue));
     assertThrows(InvalidStatException.class,
         () -> new Knight("Test", 100, 100, null));
+  }
+
+  @Test
+  @DisplayName("Testing equals method")
+  void equalsTest() throws InvalidStatException {
+    assertEquals(unit, unit);
+    assertEquals(unit, new Knight(name, 100, 150, turnsQueue));
+    assertEquals(new Knight(name, 100, 150, turnsQueue), unit);
+    assertNotEquals(unit, new Knight(name, 50, 150, turnsQueue));
+    assertNotEquals(unit, new Knight(name, 100, 50, turnsQueue));
+    assertNotEquals(unit, new Knight(name, 100, 150, new LinkedBlockingQueue<>()));
+    assertNotEquals(unit, new Thief(name, 50, 150, turnsQueue));
+    assertNotEquals(unit, null);
   }
 }

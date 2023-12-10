@@ -26,4 +26,17 @@ class BowTest extends AbstractWeaponTest<Bow> {
     assertThrows(InvalidStatException.class, () -> new Bow("Test", 0, 100));
     assertThrows(InvalidStatException.class, () -> new Bow("Test", 50, 0));
   }
+
+  @Test
+  @DisplayName("Testing equals method")
+  void equalsTest() throws InvalidStatException {
+    assertEquals(weapon, weapon);
+    assertEquals(weapon, new Bow(name, 50, 100));
+    assertEquals(new Bow(name, 50, 100), weapon);
+    assertNotEquals(weapon, new Bow("Test", 50, 100));
+    assertNotEquals(weapon, new Bow(name, 100, 100));
+    assertNotEquals(weapon, new Bow(name, 50, 50));
+    assertNotEquals(weapon, new Knife(name, 50, 100));
+    assertNotEquals(weapon, null);
+  }
 }

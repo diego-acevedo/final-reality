@@ -34,4 +34,18 @@ class StaffTest extends AbstractWeaponTest<Staff> {
     assertThrows(InvalidStatException.class, () -> new Staff("Test", 50, 0,  100));
     assertThrows(InvalidStatException.class, () -> new Staff("Test", 50, 150,  0));
   }
+
+  @Test
+  @DisplayName("Testing equals method")
+  void equalsTest() throws InvalidStatException {
+    assertEquals(weapon, weapon);
+    assertEquals(weapon, new Staff(name, 50, 150, 100));
+    assertEquals(new Staff(name, 50, 150, 100), weapon);
+    assertNotEquals(weapon, new Staff("Test", 50, 150, 100));
+    assertNotEquals(weapon, new Staff(name, 100, 150, 100));
+    assertNotEquals(weapon, new Staff(name, 50, 50, 100));
+    assertNotEquals(weapon, new Staff(name, 50, 150, 50));
+    assertNotEquals(weapon, new Sword(name, 50, 100));
+    assertNotEquals(weapon, null);
+  }
 }

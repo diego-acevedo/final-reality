@@ -8,6 +8,8 @@ import cl.uchile.dcc.finalreality.model.weapons.types.Bow;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.concurrent.LinkedBlockingQueue;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class ThiefTest extends AbstractPlayerUnitTest<Thief> {
@@ -62,5 +64,18 @@ class ThiefTest extends AbstractPlayerUnitTest<Thief> {
         () -> new Thief("Test", 100, -100, turnsQueue));
     assertThrows(InvalidStatException.class,
         () -> new Thief("Test", 100, 100, null));
+  }
+
+  @Test
+  @DisplayName("Testing equals method")
+  void equalsTest() throws InvalidStatException {
+    assertEquals(unit, unit);
+    assertEquals(unit, new Thief(name, 100, 150, turnsQueue));
+    assertEquals(new Thief(name, 100, 150, turnsQueue), unit);
+    assertNotEquals(unit, new Thief(name, 50, 150, turnsQueue));
+    assertNotEquals(unit, new Thief(name, 100, 50, turnsQueue));
+    assertNotEquals(unit, new Thief(name, 100, 150, new LinkedBlockingQueue<>()));
+    assertNotEquals(unit, new Engineer(name, 50, 150, turnsQueue));
+    assertNotEquals(unit, null);
   }
 }

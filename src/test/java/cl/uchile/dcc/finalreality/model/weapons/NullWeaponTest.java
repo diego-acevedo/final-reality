@@ -2,6 +2,7 @@ package cl.uchile.dcc.finalreality.model.weapons;
 
 import cl.uchile.dcc.finalreality.exceptions.InvalidStatException;
 import cl.uchile.dcc.finalreality.exceptions.NullWeaponException;
+import cl.uchile.dcc.finalreality.model.weapons.types.Sword;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -38,5 +39,15 @@ class NullWeaponTest extends AbstractWeaponTest<NullWeapon> {
   @Override
   void getWeightTest() {
     assertThrows(NullWeaponException.class, () -> weapon.getWeight());
+  }
+
+  @Test
+  @DisplayName("Testing equals method")
+  void equalsTest() throws InvalidStatException {
+    assertEquals(weapon, weapon);
+    assertEquals(weapon, new NullWeapon());
+    assertEquals(new NullWeapon(), weapon);
+    assertNotEquals(weapon, new Sword(name, 50, 100));
+    assertNotEquals(weapon, null);
   }
 }
