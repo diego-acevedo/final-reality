@@ -34,7 +34,7 @@ public abstract class AbstractUnitTest<T extends GameUnit> {
     knight = new Knight("Knight", 100, 150, turnsQueue);
     thief = new Thief("Thief", 100, 150, turnsQueue);
     whiteMage = new WhiteMage("WhiteMage", 100, 150, 200, turnsQueue);
-    enemy = new Enemy("Enemy", 100, 150, 50, turnsQueue);
+    enemy = new Enemy("Enemy", 100, 150, 20, 50, turnsQueue);
     name = setName();
     unit = createUnit();
 

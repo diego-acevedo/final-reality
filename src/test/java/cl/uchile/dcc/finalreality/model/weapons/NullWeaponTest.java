@@ -47,7 +47,7 @@ class NullWeaponTest extends AbstractWeaponTest<NullWeapon> {
     assertEquals(weapon, weapon);
     assertEquals(weapon, new NullWeapon());
     assertEquals(new NullWeapon(), weapon);
-    assertNotEquals(weapon, new Sword(name, 50, 100));
+    assertNotEquals(weapon, new Sword("Test", 50, 100));
     assertNotEquals(weapon, null);
   }
 }

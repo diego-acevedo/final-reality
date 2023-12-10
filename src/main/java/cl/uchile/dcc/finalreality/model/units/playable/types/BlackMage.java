@@ -6,6 +6,7 @@ import cl.uchile.dcc.finalreality.model.units.playable.AbstractMage;
 import cl.uchile.dcc.finalreality.model.weapons.types.Knife;
 import cl.uchile.dcc.finalreality.model.weapons.types.Staff;
 
+import java.util.Objects;
 import java.util.concurrent.BlockingQueue;
 
 public class BlackMage extends AbstractMage {
@@ -22,5 +23,34 @@ public class BlackMage extends AbstractMage {
   @Override
   public void equipStaff(Staff staff) {
     setWeapon(staff);
+  }
+
+  @Override
+  public boolean equals(Object obj) {
+    if (this == obj) {
+      return true;
+    }
+
+    if (obj == null) {
+      return false;
+    }
+
+    if (getClass() != obj.getClass()) {
+      return false;
+    }
+
+    BlackMage blackMage = (BlackMage) obj;
+
+    return hashCode() == blackMage.hashCode()
+        && this.getUnitName().equals(blackMage.getUnitName())
+        && this.getMaxHp() == blackMage.getMaxHp()
+        && this.getDefense() == blackMage.getDefense()
+        && this.getMaxMp() == blackMage.getMaxMp()
+        && this.getTurnsQueue() == blackMage.getTurnsQueue();
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(BlackMage.class, this.getUnitName(), this.getMaxHp(), this.getDefense(), this.getMaxMp());
   }
 }
