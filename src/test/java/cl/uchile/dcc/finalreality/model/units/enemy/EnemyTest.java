@@ -29,6 +29,23 @@ class EnemyTest extends AbstractUnitTest<Enemy> {
   }
 
   @Test
+  @DisplayName("Testing creating an instance of BlackMage with invalid parameters")
+  void constructorTest() {
+    assertThrows(InvalidStatException.class,
+        () -> new Enemy(null, 100, 100,100, 100, turnsQueue));
+    assertThrows(InvalidStatException.class,
+        () -> new Enemy("Test", 0, 100,100, 100, turnsQueue));
+    assertThrows(InvalidStatException.class,
+        () -> new Enemy("Test", 100, -100,100, 100, turnsQueue));
+    assertThrows(InvalidStatException.class,
+        () -> new Enemy("Test", 100, 100,0, 100, turnsQueue));
+    assertThrows(InvalidStatException.class,
+        () -> new Enemy("Test", 100, 100,100, 0, turnsQueue));
+    assertThrows(InvalidStatException.class,
+        () -> new Enemy("Test", 100, 100,100, 100, null));
+  }
+
+  @Test
   @DisplayName("Testing equals method")
   void equalsTest() throws InvalidStatException {
     assertEquals(unit, unit);
