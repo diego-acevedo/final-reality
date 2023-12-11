@@ -3,6 +3,7 @@ package cl.uchile.dcc.finalreality.model.units.playable.types;
 import cl.uchile.dcc.finalreality.exceptions.InvalidStatException;
 import cl.uchile.dcc.finalreality.model.units.GameUnit;
 import cl.uchile.dcc.finalreality.model.units.playable.AbstractPlayerUnit;
+import cl.uchile.dcc.finalreality.model.weapons.Weapon;
 import cl.uchile.dcc.finalreality.model.weapons.types.Axe;
 import cl.uchile.dcc.finalreality.model.weapons.types.Bow;
 
@@ -16,13 +17,13 @@ public class Engineer extends AbstractPlayerUnit {
   }
 
   @Override
-  public void equipAxe(Axe axe) {
-    setWeapon(axe);
+  public Weapon equipAxe(Axe axe) {
+    return setWeapon(axe);
   }
 
   @Override
-  public void equipBow(Bow bow) {
-    setWeapon(bow);
+  public Weapon equipBow(Bow bow) {
+    return setWeapon(bow);
   }
 
   @Override

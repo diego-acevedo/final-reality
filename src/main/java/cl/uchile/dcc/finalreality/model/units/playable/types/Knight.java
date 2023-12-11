@@ -3,6 +3,7 @@ package cl.uchile.dcc.finalreality.model.units.playable.types;
 import cl.uchile.dcc.finalreality.exceptions.InvalidStatException;
 import cl.uchile.dcc.finalreality.model.units.GameUnit;
 import cl.uchile.dcc.finalreality.model.units.playable.AbstractPlayerUnit;
+import cl.uchile.dcc.finalreality.model.weapons.Weapon;
 import cl.uchile.dcc.finalreality.model.weapons.types.Axe;
 import cl.uchile.dcc.finalreality.model.weapons.types.Knife;
 import cl.uchile.dcc.finalreality.model.weapons.types.Sword;
@@ -17,18 +18,18 @@ public class Knight extends AbstractPlayerUnit {
   }
 
   @Override
-  public void equipAxe(Axe axe) {
-    setWeapon(axe);
+  public Weapon equipAxe(Axe axe) {
+    return setWeapon(axe);
   }
 
   @Override
-  public void equipKnife(Knife knife) {
-    setWeapon(knife);
+  public Weapon equipKnife(Knife knife) {
+    return setWeapon(knife);
   }
 
   @Override
-  public void equipSword(Sword sword) {
-    setWeapon(sword);
+  public Weapon equipSword(Sword sword) {
+    return setWeapon(sword);
   }
 
   @Override

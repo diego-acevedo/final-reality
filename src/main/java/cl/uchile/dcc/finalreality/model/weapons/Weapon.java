@@ -13,5 +13,5 @@ public interface Weapon {
 
   int getWeight() throws NullWeaponException;
 
-  void equipTo(PlayerUnit unit) throws InvalidWeaponException;
+  Weapon equipTo(PlayerUnit unit) throws InvalidWeaponException;
 }

@@ -3,6 +3,7 @@ package cl.uchile.dcc.finalreality.model.units.playable.types;
 import cl.uchile.dcc.finalreality.exceptions.InvalidStatException;
 import cl.uchile.dcc.finalreality.model.units.GameUnit;
 import cl.uchile.dcc.finalreality.model.units.playable.AbstractMage;
+import cl.uchile.dcc.finalreality.model.weapons.Weapon;
 import cl.uchile.dcc.finalreality.model.weapons.types.Knife;
 import cl.uchile.dcc.finalreality.model.weapons.types.Staff;
 
@@ -16,13 +17,13 @@ public class BlackMage extends AbstractMage {
   }
 
   @Override
-  public void equipKnife(Knife knife) {
-    setWeapon(knife);
+  public Weapon equipKnife(Knife knife) {
+    return setWeapon(knife);
   }
 
   @Override
-  public void equipStaff(Staff staff) {
-    setWeapon(staff);
+  public Weapon equipStaff(Staff staff) {
+    return setWeapon(staff);
   }
 
   @Override

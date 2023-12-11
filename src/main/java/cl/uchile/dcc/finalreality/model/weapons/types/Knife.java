@@ -4,6 +4,7 @@ import cl.uchile.dcc.finalreality.exceptions.InvalidStatException;
 import cl.uchile.dcc.finalreality.exceptions.InvalidWeaponException;
 import cl.uchile.dcc.finalreality.model.units.playable.PlayerUnit;
 import cl.uchile.dcc.finalreality.model.weapons.AbstractWeapon;
+import cl.uchile.dcc.finalreality.model.weapons.Weapon;
 
 import java.util.Objects;
 
@@ -13,8 +14,8 @@ public class Knife extends AbstractWeapon {
   }
 
   @Override
-  public void equipTo(PlayerUnit unit) throws InvalidWeaponException {
-    unit.equipKnife(this);
+  public Weapon equipTo(PlayerUnit unit) throws InvalidWeaponException {
+    return unit.equipKnife(this);
   }
 
   @Override

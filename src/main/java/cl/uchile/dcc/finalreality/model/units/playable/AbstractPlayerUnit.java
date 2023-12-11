@@ -29,42 +29,44 @@ public abstract class AbstractPlayerUnit extends AbstractUnit implements PlayerU
     return weapon;
   }
 
-  protected void setWeapon(Weapon weapon) {
+  protected Weapon setWeapon(Weapon weapon) {
+    Weapon oldWeapon = getWeapon();
     this.weapon = weapon;
+    return oldWeapon;
   }
 
   @Override
-  public void equip(Weapon weapon) throws InvalidWeaponException {
-    weapon.equipTo(this);
+  public Weapon equip(Weapon weapon) throws InvalidWeaponException {
+    return weapon.equipTo(this);
   }
 
   @Override
-  public void equipAxe(Axe axe) throws InvalidWeaponException {
+  public Weapon equipAxe(Axe axe) throws InvalidWeaponException {
     throw new InvalidWeaponException("This unit cannot equip an axe.");
   }
 
   @Override
-  public void equipBow(Bow bow) throws InvalidWeaponException {
+  public Weapon equipBow(Bow bow) throws InvalidWeaponException {
     throw new InvalidWeaponException("This unit cannot equip an bow.");
   }
 
   @Override
-  public void equipKnife(Knife knife) throws InvalidWeaponException {
+  public Weapon equipKnife(Knife knife) throws InvalidWeaponException {
     throw new InvalidWeaponException("This unit cannot equip an knife.");
   }
 
   @Override
-  public void equipStaff(Staff staff) throws InvalidWeaponException {
+  public Weapon equipStaff(Staff staff) throws InvalidWeaponException {
     throw new InvalidWeaponException("This unit cannot equip an staff.");
   }
 
   @Override
-  public void equipSword(Sword sword) throws InvalidWeaponException {
+  public Weapon equipSword(Sword sword) throws InvalidWeaponException {
     throw new InvalidWeaponException("This unit cannot equip an sword.");
   }
 
   @Override
-  public void equipNullWeapon(NullWeapon nullWeapon) {
-    setWeapon(nullWeapon);
+  public Weapon equipNullWeapon(NullWeapon nullWeapon) {
+    return setWeapon(nullWeapon);
   }
 }

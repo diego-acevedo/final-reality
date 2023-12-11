@@ -5,6 +5,7 @@ import cl.uchile.dcc.finalreality.exceptions.InvalidWeaponException;
 import cl.uchile.dcc.finalreality.model.units.playable.PlayerUnit;
 import cl.uchile.dcc.finalreality.model.units.playable.types.WhiteMage;
 import cl.uchile.dcc.finalreality.model.weapons.AbstractWeapon;
+import cl.uchile.dcc.finalreality.model.weapons.Weapon;
 
 import java.util.Objects;
 
@@ -14,8 +15,8 @@ public class Axe extends AbstractWeapon {
   }
 
   @Override
-  public void equipTo(PlayerUnit unit) throws InvalidWeaponException {
-    unit.equipAxe(this);
+  public Weapon equipTo(PlayerUnit unit) throws InvalidWeaponException {
+    return unit.equipAxe(this);
   }
 
   @Override

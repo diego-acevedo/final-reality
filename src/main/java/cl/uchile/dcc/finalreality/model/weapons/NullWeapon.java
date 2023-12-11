@@ -25,8 +25,8 @@ public class NullWeapon implements Weapon {
   }
 
   @Override
-  public void equipTo(PlayerUnit unit) throws InvalidWeaponException {
-    unit.equipNullWeapon(this);
+  public Weapon equipTo(PlayerUnit unit) {
+    return unit.equipNullWeapon(this);
   }
 
   @Override

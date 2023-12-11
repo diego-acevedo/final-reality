@@ -3,6 +3,7 @@ package cl.uchile.dcc.finalreality.model.units.playable.types;
 import cl.uchile.dcc.finalreality.exceptions.InvalidStatException;
 import cl.uchile.dcc.finalreality.exceptions.InvalidWeaponException;
 import cl.uchile.dcc.finalreality.model.units.playable.AbstractMageTest;
+import cl.uchile.dcc.finalreality.model.weapons.NullWeapon;
 import cl.uchile.dcc.finalreality.model.weapons.Weapon;
 import cl.uchile.dcc.finalreality.model.weapons.types.Staff;
 import org.junit.jupiter.api.DisplayName;
@@ -33,7 +34,7 @@ class WhiteMageTest extends AbstractMageTest<WhiteMage> {
   @DisplayName("Testing equipping a staff")
   @Override
   public void equipStaffTest() throws InvalidWeaponException {
-    unit.equip(staff);
+    assertEquals(new NullWeapon(), unit.equip(staff));
     assertEquals(staff, unit.getWeapon());
   }
 

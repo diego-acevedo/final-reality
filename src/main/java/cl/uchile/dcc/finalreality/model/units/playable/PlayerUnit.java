@@ -10,17 +10,17 @@ public interface PlayerUnit extends GameUnit {
 
   Weapon getWeapon();
 
-  void equip(Weapon weapon) throws InvalidWeaponException;
+  Weapon equip(Weapon weapon) throws InvalidWeaponException;
 
-  void equipAxe(Axe axe) throws InvalidWeaponException;
+  Weapon equipAxe(Axe axe) throws InvalidWeaponException;
 
-  void equipBow(Bow bow) throws InvalidWeaponException;
+  Weapon equipBow(Bow bow) throws InvalidWeaponException;
 
-  void equipKnife(Knife knife) throws InvalidWeaponException;
+  Weapon equipKnife(Knife knife) throws InvalidWeaponException;
 
-  void equipStaff(Staff staff) throws InvalidWeaponException;
+  Weapon equipStaff(Staff staff) throws InvalidWeaponException;
 
-  void equipSword(Sword sword) throws InvalidWeaponException;
+  Weapon equipSword(Sword sword) throws InvalidWeaponException;
 
-  void equipNullWeapon(NullWeapon nullWeapon);
+  Weapon equipNullWeapon(NullWeapon nullWeapon);
 }

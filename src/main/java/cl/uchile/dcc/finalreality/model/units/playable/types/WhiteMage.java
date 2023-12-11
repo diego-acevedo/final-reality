@@ -3,6 +3,7 @@ package cl.uchile.dcc.finalreality.model.units.playable.types;
 import cl.uchile.dcc.finalreality.exceptions.InvalidStatException;
 import cl.uchile.dcc.finalreality.model.units.GameUnit;
 import cl.uchile.dcc.finalreality.model.units.playable.AbstractMage;
+import cl.uchile.dcc.finalreality.model.weapons.Weapon;
 import cl.uchile.dcc.finalreality.model.weapons.types.Staff;
 
 import java.util.Objects;
@@ -15,8 +16,8 @@ public class WhiteMage extends AbstractMage {
   }
 
   @Override
-  public void equipStaff(Staff staff) {
-    setWeapon(staff);
+  public Weapon equipStaff(Staff staff) {
+    return setWeapon(staff);
   }
 
   @Override
