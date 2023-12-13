@@ -1,6 +1,10 @@
 package cl.uchile.dcc.finalreality.model.units;
 
+import cl.uchile.dcc.finalreality.exceptions.DeadUnitException;
+import cl.uchile.dcc.finalreality.exceptions.InvalidTargetUnitException;
 import cl.uchile.dcc.finalreality.exceptions.NullWeaponException;
+import cl.uchile.dcc.finalreality.model.units.enemy.Enemy;
+import cl.uchile.dcc.finalreality.model.units.playable.PlayerUnit;
 
 import java.util.concurrent.BlockingQueue;
 
@@ -66,4 +70,45 @@ public interface GameUnit {
    * has no weapon equipped.
    */
   void waitTurn() throws NullWeaponException;
+
+  /**
+   * This method allows this unit to attack a {@code target}. Not
+   * all units might be able to be targeted by this unit. For
+   * instance, a {@code PlayerUnit} cannot target another
+   * {@code PlayerUnit}.
+   *
+   * @param target the unit being attacked.
+   *
+   * @throws NullWeaponException if a {@code PlayerUnit} doesn't
+   * have a weapon equipped.
+   * @throws InvalidTargetUnitException if the {@code target} can't
+   * be attacked by this unit.
+   * @throws DeadUnitException if either the target or the unit are
+   * dead.
+   */
+  void attack(GameUnit target) throws NullWeaponException, InvalidTargetUnitException, DeadUnitException;
+
+  /**
+   * This method applies the corresponding damage inflicted by {@link PlayerUnit
+   * player unit}.
+   *
+   * @param damage the amount of damage inflicted.
+   *
+   * @throws InvalidTargetUnitException if this unit cannot be attacked
+   * by a {@code PlayerUnit}.
+   * @throws DeadUnitException if this unit is dead.
+   */
+  void receiveAttackFromPlayerUnit(int damage) throws InvalidTargetUnitException, DeadUnitException;
+
+  /**
+   * This method applies the corresponding damage inflicted by {@link Enemy
+   * enemy}.
+   *
+   * @param damage the amount of damage inflicted.
+   *
+   * @throws InvalidTargetUnitException if this unit cannot be attacked
+   * by a {@code Enemy}.
+   * @throws DeadUnitException if this unit is dead.
+   */
+  void receiveAttackFromEnemy(int damage) throws DeadUnitException, InvalidTargetUnitException;
 }

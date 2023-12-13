@@ -1,6 +1,8 @@
 package cl.uchile.dcc.finalreality.model.units.enemy;
 
+import cl.uchile.dcc.finalreality.exceptions.DeadUnitException;
 import cl.uchile.dcc.finalreality.exceptions.InvalidStatException;
+import cl.uchile.dcc.finalreality.exceptions.InvalidTargetUnitException;
 import cl.uchile.dcc.finalreality.model.units.AbstractUnitTest;
 import cl.uchile.dcc.finalreality.model.units.playable.types.Engineer;
 import org.junit.jupiter.api.DisplayName;
@@ -30,26 +32,56 @@ class EnemyTest extends AbstractUnitTest<Enemy> {
 
   @Test
   @DisplayName("An Enemy should be able to attack a PlayerUnit")
-  void attackPlayerTest() {
+  void attackPlayerTest() throws DeadUnitException, InvalidTargetUnitException {
     assertEquals(100, blackMage.getCurrentHp());
     unit.attack(blackMage);
-    assertEquals(80, blackMage.getCurrentHp());
+    assertEquals(85, blackMage.getCurrentHp());
 
     assertEquals(100, engineer.getCurrentHp());
     unit.attack(engineer);
-    assertEquals(80, engineer.getCurrentHp());
+    assertEquals(85, engineer.getCurrentHp());
 
     assertEquals(100, knight.getCurrentHp());
     unit.attack(knight);
-    assertEquals(80, knight.getCurrentHp());
+    assertEquals(85, knight.getCurrentHp());
 
     assertEquals(100, thief.getCurrentHp());
     unit.attack(thief);
-    assertEquals(80, thief.getCurrentHp());
+    assertEquals(85, thief.getCurrentHp());
 
     assertEquals(100, whiteMage.getCurrentHp());
     unit.attack(whiteMage);
-    assertEquals(80, whiteMage.getCurrentHp());
+    assertEquals(85, whiteMage.getCurrentHp());
+  }
+
+  @Test
+  @DisplayName("An Enemy cannot attack a dead unit")
+  void deadUnitAttackTest() {
+    blackMage.setCurrentHp(0);
+    assertThrows(DeadUnitException.class, () -> unit.attack(blackMage));
+
+    engineer.setCurrentHp(0);
+    assertThrows(DeadUnitException.class, () -> unit.attack(engineer));
+
+    knight.setCurrentHp(0);
+    assertThrows(DeadUnitException.class, () -> unit.attack(knight));
+
+    thief.setCurrentHp(0);
+    assertThrows(DeadUnitException.class, () -> unit.attack(thief));
+
+    whiteMage.setCurrentHp(0);
+    assertThrows(DeadUnitException.class, () -> unit.attack(whiteMage));
+  }
+
+  @Test
+  @DisplayName("An Enemy cannot attack a dead unit")
+  void deadEnemyAttackTest() {
+    unit.setCurrentHp(0);
+    assertThrows(DeadUnitException.class, () -> unit.attack(blackMage));
+    assertThrows(DeadUnitException.class, () -> unit.attack(engineer));
+    assertThrows(DeadUnitException.class, () -> unit.attack(knight));
+    assertThrows(DeadUnitException.class, () -> unit.attack(thief));
+    assertThrows(DeadUnitException.class, () -> unit.attack(whiteMage));
   }
 
   @Test

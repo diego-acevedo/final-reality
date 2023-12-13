@@ -1,8 +1,6 @@
 package cl.uchile.dcc.finalreality.model.units.playable;
 
-import cl.uchile.dcc.finalreality.exceptions.InvalidStatException;
-import cl.uchile.dcc.finalreality.exceptions.InvalidWeaponException;
-import cl.uchile.dcc.finalreality.exceptions.NullWeaponException;
+import cl.uchile.dcc.finalreality.exceptions.*;
 import cl.uchile.dcc.finalreality.model.units.AbstractUnitTest;
 import cl.uchile.dcc.finalreality.model.units.GameUnit;
 import cl.uchile.dcc.finalreality.model.units.playable.types.Knight;
@@ -108,20 +106,36 @@ public abstract class AbstractPlayerUnitTest<T extends PlayerUnit> extends Abstr
 
   @Test
   @DisplayName("A PlayerUnit should be able to attack an enemy")
-  void attackEnemyTest() throws InvalidStatException, InvalidWeaponException {
+  void attackEnemyTest() throws InvalidStatException, InvalidWeaponException, DeadUnitException, NullWeaponException, InvalidTargetUnitException {
     unit.equip(createWeapon(20, 10));
 
     assertEquals(100, enemy.getCurrentHp());
     unit.attack(enemy);
-    assertEquals(90, enemy.getCurrentHp());
+    assertEquals(95, enemy.getCurrentHp());
 
     unit.equip(createWeapon(20, 30));
     unit.attack(enemy);
-    assertEquals(60, enemy.getCurrentHp());
+    assertEquals(70, enemy.getCurrentHp());
 
-    unit.equip(createWeapon(80, 30));
+    unit.equip(createWeapon(20, 80));
     unit.attack(enemy);
     assertEquals(0, enemy.getCurrentHp());
+  }
+
+  @Test
+  @DisplayName("A PlayerUnit cannot attack a dead unit")
+  void deadEnemyAttackTest() throws InvalidStatException, InvalidWeaponException {
+    unit.equip(createWeapon(20, 20));
+    enemy.setCurrentHp(0);
+    assertThrows(DeadUnitException.class, () -> unit.attack(enemy));
+  }
+
+  @Test
+  @DisplayName("A dead PlayerUnit cannot attack a unit")
+  void deadPlayerAttackTest() throws InvalidStatException, InvalidWeaponException {
+    unit.equip(createWeapon(20, 20));
+    unit.setCurrentHp(0);
+    assertThrows(DeadUnitException.class, () -> unit.attack(enemy));
   }
 
   @Test

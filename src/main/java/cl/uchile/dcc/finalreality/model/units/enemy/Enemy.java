@@ -1,6 +1,9 @@
 package cl.uchile.dcc.finalreality.model.units.enemy;
 
+import cl.uchile.dcc.finalreality.exceptions.DeadUnitException;
 import cl.uchile.dcc.finalreality.exceptions.InvalidStatException;
+import cl.uchile.dcc.finalreality.exceptions.InvalidTargetUnitException;
+import cl.uchile.dcc.finalreality.exceptions.NullWeaponException;
 import cl.uchile.dcc.finalreality.model.units.AbstractUnit;
 import cl.uchile.dcc.finalreality.model.units.GameUnit;
 import cl.uchile.dcc.finalreality.model.units.playable.types.Thief;
@@ -54,6 +57,23 @@ public class Enemy extends AbstractUnit {
   @Override
   public int getWeight() {
     return weight;
+  }
+
+  @Override
+  public void attack(GameUnit target) throws InvalidTargetUnitException, DeadUnitException {
+    if (getCurrentHp() == 0) throw new DeadUnitException("%s is dead.".formatted(this));
+    target.receiveAttackFromEnemy(getDamage());
+  }
+
+  @Override
+  public void receiveAttackFromPlayerUnit(int damage) throws DeadUnitException {
+    if (getCurrentHp() == 0) throw new DeadUnitException("%s is dead.".formatted(this));
+    setCurrentHp(getCurrentHp() - Math.max(1, damage - getDefense()));
+  }
+
+  @Override
+  public void receiveAttackFromEnemy(int damage) throws InvalidTargetUnitException {
+    throw new InvalidTargetUnitException("An Enemy cannot attack another Enemy.");
   }
 
   /**

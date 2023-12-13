@@ -1,8 +1,6 @@
 package cl.uchile.dcc.finalreality.model.units.playable;
 
-import cl.uchile.dcc.finalreality.exceptions.InvalidStatException;
-import cl.uchile.dcc.finalreality.exceptions.InvalidWeaponException;
-import cl.uchile.dcc.finalreality.exceptions.NullWeaponException;
+import cl.uchile.dcc.finalreality.exceptions.*;
 import cl.uchile.dcc.finalreality.model.units.AbstractUnit;
 import cl.uchile.dcc.finalreality.model.units.GameUnit;
 import cl.uchile.dcc.finalreality.model.weapons.NullWeapon;
@@ -66,9 +64,24 @@ public abstract class AbstractPlayerUnit extends AbstractUnit implements PlayerU
     return oldWeapon;
   }
 
+  /**
+   * Returns the equipped weapon's damage.
+   *
+   * @throws NullWeaponException if no weapon is equipped.
+   */
+  private int getDamage() throws NullWeaponException {
+    return getWeapon().getDamage();
+  }
+
   @Override
   public Weapon equip(Weapon weapon) throws InvalidWeaponException {
     return weapon.equipTo(this);
+  }
+
+  @Override
+  public void attack(GameUnit target) throws NullWeaponException, InvalidTargetUnitException, DeadUnitException {
+    if (getCurrentHp() == 0) throw new DeadUnitException("%s is dead.".formatted(this));
+    target.receiveAttackFromPlayerUnit(getDamage());
   }
 
   @Override
@@ -99,5 +112,16 @@ public abstract class AbstractPlayerUnit extends AbstractUnit implements PlayerU
   @Override
   public Weapon equipNullWeapon(NullWeapon nullWeapon) {
     return setWeapon(nullWeapon);
+  }
+
+  @Override
+  public void receiveAttackFromPlayerUnit(int damage) throws InvalidTargetUnitException {
+    throw new InvalidTargetUnitException("A PlayerUnit cannot attack another PlayerUnit");
+  }
+
+  @Override
+  public void receiveAttackFromEnemy(int damage) throws DeadUnitException {
+    if (getCurrentHp() == 0) throw new DeadUnitException("%s is dead.".formatted(this));
+    setCurrentHp(getCurrentHp() - Math.max(1, damage - getDefense()));
   }
 }
