@@ -11,7 +11,35 @@ import cl.uchile.dcc.finalreality.model.weapons.types.Sword;
 import java.util.Objects;
 import java.util.concurrent.BlockingQueue;
 
+/**
+ * This class represents a thief in the game.
+ *
+ * @author <a href=https://github.com/diego-acevedo>Diego Acevedo</a>
+ *
+ * @version 1.0.0
+ * @since 1.0.0
+ */
 public class Thief extends AbstractPlayerUnit {
+
+  /**
+   * Creates a new thief.
+   *
+   * <pre>
+   * {@code
+   * Thief thief = new Thief("Thief", 60, 3, 45, new LinkedBlockingQueue<>())
+   * }</pre>
+   *
+   * @param name this character's name. This stat can't be {@code null}.
+   * @param maxHp this character's max hp. This stat can't be less
+   *              than 1.
+   * @param defense this character's defense. This stat can't be less
+   *                than 0.
+   * @param turnsQueue this character's turns queue. This stat can't
+   *                   be {@code null}.
+   *
+   * @throws InvalidStatException if one of the stats doesn't meet
+   * the requirements.
+   */
   public Thief(String name, int maxHp, int defense, BlockingQueue<GameUnit> turnsQueue)
       throws InvalidStatException {
     super(name, maxHp, defense, turnsQueue);

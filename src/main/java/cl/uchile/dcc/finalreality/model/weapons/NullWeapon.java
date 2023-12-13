@@ -1,12 +1,18 @@
 package cl.uchile.dcc.finalreality.model.weapons;
 
-import cl.uchile.dcc.finalreality.exceptions.InvalidWeaponException;
 import cl.uchile.dcc.finalreality.exceptions.NullWeaponException;
 import cl.uchile.dcc.finalreality.model.units.playable.PlayerUnit;
-import cl.uchile.dcc.finalreality.model.weapons.types.Sword;
 
 import java.util.Objects;
 
+/**
+ * This class represents a null weapon.
+ *
+ * @author <a href=https://github.com/diego-acevedo>Diego Acevedo</a>
+ *
+ * @version 1.0.0
+ * @since 1.0.0
+ */
 public class NullWeapon implements Weapon {
 
   @Override

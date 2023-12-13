@@ -10,7 +10,35 @@ import cl.uchile.dcc.finalreality.model.weapons.types.Bow;
 import java.util.Objects;
 import java.util.concurrent.BlockingQueue;
 
+/**
+ * This class represents an engineer in the game.
+ *
+ * @author <a href=https://github.com/diego-acevedo>Diego Acevedo</a>
+ *
+ * @version 1.0.0
+ * @since 1.0.0
+ */
 public class Engineer extends AbstractPlayerUnit {
+
+  /**
+   * Creates a new engineer.
+   *
+   * <pre>
+   * {@code
+   * Engineer engineer = new Engineer("Engineer", 60, 3, 45, new LinkedBlockingQueue<>())
+   * }</pre>
+   *
+   * @param name this character's name. This stat can't be {@code null}.
+   * @param maxHp this character's max hp. This stat can't be less
+   *              than 1.
+   * @param defense this character's defense. This stat can't be less
+   *                than 0.
+   * @param turnsQueue this character's turns queue. This stat can't
+   *                   be {@code null}.
+   *
+   * @throws InvalidStatException if one of the stats doesn't meet
+   * the requirements.
+   */
   public Engineer(String name, int maxHp, int defense, BlockingQueue<GameUnit> turnsQueue)
       throws InvalidStatException {
     super(name, maxHp, defense, turnsQueue);

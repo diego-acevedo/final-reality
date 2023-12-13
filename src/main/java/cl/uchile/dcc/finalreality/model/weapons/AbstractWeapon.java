@@ -1,13 +1,30 @@
 package cl.uchile.dcc.finalreality.model.weapons;
 
 import cl.uchile.dcc.finalreality.exceptions.InvalidStatException;
-import cl.uchile.dcc.finalreality.model.units.playable.types.BlackMage;
 
+/**
+ * This class contains the common behavior of all weapons.
+ *
+ * @author <a href=https://github.com/diego-acevedo>Diego Acevedo</a>
+ *
+ * @version 1.0.0
+ * @since 1.0.0
+ */
 public abstract class AbstractWeapon implements Weapon {
   private final String name;
   private final int damage;
   private final int weight;
 
+  /**
+   * Creates a new weapon.
+   *
+   * @param name this weapon's name. This stat can't be {@code null}.
+   * @param damage this weapon's damage. This stat can't be less than 1.
+   * @param weight this weapon's weight. This stat can't be less than 1.
+   *
+   * @throws InvalidStatException if one of the stats doesn't meet
+   * the requirements.
+   */
   protected AbstractWeapon(String name, int damage, int weight) throws InvalidStatException {
     if (name == null) throw new InvalidStatException("Cannot assign null value to name.");
     if (damage < 1) throw new InvalidStatException("Damage cannot be less than 1.");

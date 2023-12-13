@@ -9,9 +9,30 @@ import cl.uchile.dcc.finalreality.model.weapons.Weapon;
 
 import java.util.Objects;
 
+/**
+ * This class represents a staff.
+ *
+ * @author <a href=https://github.com/diego-acevedo>Diego Acevedo</a>
+ *
+ * @version 1.0.0
+ * @since 1.0.0
+ */
 public class Staff extends AbstractWeapon implements MagicWeapon {
 
   private final int magicDamage;
+
+  /**
+   * Creates a new staff.
+   *
+   * @param name this staff's name. This stat can't be {@code null}.
+   * @param damage this staff's damage. This stat can't be less than 1.
+   * @param magicDamage this staff's magic damage. This stat can't be
+   *                    less than 1.
+   * @param weight this staff's weight. This stat can't be less than 1.
+   *
+   * @throws InvalidStatException if one of the stats doesn't meet
+   * the requirements.
+   */
   public Staff(String name, int damage, int magicDamage, int weight) throws InvalidStatException {
     super(name, damage, weight);
     if (magicDamage < 1) throw new InvalidStatException("Magic damage cannot be less than 1.");

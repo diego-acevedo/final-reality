@@ -8,6 +8,14 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * This class contains the common behavior of all game units.
+ *
+ * @author <a href=https://github.com/diego-acevedo>Diego Acevedo</a>
+ *
+ * @version 1.0.0
+ * @since 1.0.0
+ */
 public abstract class AbstractUnit implements GameUnit {
 
   private int currentHp;
@@ -17,6 +25,20 @@ public abstract class AbstractUnit implements GameUnit {
   protected final String name;
   private ScheduledExecutorService scheduledExecutor;
 
+  /**
+   * Creates a new character.
+   *
+   * @param name this character's name. This stat can't be {@code null}.
+   * @param maxHp this character's max hp. This stat can't be less
+   *              than 1.
+   * @param defense this character's defense. This stat can't be less
+   *                than 0.
+   * @param turnsQueue this character's turns queue. This stat can't
+   *                   be {@code null}.
+   *
+   * @throws InvalidStatException if one of the stats doesn't meet
+   * the requirements.
+   */
   protected AbstractUnit(String name, int maxHp, int defense, BlockingQueue<GameUnit> turnsQueue)
       throws InvalidStatException {
     if (name == null) throw new InvalidStatException("Cannot assign null value to name.");
@@ -64,6 +86,9 @@ public abstract class AbstractUnit implements GameUnit {
         /* unit = */ TimeUnit.SECONDS);
   }
 
+  /**
+   * Inserts this character into the turns queue.
+   */
   private void addToQueue() {
     try {
       turnsQueue.put(this);

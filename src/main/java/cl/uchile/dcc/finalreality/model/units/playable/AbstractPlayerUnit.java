@@ -11,9 +11,31 @@ import cl.uchile.dcc.finalreality.model.weapons.types.*;
 
 import java.util.concurrent.BlockingQueue;
 
+/**
+ * This class contains the common behavior of all playable game units.
+ *
+ * @author <a href=https://github.com/diego-acevedo>Diego Acevedo</a>
+ *
+ * @version 1.0.0
+ * @since 1.0.0
+ */
 public abstract class AbstractPlayerUnit extends AbstractUnit implements PlayerUnit {
   private Weapon weapon = new NullWeapon();
 
+  /**
+   * Creates a new playable character.
+   *
+   * @param name this character's name. This stat can't be {@code null}.
+   * @param maxHp this character's max hp. This stat can't be less
+   *              than 1.
+   * @param defense this character's defense. This stat can't be less
+   *                than 0.
+   * @param turnsQueue this character's turns queue. This stat can't
+   *                   be {@code null}.
+   *
+   * @throws InvalidStatException if one of the stats doesn't meet
+   * the requirements.
+   */
   protected AbstractPlayerUnit(String name, int maxHp, int defense, BlockingQueue<GameUnit> turnsQueue)
       throws InvalidStatException {
     super(name, maxHp, defense, turnsQueue);
@@ -29,6 +51,15 @@ public abstract class AbstractPlayerUnit extends AbstractUnit implements PlayerU
     return weapon;
   }
 
+  /**
+   * This method sets a new weapon to this character. To equip a
+   * weapon to a character, it is recommended to use the
+   * {@link #equip(Weapon weapon)} method in order to maintain
+   * the restrictions for each unit.
+   *
+   * @param weapon the new weapon.
+   * @return the old weapon.
+   */
   protected Weapon setWeapon(Weapon weapon) {
     Weapon oldWeapon = getWeapon();
     this.weapon = weapon;

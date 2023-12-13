@@ -8,10 +8,40 @@ import cl.uchile.dcc.finalreality.model.units.playable.types.Thief;
 import java.util.Objects;
 import java.util.concurrent.BlockingQueue;
 
+/**
+ * This class represents an enemy in the game.
+ *
+ * @author <a href=https://github.com/diego-acevedo>Diego Acevedo</a>
+ *
+ * @version 1.0.0
+ * @since 1.0.0
+ */
 public class Enemy extends AbstractUnit {
 
   private final int damage;
   private final int weight;
+
+  /**
+   * Creates a new enemy.
+   *
+   * <pre>
+   * {@code
+   * Enemy enemy = new Enemy("Dark Ogre", 80, 5, 12, 150, new LinkedBlockingQueue<>())
+   * }</pre>
+   *
+   * @param name this enemy's name. This stat can't be {@code null}.
+   * @param maxHp this enemy's max hp. This stat can't be less
+   *              than 1.
+   * @param defense this enemy's defense. This stat can't be less
+   *                than 0.
+   * @param damage this enemy's damage. This stat can't be less than 1.
+   * @param weight this enemy's weight. This stat can't be less than 1.
+   * @param turnsQueue this character's turns queue. This stat can't
+   *                   be {@code null}.
+   *
+   * @throws InvalidStatException if one of the stats doesn't meet
+   * the requirements.
+   */
   public Enemy(String name, int maxHp, int defense, int damage, int weight, BlockingQueue<GameUnit> turnsQueue)
       throws InvalidStatException {
     super(name, maxHp, defense, turnsQueue);
@@ -26,6 +56,9 @@ public class Enemy extends AbstractUnit {
     return weight;
   }
 
+  /**
+   * Returns this character's damage stat.
+   */
   public int getDamage() {
     return damage;
   }

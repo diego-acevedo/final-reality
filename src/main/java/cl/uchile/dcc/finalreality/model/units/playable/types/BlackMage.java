@@ -10,7 +10,37 @@ import cl.uchile.dcc.finalreality.model.weapons.types.Staff;
 import java.util.Objects;
 import java.util.concurrent.BlockingQueue;
 
+/**
+ * This class represents a black mage in the game.
+ *
+ * @author <a href=https://github.com/diego-acevedo>Diego Acevedo</a>
+ *
+ * @version 1.0.0
+ * @since 1.0.0
+ */
 public class BlackMage extends AbstractMage {
+
+  /**
+   * Creates a new black mage.
+   *
+   * <pre>
+   * {@code
+   * BlackMage blackMage = new BlackMage("Black Mage", 60, 3, 45, new LinkedBlockingQueue<>())
+   * }</pre>
+   *
+   * @param name this character's name. This stat can't be {@code null}.
+   * @param maxHp this character's max hp. This stat can't be less
+   *              than 1.
+   * @param defense this character's defense. This stat can't be less
+   *                than 0.
+   * @param maxMp this character's max mp. This stat can't be less
+   *              than 1.
+   * @param turnsQueue this character's turns queue. This stat can't
+   *                   be {@code null}.
+   *
+   * @throws InvalidStatException if one of the stats doesn't meet
+   * the requirements.
+   */
   public BlackMage(String name, int maxHp, int defense, int maxMp, BlockingQueue<GameUnit> turnsQueue)
       throws InvalidStatException {
     super(name, maxHp, defense, maxMp, turnsQueue);
