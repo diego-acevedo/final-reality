@@ -29,6 +29,36 @@ class EnemyTest extends AbstractUnitTest<Enemy> {
   }
 
   @Test
+  @DisplayName("An Enemy should be able to attack a PlayerUnit")
+  void attackPlayerTest() {
+    assertEquals(100, blackMage.getCurrentHp());
+    unit.attack(blackMage);
+    assertEquals(80, blackMage.getCurrentHp());
+
+    assertEquals(100, engineer.getCurrentHp());
+    unit.attack(engineer);
+    assertEquals(80, engineer.getCurrentHp());
+
+    assertEquals(100, knight.getCurrentHp());
+    unit.attack(knight);
+    assertEquals(80, knight.getCurrentHp());
+
+    assertEquals(100, thief.getCurrentHp());
+    unit.attack(thief);
+    assertEquals(80, thief.getCurrentHp());
+
+    assertEquals(100, whiteMage.getCurrentHp());
+    unit.attack(whiteMage);
+    assertEquals(80, whiteMage.getCurrentHp());
+  }
+
+  @Test
+  @DisplayName("An Enemy cannot attack another Enemy")
+  void attackEnemyTest() {
+    assertThrows(InvalidTargetUnitException.class, () -> unit.attack(enemy));
+  }
+
+  @Test
   @DisplayName("Testing creating an instance of BlackMage with invalid parameters")
   void constructorTest() {
     assertThrows(InvalidStatException.class,

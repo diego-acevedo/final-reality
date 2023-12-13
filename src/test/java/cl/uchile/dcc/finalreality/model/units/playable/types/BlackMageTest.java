@@ -26,8 +26,8 @@ class BlackMageTest extends AbstractMageTest<BlackMage> {
   }
 
   @Override
-  public Weapon createWeapon(int weight) throws InvalidStatException {
-    return new Knife("Test", 100, weight);
+  public Weapon createWeapon(int weight, int damage) throws InvalidStatException {
+    return new Knife("Test", damage, weight);
   }
 
   @Test

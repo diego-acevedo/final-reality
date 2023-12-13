@@ -26,8 +26,8 @@ class KnightTest extends AbstractPlayerUnitTest<Knight> {
   }
 
   @Override
-  public Weapon createWeapon(int weight) throws InvalidStatException {
-    return new Sword("Test", 100, weight);
+  public Weapon createWeapon(int weight, int damage) throws InvalidStatException {
+    return new Sword("Test", damage, weight);
   }
 
   @Test

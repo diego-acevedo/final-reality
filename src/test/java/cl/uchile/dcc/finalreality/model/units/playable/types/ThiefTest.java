@@ -26,8 +26,8 @@ class ThiefTest extends AbstractPlayerUnitTest<Thief> {
   }
 
   @Override
-  public Weapon createWeapon(int weight) throws InvalidStatException {
-    return new Bow("Test", 100, weight);
+  public Weapon createWeapon(int weight, int damage) throws InvalidStatException {
+    return new Bow("Test", damage, weight);
   }
 
   @Test

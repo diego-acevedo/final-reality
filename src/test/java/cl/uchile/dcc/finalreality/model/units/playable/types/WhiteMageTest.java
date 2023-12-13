@@ -26,8 +26,8 @@ class WhiteMageTest extends AbstractMageTest<WhiteMage> {
   }
 
   @Override
-  public Weapon createWeapon(int weight) throws InvalidStatException {
-    return new Staff("Test", 100, 100, weight);
+  public Weapon createWeapon(int weight, int damage) throws InvalidStatException {
+    return new Staff("Test", damage, 100, weight);
   }
 
   @Test

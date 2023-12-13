@@ -26,8 +26,8 @@ class EngineerTest extends AbstractPlayerUnitTest<Engineer> {
   }
 
   @Override
-  public Weapon createWeapon(int weight) throws InvalidStatException {
-    return new Axe("Test", 100, weight);
+  public Weapon createWeapon(int weight, int damage) throws InvalidStatException {
+    return new Axe("Test", damage, weight);
   }
 
   @Test

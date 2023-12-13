@@ -34,16 +34,16 @@ public abstract class AbstractPlayerUnitTest<T extends PlayerUnit> extends Abstr
     nullWeapon = new NullWeapon();
   }
 
-  public abstract Weapon createWeapon(int weight) throws InvalidStatException;
+  public abstract Weapon createWeapon(int weight, int damage) throws InvalidStatException;
 
   @Test
   @DisplayName("Testing weight getter")
   void weightGetterTest() throws NullWeaponException, InvalidWeaponException, InvalidStatException {
-    unit.equip(createWeapon(20));
+    unit.equip(createWeapon(20, 10));
     assertEquals(20, unit.getWeight());
-    unit.equip(createWeapon(50));
+    unit.equip(createWeapon(50, 10));
     assertEquals(50, unit.getWeight());
-    unit.equip(createWeapon(100));
+    unit.equip(createWeapon(100, 10));
     assertEquals(100, unit.getWeight());
   }
 
@@ -88,5 +88,45 @@ public abstract class AbstractPlayerUnitTest<T extends PlayerUnit> extends Abstr
   public void equipNullWeaponTest() throws InvalidWeaponException {
     unit.equip(nullWeapon);
     assertEquals(nullWeapon, unit.getWeapon());
+  }
+
+  @Test
+  @DisplayName("A PlayerUnit cannot attack another PlayerUnit")
+  void attackPlayerTest() throws InvalidStatException, InvalidWeaponException {
+    unit.equip(createWeapon(20, 10));
+
+    assertThrows(InvalidTargetUnitException.class, () -> unit.attack(blackMage));
+
+    assertThrows(InvalidTargetUnitException.class, () -> unit.attack(engineer));
+
+    assertThrows(InvalidTargetUnitException.class, () -> unit.attack(knight));
+
+    assertThrows(InvalidTargetUnitException.class, () -> unit.attack(thief));
+
+    assertThrows(InvalidTargetUnitException.class, () -> unit.attack(whiteMage));
+  }
+
+  @Test
+  @DisplayName("A PlayerUnit should be able to attack an enemy")
+  void attackEnemyTest() throws InvalidStatException, InvalidWeaponException {
+    unit.equip(createWeapon(20, 10));
+
+    assertEquals(100, enemy.getCurrentHp());
+    unit.attack(enemy);
+    assertEquals(90, enemy.getCurrentHp());
+
+    unit.equip(createWeapon(20, 30));
+    unit.attack(enemy);
+    assertEquals(60, enemy.getCurrentHp());
+
+    unit.equip(createWeapon(80, 30));
+    unit.attack(enemy);
+    assertEquals(0, enemy.getCurrentHp());
+  }
+
+  @Test
+  @DisplayName("A PlayerUnit cannot attack an Enemy with no weapon equipped")
+  void unequippedAttackTest() {
+    assertThrows(NullWeaponException.class, () -> unit.attack(enemy));
   }
 }
