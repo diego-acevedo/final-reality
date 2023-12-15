@@ -1,6 +1,7 @@
 package cl.uchile.dcc.finalreality.model.weapons;
 
 import cl.uchile.dcc.finalreality.exceptions.InvalidWeaponException;
+import cl.uchile.dcc.finalreality.exceptions.NonMagicWeaponException;
 import cl.uchile.dcc.finalreality.exceptions.NullWeaponException;
 import cl.uchile.dcc.finalreality.model.units.playable.PlayerUnit;
 
@@ -27,6 +28,13 @@ public interface Weapon {
    * @throws NullWeaponException if the weapon is a {@link NullWeapon null weapon}.
    */
   int getDamage() throws NullWeaponException;
+
+  /**
+   * Returns this weapon's magic damage.
+   *
+   * @throws NullWeaponException if the weapon is a {@link NullWeapon null weapon}.
+   */
+  int getMagicDamage() throws NullWeaponException, NonMagicWeaponException;
 
   /**
    * Returns this weapon's weight.

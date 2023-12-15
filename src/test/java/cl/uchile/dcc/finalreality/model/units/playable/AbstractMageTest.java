@@ -1,11 +1,17 @@
 package cl.uchile.dcc.finalreality.model.units.playable;
 
+import cl.uchile.dcc.finalreality.exceptions.*;
+import cl.uchile.dcc.finalreality.model.spells.types.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
+import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public abstract class AbstractMageTest<T extends MagicUser> extends AbstractPlayerUnitTest<T> {
+
+  public final long seed = 1234;
 
   @Test
   @DisplayName("Testing maxMp getter")
@@ -46,5 +52,40 @@ public abstract class AbstractMageTest<T extends MagicUser> extends AbstractPlay
     assertEquals(200, unit.getCurrentMp());
     unit.setCurrentMp(200);
     assertEquals(200, unit.getCurrentMp());
+  }
+
+  @Test
+  @DisplayName("Testing casting a Cure spell")
+  public void cureSpellTest() throws InvalidWeaponException, DeadUnitException, InvalidMageTypeException, InvalidTargetUnitException, InsufficientMpException, NonMagicWeaponException, NullWeaponException {
+    unit.equip(staff);
+    assertThrows(InvalidMageTypeException.class, () -> unit.castSpell(new Cure(), knight));
+  }
+
+  @Test
+  @DisplayName("Testing casting a Fire spell")
+  public void fireSpellTest() throws InvalidWeaponException, DeadUnitException, InvalidMageTypeException, InvalidTargetUnitException, InsufficientMpException, NonMagicWeaponException, NullWeaponException {
+    unit.equip(staff);
+    assertThrows(InvalidMageTypeException.class, () -> unit.castSpell(new Fire(seed), enemy));
+  }
+
+  @Test
+  @DisplayName("Testing casting a Paralysis spell")
+  public void paralysisSpellTest() throws InvalidWeaponException, DeadUnitException, InvalidMageTypeException, InvalidTargetUnitException, InsufficientMpException, NonMagicWeaponException, NullWeaponException {
+    unit.equip(staff);
+    assertThrows(InvalidMageTypeException.class, () -> unit.castSpell(new Paralysis(), enemy));
+  }
+
+  @Test
+  @DisplayName("Testing casting a Poison spell")
+  public void poisonSpellTest() throws InvalidWeaponException, DeadUnitException, InvalidMageTypeException, InvalidTargetUnitException, InsufficientMpException, NonMagicWeaponException, NullWeaponException {
+    unit.equip(staff);
+    assertThrows(InvalidMageTypeException.class, () -> unit.castSpell(new Poison(), enemy));
+  }
+
+  @Test
+  @DisplayName("Testing casting a Thunder spell")
+  public void thunderSpellTest() throws InvalidWeaponException, DeadUnitException, InvalidMageTypeException, InvalidTargetUnitException, InsufficientMpException, NonMagicWeaponException, NullWeaponException {
+    unit.equip(staff);
+    assertThrows(InvalidMageTypeException.class, () -> unit.castSpell(new Thunder(seed), enemy));
   }
 }

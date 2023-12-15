@@ -1,11 +1,10 @@
 package cl.uchile.dcc.finalreality.model.units.enemy;
 
-import cl.uchile.dcc.finalreality.exceptions.DeadUnitException;
-import cl.uchile.dcc.finalreality.exceptions.InvalidStatException;
-import cl.uchile.dcc.finalreality.exceptions.InvalidTargetUnitException;
-import cl.uchile.dcc.finalreality.exceptions.NullWeaponException;
+import cl.uchile.dcc.finalreality.exceptions.*;
+import cl.uchile.dcc.finalreality.model.spells.Spell;
 import cl.uchile.dcc.finalreality.model.units.AbstractUnit;
 import cl.uchile.dcc.finalreality.model.units.GameUnit;
+import cl.uchile.dcc.finalreality.model.units.playable.MagicUser;
 import cl.uchile.dcc.finalreality.model.units.playable.types.Thief;
 
 import java.util.Objects;
@@ -74,6 +73,12 @@ public class Enemy extends AbstractUnit {
   @Override
   public void receiveAttackFromEnemy(int damage) throws InvalidTargetUnitException {
     throw new InvalidTargetUnitException("An Enemy cannot attack another Enemy.");
+  }
+
+  @Override
+  public void receiveSpell(Spell spell, MagicUser mage) throws InvalidTargetUnitException, DeadUnitException, InsufficientMpException, NonMagicWeaponException, NullWeaponException {
+    if (getCurrentHp() == 0) throw new DeadUnitException("%s is dead.".formatted(this));
+    spell.applyToEnemy(this, mage);
   }
 
   /**

@@ -1,9 +1,9 @@
 package cl.uchile.dcc.finalreality.model.units;
 
-import cl.uchile.dcc.finalreality.exceptions.DeadUnitException;
-import cl.uchile.dcc.finalreality.exceptions.InvalidTargetUnitException;
-import cl.uchile.dcc.finalreality.exceptions.NullWeaponException;
+import cl.uchile.dcc.finalreality.exceptions.*;
+import cl.uchile.dcc.finalreality.model.spells.Spell;
 import cl.uchile.dcc.finalreality.model.units.enemy.Enemy;
+import cl.uchile.dcc.finalreality.model.units.playable.MagicUser;
 import cl.uchile.dcc.finalreality.model.units.playable.PlayerUnit;
 
 import java.util.concurrent.BlockingQueue;
@@ -111,4 +111,6 @@ public interface GameUnit {
    * @throws DeadUnitException if this unit is dead.
    */
   void receiveAttackFromEnemy(int damage) throws DeadUnitException, InvalidTargetUnitException;
+
+  void receiveSpell(Spell spell, MagicUser mage) throws InvalidTargetUnitException, InsufficientMpException, DeadUnitException, NonMagicWeaponException, NullWeaponException;
 }

@@ -1,7 +1,8 @@
 package cl.uchile.dcc.finalreality.model.units.playable.types;
 
-import cl.uchile.dcc.finalreality.exceptions.InvalidStatException;
-import cl.uchile.dcc.finalreality.exceptions.InvalidWeaponException;
+import cl.uchile.dcc.finalreality.exceptions.*;
+import cl.uchile.dcc.finalreality.model.spells.types.Fire;
+import cl.uchile.dcc.finalreality.model.spells.types.Thunder;
 import cl.uchile.dcc.finalreality.model.units.playable.AbstractMageTest;
 import cl.uchile.dcc.finalreality.model.weapons.NullWeapon;
 import cl.uchile.dcc.finalreality.model.weapons.Weapon;
@@ -73,5 +74,33 @@ class BlackMageTest extends AbstractMageTest<BlackMage> {
     assertNotEquals(unit, new BlackMage(name, 100, 150, 200, new LinkedBlockingQueue<>()));
     assertNotEquals(unit, new WhiteMage(name, 50, 150, 200, turnsQueue));
     assertNotEquals(unit, null);
+  }
+
+  @Test
+  @DisplayName("Testing casting a Fire spell")
+  @Override
+  public void fireSpellTest()
+      throws InvalidWeaponException, DeadUnitException,
+      InvalidMageTypeException, InvalidTargetUnitException, InsufficientMpException, NonMagicWeaponException, NullWeaponException {
+    unit.equip(staff);
+    assertEquals(100, enemy.getCurrentHp());
+    assertEquals(200, unit.getCurrentMp());
+    unit.castSpell(new Fire(seed), enemy);
+    assertEquals(85, enemy.getCurrentHp());
+    assertEquals(185, unit.getCurrentMp());
+  }
+
+  @Test
+  @DisplayName("Testing casting a Thunder spell")
+  @Override
+  public void thunderSpellTest()
+      throws InvalidWeaponException, DeadUnitException,
+      InvalidMageTypeException, InvalidTargetUnitException, InsufficientMpException, NonMagicWeaponException, NullWeaponException {
+    unit.equip(staff);
+    assertEquals(100, enemy.getCurrentHp());
+    assertEquals(200, unit.getCurrentMp());
+    unit.castSpell(new Thunder(seed), enemy);
+    assertEquals(85, enemy.getCurrentHp());
+    assertEquals(185, unit.getCurrentMp());
   }
 }

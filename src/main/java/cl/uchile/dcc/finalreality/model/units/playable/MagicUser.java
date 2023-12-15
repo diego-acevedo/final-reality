@@ -1,5 +1,9 @@
 package cl.uchile.dcc.finalreality.model.units.playable;
 
+import cl.uchile.dcc.finalreality.exceptions.*;
+import cl.uchile.dcc.finalreality.model.spells.Spell;
+import cl.uchile.dcc.finalreality.model.units.GameUnit;
+
 /**
  * This represents a {@link PlayerUnit player unit} that can
  * use magic to cast spells.
@@ -30,4 +34,6 @@ public interface MagicUser extends PlayerUnit {
    * @param mp the new value for the current mp.
    */
   void setCurrentMp(int mp);
+
+  void castSpell(Spell spell, GameUnit target) throws DeadUnitException, InvalidMageTypeException, InvalidTargetUnitException, InsufficientMpException, NonMagicWeaponException, NullWeaponException;
 }

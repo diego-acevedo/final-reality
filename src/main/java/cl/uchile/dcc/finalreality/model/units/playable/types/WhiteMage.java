@@ -1,6 +1,7 @@
 package cl.uchile.dcc.finalreality.model.units.playable.types;
 
-import cl.uchile.dcc.finalreality.exceptions.InvalidStatException;
+import cl.uchile.dcc.finalreality.exceptions.*;
+import cl.uchile.dcc.finalreality.model.spells.Spell;
 import cl.uchile.dcc.finalreality.model.units.GameUnit;
 import cl.uchile.dcc.finalreality.model.units.playable.AbstractMage;
 import cl.uchile.dcc.finalreality.model.weapons.Weapon;
@@ -77,5 +78,11 @@ public class WhiteMage extends AbstractMage {
   @Override
   public int hashCode() {
     return Objects.hash(WhiteMage.class, this.getUnitName(), this.getMaxHp(), this.getDefense(), this.getMaxMp());
+  }
+
+  @Override
+  public void castSpell(Spell spell, GameUnit target) throws DeadUnitException, InvalidMageTypeException, InvalidTargetUnitException, InsufficientMpException, NonMagicWeaponException, NullWeaponException {
+    if (getCurrentHp() == 0) throw new DeadUnitException("%s is dead.".formatted(this));
+    spell.conjuredByWhiteMage(this, target);
   }
 }

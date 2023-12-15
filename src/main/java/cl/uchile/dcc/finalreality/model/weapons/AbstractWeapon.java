@@ -1,6 +1,8 @@
 package cl.uchile.dcc.finalreality.model.weapons;
 
 import cl.uchile.dcc.finalreality.exceptions.InvalidStatException;
+import cl.uchile.dcc.finalreality.exceptions.NonMagicWeaponException;
+import cl.uchile.dcc.finalreality.exceptions.NullWeaponException;
 
 /**
  * This class contains the common behavior of all weapons.
@@ -47,6 +49,11 @@ public abstract class AbstractWeapon implements Weapon {
   @Override
   public int getWeight() {
     return weight;
+  }
+
+  @Override
+  public int getMagicDamage() throws NonMagicWeaponException {
+    throw new NonMagicWeaponException("%s doesn't have magic damage".formatted(this));
   }
 
 }

@@ -2,6 +2,7 @@ package cl.uchile.dcc.finalreality.model.weapons.types;
 
 import cl.uchile.dcc.finalreality.exceptions.InvalidStatException;
 import cl.uchile.dcc.finalreality.exceptions.InvalidWeaponException;
+import cl.uchile.dcc.finalreality.exceptions.NullWeaponException;
 import cl.uchile.dcc.finalreality.model.units.playable.PlayerUnit;
 import cl.uchile.dcc.finalreality.model.weapons.AbstractWeapon;
 import cl.uchile.dcc.finalreality.model.weapons.MagicWeapon;

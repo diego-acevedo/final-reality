@@ -2,6 +2,8 @@ package cl.uchile.dcc.finalreality.model.units;
 
 import cl.uchile.dcc.finalreality.exceptions.InvalidStatException;
 import cl.uchile.dcc.finalreality.exceptions.NullWeaponException;
+import cl.uchile.dcc.finalreality.model.spells.Spell;
+import cl.uchile.dcc.finalreality.model.units.playable.MagicUser;
 
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.Executors;

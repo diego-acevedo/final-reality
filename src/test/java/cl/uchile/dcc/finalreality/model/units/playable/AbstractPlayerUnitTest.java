@@ -27,7 +27,7 @@ public abstract class AbstractPlayerUnitTest<T extends PlayerUnit> extends Abstr
     axe = new Axe("Axe", 60, 10);
     bow = new Bow("Bow", 70, 20);
     knife = new Knife("Knife", 80, 30);
-    staff = new Staff("Staff", 90, 100, 40);
+    staff = new Staff("Staff", 90, 15, 40);
     sword = new Sword("Sword", 100, 50);
     nullWeapon = new NullWeapon();
   }

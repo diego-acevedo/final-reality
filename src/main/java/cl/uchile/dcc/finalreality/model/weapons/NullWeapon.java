@@ -26,6 +26,11 @@ public class NullWeapon implements Weapon {
   }
 
   @Override
+  public int getMagicDamage() throws NullWeaponException {
+    throw new NullWeaponException("Null weapon doesn't have magic damage.");
+  }
+
+  @Override
   public int getWeight() throws NullWeaponException {
     throw new NullWeaponException("Null weapon doesn't have a weight.");
   }

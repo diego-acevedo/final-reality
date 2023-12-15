@@ -1,7 +1,9 @@
 package cl.uchile.dcc.finalreality.model.units.playable.types;
 
-import cl.uchile.dcc.finalreality.exceptions.InvalidStatException;
-import cl.uchile.dcc.finalreality.exceptions.InvalidWeaponException;
+import cl.uchile.dcc.finalreality.exceptions.*;
+import cl.uchile.dcc.finalreality.model.spells.types.Cure;
+import cl.uchile.dcc.finalreality.model.spells.types.Paralysis;
+import cl.uchile.dcc.finalreality.model.spells.types.Poison;
 import cl.uchile.dcc.finalreality.model.units.playable.AbstractMageTest;
 import cl.uchile.dcc.finalreality.model.weapons.NullWeapon;
 import cl.uchile.dcc.finalreality.model.weapons.Weapon;
@@ -65,5 +67,44 @@ class WhiteMageTest extends AbstractMageTest<WhiteMage> {
     assertNotEquals(unit, new WhiteMage(name, 100, 150, 200, new LinkedBlockingQueue<>()));
     assertNotEquals(unit, new BlackMage(name, 50, 150, 200, turnsQueue));
     assertNotEquals(unit, null);
+  }
+
+  @Test
+  @DisplayName("Testing casting a Cure spell")
+  @Override
+  public void cureSpellTest()
+      throws InvalidWeaponException, DeadUnitException,
+      InvalidMageTypeException, InvalidTargetUnitException, InsufficientMpException, NonMagicWeaponException, NullWeaponException {
+    unit.equip(staff);
+    knight.setCurrentHp(20);
+    assertEquals(20, knight.getCurrentHp());
+    assertEquals(200, unit.getCurrentMp());
+    unit.castSpell(new Cure(), knight);
+    assertEquals(50, knight.getCurrentHp());
+    assertEquals(185, unit.getCurrentMp());
+  }
+
+  @Test
+  @DisplayName("Testing casting a Paralysis spell")
+  @Override
+  public void paralysisSpellTest()
+      throws InvalidWeaponException, DeadUnitException,
+      InvalidMageTypeException, InvalidTargetUnitException, InsufficientMpException, NonMagicWeaponException, NullWeaponException {
+    unit.equip(staff);
+    assertEquals(200, unit.getCurrentMp());
+    unit.castSpell(new Paralysis(), enemy);
+    assertEquals(175, unit.getCurrentMp());
+  }
+
+  @Test
+  @DisplayName("Testing casting a Poison spell")
+  @Override
+  public void poisonSpellTest()
+      throws InvalidWeaponException, DeadUnitException,
+      InvalidMageTypeException, InvalidTargetUnitException, InsufficientMpException, NonMagicWeaponException, NullWeaponException {
+    unit.equip(staff);
+    assertEquals(200, unit.getCurrentMp());
+    unit.castSpell(new Poison(), enemy);
+    assertEquals(160, unit.getCurrentMp());
   }
 }
