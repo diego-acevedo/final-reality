@@ -4,6 +4,7 @@ import cl.uchile.dcc.finalreality.exceptions.*;
 import cl.uchile.dcc.finalreality.model.spells.Spell;
 import cl.uchile.dcc.finalreality.model.units.AbstractUnit;
 import cl.uchile.dcc.finalreality.model.units.GameUnit;
+import cl.uchile.dcc.finalreality.model.weapons.MagicWeapon;
 import cl.uchile.dcc.finalreality.model.weapons.NullWeapon;
 import cl.uchile.dcc.finalreality.model.weapons.Weapon;
 import cl.uchile.dcc.finalreality.model.weapons.types.*;
@@ -127,8 +128,9 @@ public abstract class AbstractPlayerUnit extends AbstractUnit implements PlayerU
   }
 
   @Override
-  public void receiveSpell(Spell spell, MagicUser mage) throws InvalidTargetUnitException, InsufficientMpException, DeadUnitException {
+  public void receiveSpell(Spell spell, MagicUser mage, MagicWeapon weapon)
+      throws InvalidTargetUnitException, InsufficientMpException, DeadUnitException {
     if (getCurrentHp() == 0) throw new DeadUnitException("%s is dead.".formatted(this));
-    spell.applyToPlayerUnit(this, mage);
+    spell.applyToPlayerUnit(this, mage, weapon);
   }
 }

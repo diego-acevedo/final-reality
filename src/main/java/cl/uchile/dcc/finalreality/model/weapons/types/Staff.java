@@ -1,9 +1,12 @@
 package cl.uchile.dcc.finalreality.model.weapons.types;
 
-import cl.uchile.dcc.finalreality.exceptions.InvalidStatException;
-import cl.uchile.dcc.finalreality.exceptions.InvalidWeaponException;
-import cl.uchile.dcc.finalreality.exceptions.NullWeaponException;
+import cl.uchile.dcc.finalreality.exceptions.*;
+import cl.uchile.dcc.finalreality.model.spells.Spell;
+import cl.uchile.dcc.finalreality.model.units.GameUnit;
+import cl.uchile.dcc.finalreality.model.units.playable.MagicUser;
 import cl.uchile.dcc.finalreality.model.units.playable.PlayerUnit;
+import cl.uchile.dcc.finalreality.model.units.playable.types.BlackMage;
+import cl.uchile.dcc.finalreality.model.units.playable.types.WhiteMage;
 import cl.uchile.dcc.finalreality.model.weapons.AbstractWeapon;
 import cl.uchile.dcc.finalreality.model.weapons.MagicWeapon;
 import cl.uchile.dcc.finalreality.model.weapons.Weapon;
@@ -48,6 +51,22 @@ public class Staff extends AbstractWeapon implements MagicWeapon {
   @Override
   public Weapon equipTo(PlayerUnit unit) throws InvalidWeaponException {
     return unit.equipStaff(this);
+  }
+
+  @Override
+  public void castSpellByBlackMage(BlackMage mage, Spell spell, GameUnit target)
+      throws NonMagicWeaponException, InsufficientMpException,
+      DeadUnitException, NullWeaponException,
+      InvalidMageTypeException, InvalidTargetUnitException {
+    spell.conjuredByBlackMage(mage, target, this);
+  }
+
+  @Override
+  public void castSpellByWhiteMage(WhiteMage mage, Spell spell, GameUnit target)
+      throws NonMagicWeaponException, InsufficientMpException,
+      DeadUnitException, NullWeaponException,
+      InvalidMageTypeException, InvalidTargetUnitException {
+    spell.conjuredByWhiteMage(mage, target, this);
   }
 
   @Override

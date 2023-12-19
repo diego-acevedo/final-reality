@@ -35,5 +35,8 @@ public interface MagicUser extends PlayerUnit {
    */
   void setCurrentMp(int mp);
 
-  void castSpell(Spell spell, GameUnit target) throws DeadUnitException, InvalidMageTypeException, InvalidTargetUnitException, InsufficientMpException, NonMagicWeaponException, NullWeaponException;
+  void castSpell(Spell spell, GameUnit target)
+      throws DeadUnitException, InvalidMageTypeException,
+      InvalidTargetUnitException, InsufficientMpException,
+      NonMagicWeaponException, NullWeaponException;
 }

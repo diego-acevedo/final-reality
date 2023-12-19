@@ -7,6 +7,7 @@ import cl.uchile.dcc.finalreality.model.units.playable.MagicUser;
 import cl.uchile.dcc.finalreality.model.units.playable.PlayerUnit;
 import cl.uchile.dcc.finalreality.model.units.playable.types.BlackMage;
 import cl.uchile.dcc.finalreality.model.units.playable.types.WhiteMage;
+import cl.uchile.dcc.finalreality.model.weapons.MagicWeapon;
 
 /**
  * This represents a spell in the game. It can be cast by
@@ -43,7 +44,7 @@ public interface Spell {
    * @throws NullWeaponException if the {@code mage} doesn't
    * have a weapon equipped.
    */
-  void conjuredByBlackMage(BlackMage mage, GameUnit unit)
+  void conjuredByBlackMage(BlackMage mage, GameUnit unit, MagicWeapon weapon)
       throws InvalidMageTypeException, InvalidTargetUnitException,
       InsufficientMpException, DeadUnitException,
       NonMagicWeaponException, NullWeaponException;
@@ -67,15 +68,14 @@ public interface Spell {
    * @throws NullWeaponException if the {@code mage} doesn't
    * have a weapon equipped.
    */
-  void conjuredByWhiteMage(WhiteMage mage, GameUnit unit)
+  void conjuredByWhiteMage(WhiteMage mage, GameUnit unit, MagicWeapon weapon)
       throws InvalidMageTypeException, InvalidTargetUnitException,
       InsufficientMpException, DeadUnitException,
       NonMagicWeaponException, NullWeaponException;
 
-  void applyToEnemy(Enemy enemy, MagicUser mage)
-      throws InvalidTargetUnitException, InsufficientMpException,
-      NonMagicWeaponException, NullWeaponException;
+  void applyToEnemy(Enemy enemy, MagicUser mage, MagicWeapon weapon)
+      throws InvalidTargetUnitException, InsufficientMpException;
 
-  void applyToPlayerUnit(PlayerUnit unit, MagicUser mage)
+  void applyToPlayerUnit(PlayerUnit unit, MagicUser mage, MagicWeapon weapon)
       throws InvalidTargetUnitException, InsufficientMpException;
 }

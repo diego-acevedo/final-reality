@@ -1,8 +1,11 @@
 package cl.uchile.dcc.finalreality.model.weapons;
 
-import cl.uchile.dcc.finalreality.exceptions.InvalidStatException;
-import cl.uchile.dcc.finalreality.exceptions.NonMagicWeaponException;
-import cl.uchile.dcc.finalreality.exceptions.NullWeaponException;
+import cl.uchile.dcc.finalreality.exceptions.*;
+import cl.uchile.dcc.finalreality.model.spells.Spell;
+import cl.uchile.dcc.finalreality.model.units.GameUnit;
+import cl.uchile.dcc.finalreality.model.units.playable.MagicUser;
+import cl.uchile.dcc.finalreality.model.units.playable.types.BlackMage;
+import cl.uchile.dcc.finalreality.model.units.playable.types.WhiteMage;
 
 /**
  * This class contains the common behavior of all weapons.
@@ -52,8 +55,18 @@ public abstract class AbstractWeapon implements Weapon {
   }
 
   @Override
-  public int getMagicDamage() throws NonMagicWeaponException {
-    throw new NonMagicWeaponException("%s doesn't have magic damage".formatted(this));
+  public void castSpellByBlackMage(BlackMage mage, Spell spell, GameUnit target)
+      throws NonMagicWeaponException, InsufficientMpException,
+      DeadUnitException, NullWeaponException,
+      InvalidMageTypeException, InvalidTargetUnitException {
+    throw new NonMagicWeaponException("%s is not a magic weapon.".formatted(this));
   }
 
+  @Override
+  public void castSpellByWhiteMage(WhiteMage mage, Spell spell, GameUnit target)
+      throws NonMagicWeaponException, InsufficientMpException,
+      DeadUnitException, NullWeaponException,
+      InvalidMageTypeException, InvalidTargetUnitException {
+    throw new NonMagicWeaponException("%s is not a magic weapon.".formatted(this));
+  }
 }

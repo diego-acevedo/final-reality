@@ -5,6 +5,7 @@ import cl.uchile.dcc.finalreality.model.spells.Spell;
 import cl.uchile.dcc.finalreality.model.units.enemy.Enemy;
 import cl.uchile.dcc.finalreality.model.units.playable.MagicUser;
 import cl.uchile.dcc.finalreality.model.units.playable.PlayerUnit;
+import cl.uchile.dcc.finalreality.model.weapons.MagicWeapon;
 
 import java.util.concurrent.BlockingQueue;
 
@@ -112,5 +113,7 @@ public interface GameUnit {
    */
   void receiveAttackFromEnemy(int damage) throws DeadUnitException, InvalidTargetUnitException;
 
-  void receiveSpell(Spell spell, MagicUser mage) throws InvalidTargetUnitException, InsufficientMpException, DeadUnitException, NonMagicWeaponException, NullWeaponException;
+  void receiveSpell(Spell spell, MagicUser mage, MagicWeapon weapon)
+      throws InvalidTargetUnitException, InsufficientMpException,
+      DeadUnitException, NonMagicWeaponException, NullWeaponException;
 }

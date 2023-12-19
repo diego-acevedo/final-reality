@@ -87,8 +87,11 @@ public class BlackMage extends AbstractMage {
   }
 
   @Override
-  public void castSpell(Spell spell, GameUnit target) throws DeadUnitException, InvalidMageTypeException, InvalidTargetUnitException, InsufficientMpException, NonMagicWeaponException, NullWeaponException {
+  public void castSpell(Spell spell, GameUnit target)
+      throws DeadUnitException, InvalidMageTypeException,
+      InvalidTargetUnitException, InsufficientMpException,
+      NonMagicWeaponException, NullWeaponException {
     if (getCurrentHp() == 0) throw new DeadUnitException("%s is dead.".formatted(this));
-    spell.conjuredByBlackMage(this, target);
+    getWeapon().castSpellByBlackMage(this, spell, target);
   }
 }

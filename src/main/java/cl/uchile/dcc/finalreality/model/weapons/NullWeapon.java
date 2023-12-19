@@ -1,7 +1,12 @@
 package cl.uchile.dcc.finalreality.model.weapons;
 
 import cl.uchile.dcc.finalreality.exceptions.NullWeaponException;
+import cl.uchile.dcc.finalreality.model.spells.Spell;
+import cl.uchile.dcc.finalreality.model.units.GameUnit;
+import cl.uchile.dcc.finalreality.model.units.playable.MagicUser;
 import cl.uchile.dcc.finalreality.model.units.playable.PlayerUnit;
+import cl.uchile.dcc.finalreality.model.units.playable.types.BlackMage;
+import cl.uchile.dcc.finalreality.model.units.playable.types.WhiteMage;
 
 import java.util.Objects;
 
@@ -26,11 +31,6 @@ public class NullWeapon implements Weapon {
   }
 
   @Override
-  public int getMagicDamage() throws NullWeaponException {
-    throw new NullWeaponException("Null weapon doesn't have magic damage.");
-  }
-
-  @Override
   public int getWeight() throws NullWeaponException {
     throw new NullWeaponException("Null weapon doesn't have a weight.");
   }
@@ -38,6 +38,16 @@ public class NullWeapon implements Weapon {
   @Override
   public Weapon equipTo(PlayerUnit unit) {
     return unit.equipNullWeapon(this);
+  }
+
+  @Override
+  public void castSpellByBlackMage(BlackMage mage, Spell spell, GameUnit target) throws NullWeaponException {
+    throw new NullWeaponException("Null weapon cannot cast spells.");
+  }
+
+  @Override
+  public void castSpellByWhiteMage(WhiteMage mage, Spell spell, GameUnit target) throws NullWeaponException {
+    throw new NullWeaponException("Null weapon cannot cast spells.");
   }
 
   @Override

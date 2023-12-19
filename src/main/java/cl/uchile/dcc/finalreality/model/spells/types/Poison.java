@@ -4,6 +4,7 @@ import cl.uchile.dcc.finalreality.exceptions.InsufficientMpException;
 import cl.uchile.dcc.finalreality.model.spells.AbstractWhiteSpell;
 import cl.uchile.dcc.finalreality.model.units.enemy.Enemy;
 import cl.uchile.dcc.finalreality.model.units.playable.MagicUser;
+import cl.uchile.dcc.finalreality.model.weapons.MagicWeapon;
 
 public class Poison extends AbstractWhiteSpell {
   @Override
@@ -12,7 +13,8 @@ public class Poison extends AbstractWhiteSpell {
   }
 
   @Override
-  public void applyToEnemy(Enemy enemy, MagicUser mage) throws InsufficientMpException {
+  public void applyToEnemy(Enemy enemy, MagicUser mage, MagicWeapon weapon)
+      throws InsufficientMpException {
     checkMana(mage);
   }
 }

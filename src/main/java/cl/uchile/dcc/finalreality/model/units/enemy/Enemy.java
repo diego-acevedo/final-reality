@@ -6,6 +6,7 @@ import cl.uchile.dcc.finalreality.model.units.AbstractUnit;
 import cl.uchile.dcc.finalreality.model.units.GameUnit;
 import cl.uchile.dcc.finalreality.model.units.playable.MagicUser;
 import cl.uchile.dcc.finalreality.model.units.playable.types.Thief;
+import cl.uchile.dcc.finalreality.model.weapons.MagicWeapon;
 
 import java.util.Objects;
 import java.util.concurrent.BlockingQueue;
@@ -76,9 +77,11 @@ public class Enemy extends AbstractUnit {
   }
 
   @Override
-  public void receiveSpell(Spell spell, MagicUser mage) throws InvalidTargetUnitException, DeadUnitException, InsufficientMpException, NonMagicWeaponException, NullWeaponException {
+  public void receiveSpell(Spell spell, MagicUser mage, MagicWeapon weapon)
+      throws InvalidTargetUnitException, DeadUnitException,
+      InsufficientMpException {
     if (getCurrentHp() == 0) throw new DeadUnitException("%s is dead.".formatted(this));
-    spell.applyToEnemy(this, mage);
+    spell.applyToEnemy(this, mage, weapon);
   }
 
   /**

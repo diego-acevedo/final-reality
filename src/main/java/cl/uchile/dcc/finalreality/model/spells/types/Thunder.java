@@ -6,6 +6,7 @@ import cl.uchile.dcc.finalreality.exceptions.NullWeaponException;
 import cl.uchile.dcc.finalreality.model.spells.AbstractBlackSpell;
 import cl.uchile.dcc.finalreality.model.units.enemy.Enemy;
 import cl.uchile.dcc.finalreality.model.units.playable.MagicUser;
+import cl.uchile.dcc.finalreality.model.weapons.MagicWeapon;
 
 import java.util.Random;
 
@@ -26,8 +27,9 @@ public class Thunder extends AbstractBlackSpell {
   }
 
   @Override
-  public void applyToEnemy(Enemy enemy, MagicUser mage) throws InsufficientMpException, NonMagicWeaponException, NullWeaponException {
+  public void applyToEnemy(Enemy enemy, MagicUser mage, MagicWeapon weapon)
+      throws InsufficientMpException {
     checkMana(mage);
-    enemy.setCurrentHp(enemy.getCurrentHp() - mage.getWeapon().getMagicDamage());
+    enemy.setCurrentHp(enemy.getCurrentHp() - weapon.getMagicDamage());
   }
 }

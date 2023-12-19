@@ -81,8 +81,11 @@ public class WhiteMage extends AbstractMage {
   }
 
   @Override
-  public void castSpell(Spell spell, GameUnit target) throws DeadUnitException, InvalidMageTypeException, InvalidTargetUnitException, InsufficientMpException, NonMagicWeaponException, NullWeaponException {
+  public void castSpell(Spell spell, GameUnit target)
+      throws DeadUnitException, InvalidMageTypeException,
+      InvalidTargetUnitException, InsufficientMpException,
+      NonMagicWeaponException, NullWeaponException {
     if (getCurrentHp() == 0) throw new DeadUnitException("%s is dead.".formatted(this));
-    spell.conjuredByWhiteMage(this, target);
+    getWeapon().castSpellByWhiteMage(this, spell, target);
   }
 }
