@@ -98,7 +98,7 @@ public interface PlayerUnit extends GameUnit {
 
   /**
    * Equips a {@link NullWeapon null weapon} to this character.
-   * This is equivalent to unequipping the current weapon.
+   * This is equivalent to removing the current weapon.
    *
    * @param nullWeapon a null weapon.
    * @return the unequipped weapon.

@@ -55,16 +55,14 @@ public class Staff extends AbstractWeapon implements MagicWeapon {
 
   @Override
   public void castSpellByBlackMage(BlackMage mage, Spell spell, GameUnit target)
-      throws NonMagicWeaponException, InsufficientMpException,
-      DeadUnitException, NullWeaponException,
+      throws InsufficientMpException, DeadUnitException,
       InvalidMageTypeException, InvalidTargetUnitException {
     spell.conjuredByBlackMage(mage, target, this);
   }
 
   @Override
   public void castSpellByWhiteMage(WhiteMage mage, Spell spell, GameUnit target)
-      throws NonMagicWeaponException, InsufficientMpException,
-      DeadUnitException, NullWeaponException,
+      throws InsufficientMpException, DeadUnitException,
       InvalidMageTypeException, InvalidTargetUnitException {
     spell.conjuredByWhiteMage(mage, target, this);
   }

@@ -65,8 +65,7 @@ public abstract class AbstractWeapon implements Weapon {
   @Override
   public void castSpellByWhiteMage(WhiteMage mage, Spell spell, GameUnit target)
       throws NonMagicWeaponException, InsufficientMpException,
-      DeadUnitException, NullWeaponException,
-      InvalidMageTypeException, InvalidTargetUnitException {
+      DeadUnitException, InvalidMageTypeException, InvalidTargetUnitException {
     throw new NonMagicWeaponException("%s is not a magic weapon.".formatted(this));
   }
 }

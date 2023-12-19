@@ -113,7 +113,20 @@ public interface GameUnit {
    */
   void receiveAttackFromEnemy(int damage) throws DeadUnitException, InvalidTargetUnitException;
 
+  /**
+   * Receives a {@code spell} cast by a {@code mage}.
+   *
+   * @param spell the spell that will be used on this unit.
+   * @param mage the mage that cast the spell.
+   * @param weapon the weapon used to cast the spell.
+   *
+   * @throws InvalidTargetUnitException if the spell is not
+   * applicable to this unit.
+   * @throws InsufficientMpException if the {@code mage} doesn't
+   * have enough mp to cast the spell.
+   * @throws DeadUnitException if the target is dead.
+   */
   void receiveSpell(Spell spell, MagicUser mage, MagicWeapon weapon)
       throws InvalidTargetUnitException, InsufficientMpException,
-      DeadUnitException, NonMagicWeaponException, NullWeaponException;
+      DeadUnitException;
 }

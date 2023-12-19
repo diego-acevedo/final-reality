@@ -35,6 +35,23 @@ public interface MagicUser extends PlayerUnit {
    */
   void setCurrentMp(int mp);
 
+  /**
+   * Cast a spell aiming a certain target.
+   *
+   * @param spell the spell that was cast.
+   * @param target the unit that will receive the spell's effect.
+   *
+   * @throws DeadUnitException if either the target or the mage
+   * is dead.
+   * @throws InvalidMageTypeException if the type of the mage is not
+   * compatible with the spell type.
+   * @throws InvalidTargetUnitException if the target cannot receive
+   * the spell.
+   * @throws InsufficientMpException if the mage does not have enough
+   * mp to cast the spell.
+   * @throws NonMagicWeaponException if the weapon is not a magic weapon.
+   * @throws NullWeaponException if the mage doesn't have a weapon equipped.
+   */
   void castSpell(Spell spell, GameUnit target)
       throws DeadUnitException, InvalidMageTypeException,
       InvalidTargetUnitException, InsufficientMpException,

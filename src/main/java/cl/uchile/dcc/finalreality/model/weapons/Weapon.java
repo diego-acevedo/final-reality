@@ -53,11 +53,51 @@ public interface Weapon {
    */
   Weapon equipTo(PlayerUnit unit) throws InvalidWeaponException;
 
+  /**
+   * Checks if the spell can be cast using this weapon by a
+   * black mage. If it can, it will cast it.
+   *
+   * @param mage the mage casting the spell.
+   * @param spell the spell being cast.
+   * @param target the target that will receive the spell.
+   *
+   * @throws NonMagicWeaponException if the weapon is not magical.
+   * @throws NullWeaponException if the mage doesn't have a weapon
+   * equipped.
+   * @throws InsufficientMpException if the mage doesn't have
+   * enough {@code mp} to cast the spell.
+   * @throws DeadUnitException if either the mage or the target
+   * are dead.
+   * @throws InvalidMageTypeException if the mage's type is not
+   * compatible with the spell's type.
+   * @throws InvalidTargetUnitException if the target's type is
+   * not compatible with the spell's type.
+   */
   void castSpellByBlackMage(BlackMage mage, Spell spell, GameUnit target)
       throws NonMagicWeaponException, NullWeaponException,
       InsufficientMpException, DeadUnitException,
       InvalidMageTypeException, InvalidTargetUnitException;
 
+  /**
+   * Checks if the spell can be cast using this weapon by a
+   * white mage. If it can, it will cast it.
+   *
+   * @param mage the mage casting the spell.
+   * @param spell the spell being cast.
+   * @param target the target that will receive the spell.
+   *
+   * @throws NonMagicWeaponException if the weapon is not magical.
+   * @throws NullWeaponException if the mage doesn't have a weapon
+   * equipped.
+   * @throws InsufficientMpException if the mage doesn't have
+   * enough {@code mp} to cast the spell.
+   * @throws DeadUnitException if either the mage or the target
+   * are dead.
+   * @throws InvalidMageTypeException if the mage's type is not
+   * compatible with the spell's type.
+   * @throws InvalidTargetUnitException if the target's type is
+   * not compatible with the spell's type.
+   */
   void castSpellByWhiteMage(WhiteMage mage, Spell spell, GameUnit target)
       throws NonMagicWeaponException, NullWeaponException,
       InsufficientMpException, DeadUnitException,

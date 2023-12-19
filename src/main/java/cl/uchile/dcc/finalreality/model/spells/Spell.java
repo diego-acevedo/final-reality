@@ -28,8 +28,9 @@ public interface Spell {
   /**
    * Cast this spell using a {@link BlackMage black mage}.
    *
-   * @param mage The black mage casting the spell.
-   * @param unit The unit being targeted by the {@code mage}.
+   * @param mage the black mage casting the spell.
+   * @param unit the unit being targeted by the {@code mage}.
+   * @param weapon the {@code mage}'s magic weapon.
    *
    * @throws InvalidMageTypeException if this spell cannot be
    * cast by a {@code BlackMage}.
@@ -39,21 +40,17 @@ public interface Spell {
    * not have enough {@code mp} to cast this spell.
    * @throws DeadUnitException if either the {@code mage} or
    * the {@code unit} are dead.
-   * @throws NonMagicWeaponException if the {@code mage} does
-   * not have a magic weapon equipped.
-   * @throws NullWeaponException if the {@code mage} doesn't
-   * have a weapon equipped.
    */
   void conjuredByBlackMage(BlackMage mage, GameUnit unit, MagicWeapon weapon)
       throws InvalidMageTypeException, InvalidTargetUnitException,
-      InsufficientMpException, DeadUnitException,
-      NonMagicWeaponException, NullWeaponException;
+      InsufficientMpException, DeadUnitException;
 
   /**
    * Cast this spell using a {@link WhiteMage white mage}.
    *
-   * @param mage The white mage casting the spell.
-   * @param unit The unit being targeted by the {@code mage}.
+   * @param mage the white mage casting the spell.
+   * @param unit the unit being targeted by the {@code mage}.
+   * @param weapon the {@code mage}'s magic weapon.
    *
    * @throws InvalidMageTypeException if this spell cannot be
    * cast by a {@code WhiteMage}.
@@ -63,19 +60,38 @@ public interface Spell {
    * not have enough {@code mp} to cast this spell.
    * @throws DeadUnitException if either the {@code mage} or
    * the {@code unit} are dead.
-   * @throws NonMagicWeaponException if the {@code mage} does
-   * not have a magic weapon equipped.
-   * @throws NullWeaponException if the {@code mage} doesn't
-   * have a weapon equipped.
    */
   void conjuredByWhiteMage(WhiteMage mage, GameUnit unit, MagicWeapon weapon)
       throws InvalidMageTypeException, InvalidTargetUnitException,
-      InsufficientMpException, DeadUnitException,
-      NonMagicWeaponException, NullWeaponException;
+      InsufficientMpException, DeadUnitException;
 
+  /**
+   * Applies this spell's effect to an {@link Enemy enemy}.
+   *
+   * @param enemy the enemy who will receive the effect.
+   * @param mage the mage who cast the spell.
+   * @param weapon the weapon that cast the spell.
+   *
+   * @throws InvalidTargetUnitException if this spell cannot
+   * target an {@code Enemy}.
+   * @throws InsufficientMpException if the {@code mage} does
+   * not have enough {@code mp}.
+   */
   void applyToEnemy(Enemy enemy, MagicUser mage, MagicWeapon weapon)
       throws InvalidTargetUnitException, InsufficientMpException;
 
+  /**
+   * Applies this spell's effect to an {@link PlayerUnit player unit}.
+   *
+   * @param unit the player unit who will receive the effect.
+   * @param mage the mage who cast the spell.
+   * @param weapon the weapon that cast the spell.
+   *
+   * @throws InvalidTargetUnitException if this spell cannot
+   * target an {@code PlayerUnit}.
+   * @throws InsufficientMpException if the {@code mage} does
+   * not have enough {@code mp}.
+   */
   void applyToPlayerUnit(PlayerUnit unit, MagicUser mage, MagicWeapon weapon)
       throws InvalidTargetUnitException, InsufficientMpException;
 }
