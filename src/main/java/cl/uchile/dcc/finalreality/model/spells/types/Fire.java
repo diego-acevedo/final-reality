@@ -12,7 +12,7 @@ import java.util.Random;
 
 public class Fire extends AbstractBlackSpell {
 
-  private Random random;
+  private final Random random;
 
   public Fire() {
     this.random = new Random();

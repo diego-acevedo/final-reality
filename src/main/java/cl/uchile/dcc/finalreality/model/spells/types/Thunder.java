@@ -11,7 +11,7 @@ import java.util.Random;
 
 public class Thunder extends AbstractBlackSpell {
 
-  private Random random;
+  private final Random random;
 
   public Thunder() {
     this.random = new Random();
