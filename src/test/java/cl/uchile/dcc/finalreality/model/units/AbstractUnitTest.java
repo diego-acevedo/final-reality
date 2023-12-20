@@ -19,10 +19,10 @@ public abstract class AbstractUnitTest<T extends GameUnit> {
   public T unit;
   public BlackMage blackMage;
   public Engineer engineer;
-  public Knight knight;
+  public static Knight knight;
   public Thief thief;
   public WhiteMage whiteMage;
-  public Enemy enemy;
+  public static Enemy enemy;
   public BlockingQueue<GameUnit> turnsQueue;
   public String name;
 
