@@ -1,6 +1,8 @@
 package cl.uchile.dcc.finalreality.model.spells.types;
 
 import cl.uchile.dcc.finalreality.exceptions.InsufficientMpException;
+import cl.uchile.dcc.finalreality.model.effects.types.Burning;
+import cl.uchile.dcc.finalreality.model.effects.types.Paralyzed;
 import cl.uchile.dcc.finalreality.model.spells.AbstractBlackSpell;
 import cl.uchile.dcc.finalreality.model.units.enemy.Enemy;
 import cl.uchile.dcc.finalreality.model.units.playable.MagicUser;
@@ -38,5 +40,9 @@ public class Thunder extends AbstractBlackSpell {
       throws InsufficientMpException {
     checkMana(mage);
     enemy.setCurrentHp(enemy.getCurrentHp() - weapon.getMagicDamage());
+
+    if (random.nextDouble() < 0.3) {
+      enemy.setParalyzedEffect(new Paralyzed(enemy));
+    }
   }
 }

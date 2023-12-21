@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public abstract class AbstractMageTest<T extends MagicUser> extends AbstractPlayerUnitTest<T> {
 
-  public static final long seed = 1234;
+  public static final long seed = 7777;
 
   @Test
   @DisplayName("Testing maxMp getter")

@@ -1,6 +1,9 @@
 package cl.uchile.dcc.finalreality.model.units.playable.types;
 
 import cl.uchile.dcc.finalreality.exceptions.*;
+import cl.uchile.dcc.finalreality.model.effects.NullEffect;
+import cl.uchile.dcc.finalreality.model.effects.types.Burning;
+import cl.uchile.dcc.finalreality.model.effects.types.Paralyzed;
 import cl.uchile.dcc.finalreality.model.spells.Spell;
 import cl.uchile.dcc.finalreality.model.spells.types.*;
 import cl.uchile.dcc.finalreality.model.units.GameUnit;
@@ -14,6 +17,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
+import java.util.Random;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.stream.Stream;
 
@@ -91,7 +95,7 @@ class BlackMageTest extends AbstractMageTest<BlackMage> {
     unit.equip(staff);
     assertEquals(100, enemy.getCurrentHp());
     assertEquals(200, unit.getCurrentMp());
-    assertEquals(new NullEffect(), enemy.getBurningEffect());
+    assertEquals(new NullEffect(enemy), enemy.getBurningEffect());
     unit.castSpell(new Fire(seed), enemy);
     assertEquals(85, enemy.getCurrentHp());
     assertEquals(185, unit.getCurrentMp());
@@ -107,11 +111,11 @@ class BlackMageTest extends AbstractMageTest<BlackMage> {
     unit.equip(staff);
     assertEquals(100, enemy.getCurrentHp());
     assertEquals(200, unit.getCurrentMp());
-    assertEquals(new NullEffect(), enemy.getParalyzedEffect());
+    assertEquals(new NullEffect(enemy), enemy.getParalyzedEffect());
     unit.castSpell(new Thunder(seed), enemy);
     assertEquals(85, enemy.getCurrentHp());
     assertEquals(185, unit.getCurrentMp());
-    assertEquals(new Paralyzed(), enemy.getParalyzedEffect());
+    assertEquals(new Paralyzed(enemy), enemy.getParalyzedEffect());
   }
 
   static Stream<Arguments> testableSpells() {

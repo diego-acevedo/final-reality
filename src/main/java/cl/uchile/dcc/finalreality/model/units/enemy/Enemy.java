@@ -1,6 +1,11 @@
 package cl.uchile.dcc.finalreality.model.units.enemy;
 
 import cl.uchile.dcc.finalreality.exceptions.*;
+import cl.uchile.dcc.finalreality.model.effects.Effect;
+import cl.uchile.dcc.finalreality.model.effects.NullEffect;
+import cl.uchile.dcc.finalreality.model.effects.types.Burning;
+import cl.uchile.dcc.finalreality.model.effects.types.Paralyzed;
+import cl.uchile.dcc.finalreality.model.effects.types.Poisoned;
 import cl.uchile.dcc.finalreality.model.spells.Spell;
 import cl.uchile.dcc.finalreality.model.units.AbstractUnit;
 import cl.uchile.dcc.finalreality.model.units.GameUnit;
@@ -23,6 +28,9 @@ public class Enemy extends AbstractUnit {
 
   private final int damage;
   private final int weight;
+  private Effect burningEffect = new NullEffect(this);
+  private Effect paralyzedEffect = new NullEffect(this);
+  private Effect poisonedEffect = new NullEffect(this);
 
   /**
    * Creates a new enemy.
@@ -89,6 +97,30 @@ public class Enemy extends AbstractUnit {
    */
   public int getDamage() {
     return damage;
+  }
+
+  public Effect getBurningEffect() {
+    return burningEffect;
+  }
+
+  public Effect getParalyzedEffect() {
+    return paralyzedEffect;
+  }
+
+  public Effect getPoisonedEffect() {
+    return poisonedEffect;
+  }
+
+  public void setBurningEffect(Burning burningEffect) {
+    this.burningEffect = burningEffect;
+  }
+
+  public void setParalyzedEffect(Effect paralyzedEffect) {
+    this.paralyzedEffect = paralyzedEffect;
+  }
+
+  public void setPoisonedEffect(Effect poisonedEffect) {
+    this.poisonedEffect = poisonedEffect;
   }
 
   @Override

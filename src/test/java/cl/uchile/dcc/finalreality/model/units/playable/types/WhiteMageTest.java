@@ -1,6 +1,9 @@
 package cl.uchile.dcc.finalreality.model.units.playable.types;
 
 import cl.uchile.dcc.finalreality.exceptions.*;
+import cl.uchile.dcc.finalreality.model.effects.NullEffect;
+import cl.uchile.dcc.finalreality.model.effects.types.Paralyzed;
+import cl.uchile.dcc.finalreality.model.effects.types.Poisoned;
 import cl.uchile.dcc.finalreality.model.spells.Spell;
 import cl.uchile.dcc.finalreality.model.spells.types.Cure;
 import cl.uchile.dcc.finalreality.model.spells.types.Fire;
@@ -99,10 +102,10 @@ class WhiteMageTest extends AbstractMageTest<WhiteMage> {
       InvalidMageTypeException, InvalidTargetUnitException, InsufficientMpException, NonMagicWeaponException, NullWeaponException {
     unit.equip(staff);
     assertEquals(200, unit.getCurrentMp());
-    assertEquals(new NullEffect(), enemy.getParalyzedEffect());
+    assertEquals(new NullEffect(enemy), enemy.getParalyzedEffect());
     unit.castSpell(new Paralysis(), enemy);
     assertEquals(175, unit.getCurrentMp());
-    assertEquals(new Paralyzed(), enemy.getParalyzedEffect());
+    assertEquals(new Paralyzed(enemy), enemy.getParalyzedEffect());
   }
 
   @Test
@@ -114,7 +117,7 @@ class WhiteMageTest extends AbstractMageTest<WhiteMage> {
       InsufficientMpException, NonMagicWeaponException, NullWeaponException {
     unit.equip(staff);
     assertEquals(200, unit.getCurrentMp());
-    assertEquals(new NullEffect(), enemy.getPoisonedEffect());
+    assertEquals(new NullEffect(enemy), enemy.getPoisonedEffect());
     unit.castSpell(new Poison(), enemy);
     assertEquals(160, unit.getCurrentMp());
     assertEquals(new Poisoned(enemy, staff), enemy.getPoisonedEffect());

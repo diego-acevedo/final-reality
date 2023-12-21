@@ -1,6 +1,7 @@
 package cl.uchile.dcc.finalreality.model.spells.types;
 
 import cl.uchile.dcc.finalreality.exceptions.InsufficientMpException;
+import cl.uchile.dcc.finalreality.model.effects.types.Paralyzed;
 import cl.uchile.dcc.finalreality.model.spells.AbstractWhiteSpell;
 import cl.uchile.dcc.finalreality.model.units.enemy.Enemy;
 import cl.uchile.dcc.finalreality.model.units.playable.MagicUser;
@@ -25,5 +26,6 @@ public class Paralysis extends AbstractWhiteSpell {
   public void applyToEnemy(Enemy enemy, MagicUser mage, MagicWeapon weapon)
       throws InsufficientMpException {
     checkMana(mage);
+    enemy.setParalyzedEffect(new Paralyzed(enemy));
   }
 }
