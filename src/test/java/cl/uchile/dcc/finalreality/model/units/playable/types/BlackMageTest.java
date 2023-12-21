@@ -91,9 +91,11 @@ class BlackMageTest extends AbstractMageTest<BlackMage> {
     unit.equip(staff);
     assertEquals(100, enemy.getCurrentHp());
     assertEquals(200, unit.getCurrentMp());
+    assertEquals(new NullEffect(), enemy.getBurningEffect());
     unit.castSpell(new Fire(seed), enemy);
     assertEquals(85, enemy.getCurrentHp());
     assertEquals(185, unit.getCurrentMp());
+    assertEquals(new Burning(enemy, staff), enemy.getBurningEffect());
   }
 
   @Test
@@ -105,9 +107,11 @@ class BlackMageTest extends AbstractMageTest<BlackMage> {
     unit.equip(staff);
     assertEquals(100, enemy.getCurrentHp());
     assertEquals(200, unit.getCurrentMp());
+    assertEquals(new NullEffect(), enemy.getParalyzedEffect());
     unit.castSpell(new Thunder(seed), enemy);
     assertEquals(85, enemy.getCurrentHp());
     assertEquals(185, unit.getCurrentMp());
+    assertEquals(new Paralyzed(), enemy.getParalyzedEffect());
   }
 
   static Stream<Arguments> testableSpells() {
