@@ -26,6 +26,6 @@ public class Paralysis extends AbstractWhiteSpell {
   public void applyToEnemy(Enemy enemy, MagicUser mage, MagicWeapon weapon)
       throws InsufficientMpException {
     checkMana(mage);
-    enemy.setParalyzedEffect(new Paralyzed(enemy));
+    enemy.setParalyzedEffect(new Paralyzed());
   }
 }

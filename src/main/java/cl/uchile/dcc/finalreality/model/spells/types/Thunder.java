@@ -42,7 +42,7 @@ public class Thunder extends AbstractBlackSpell {
     enemy.setCurrentHp(enemy.getCurrentHp() - weapon.getMagicDamage());
 
     if (random.nextDouble() < 0.3) {
-      enemy.setParalyzedEffect(new Paralyzed(enemy));
+      enemy.setParalyzedEffect(new Paralyzed());
     }
   }
 }

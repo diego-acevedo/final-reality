@@ -52,7 +52,7 @@ public class Fire extends AbstractBlackSpell {
     enemy.setCurrentHp(enemy.getCurrentHp() - weapon.getMagicDamage());
 
     if (random.nextDouble() < 0.2) {
-      enemy.setBurningEffect(new Burning(enemy, weapon));
+      enemy.setBurningEffect(new Burning(weapon));
     }
   }
 }

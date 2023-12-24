@@ -1,17 +1,16 @@
 package cl.uchile.dcc.finalreality.model.effects.types;
 
-import cl.uchile.dcc.finalreality.model.effects.AbstractEffect;
+import cl.uchile.dcc.finalreality.model.effects.Effect;
 import cl.uchile.dcc.finalreality.model.units.enemy.Enemy;
 import cl.uchile.dcc.finalreality.model.weapons.MagicWeapon;
 
 import java.util.Objects;
 
-public class Burning extends AbstractEffect {
+public class Burning implements Effect {
 
   private final int damage;
 
-  public Burning(Enemy enemy, MagicWeapon weapon) {
-    super(enemy);
+  public Burning(MagicWeapon weapon) {
     this.damage = weapon.getMagicDamage() / 2;
   }
 
@@ -41,12 +40,11 @@ public class Burning extends AbstractEffect {
     Burning burning = (Burning) obj;
 
     return hashCode() == burning.hashCode()
-        && this.getUnit() == burning.getUnit()
         && this.getDamage() == burning.getDamage();
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(Burning.class, this.getUnit(), this.getDamage());
+    return Objects.hash(Burning.class, this.getDamage());
   }
 }

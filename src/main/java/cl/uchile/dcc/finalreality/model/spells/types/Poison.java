@@ -25,6 +25,6 @@ public class Poison extends AbstractWhiteSpell {
   public void applyToEnemy(Enemy enemy, MagicUser mage, MagicWeapon weapon)
       throws InsufficientMpException {
     checkMana(mage);
-    enemy.setPoisonedEffect(new Poisoned(enemy, weapon));
+    enemy.setPoisonedEffect(new Poisoned(weapon));
   }
 }

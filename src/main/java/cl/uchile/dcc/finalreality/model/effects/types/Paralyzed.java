@@ -1,19 +1,16 @@
 package cl.uchile.dcc.finalreality.model.effects.types;
 
-import cl.uchile.dcc.finalreality.model.effects.AbstractEffect;
+import cl.uchile.dcc.finalreality.exceptions.ParalyzedUnitException;
+import cl.uchile.dcc.finalreality.model.effects.Effect;
 import cl.uchile.dcc.finalreality.model.units.enemy.Enemy;
 
 import java.util.Objects;
 
-public class Paralyzed extends AbstractEffect {
-
-  public Paralyzed(Enemy enemy) {
-    super(enemy);
-  }
+public class Paralyzed implements Effect {
 
   @Override
-  public void apply(Enemy enemy) {
-
+  public void apply(Enemy enemy) throws ParalyzedUnitException {
+    throw new ParalyzedUnitException("%s is paralyzed.".formatted(this));
   }
 
   @Override
@@ -32,12 +29,11 @@ public class Paralyzed extends AbstractEffect {
 
     Paralyzed paralyzed = (Paralyzed) obj;
 
-    return hashCode() == paralyzed.hashCode()
-        && this.getUnit() == paralyzed.getUnit();
+    return hashCode() == paralyzed.hashCode();
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(Paralyzed.class, this.getUnit());
+    return Objects.hash(Paralyzed.class);
   }
 }

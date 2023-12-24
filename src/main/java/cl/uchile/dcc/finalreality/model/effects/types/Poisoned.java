@@ -1,17 +1,16 @@
 package cl.uchile.dcc.finalreality.model.effects.types;
 
-import cl.uchile.dcc.finalreality.model.effects.AbstractEffect;
+import cl.uchile.dcc.finalreality.model.effects.Effect;
 import cl.uchile.dcc.finalreality.model.units.enemy.Enemy;
 import cl.uchile.dcc.finalreality.model.weapons.MagicWeapon;
 
 import java.util.Objects;
 
-public class Poisoned extends AbstractEffect {
+public class Poisoned implements Effect {
 
   private final int damage;
 
-  public Poisoned(Enemy enemy, MagicWeapon weapon) {
-    super(enemy);
+  public Poisoned(MagicWeapon weapon) {
     this.damage = weapon.getMagicDamage() / 3;
   }
 
@@ -41,12 +40,11 @@ public class Poisoned extends AbstractEffect {
     Poisoned poisoned = (Poisoned) obj;
 
     return hashCode() == poisoned.hashCode()
-        && this.getUnit() == poisoned.getUnit()
         && this.getDamage() == poisoned.getDamage();
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(Poisoned.class, this.getUnit(), this.getDamage());
+    return Objects.hash(Poisoned.class, this.getDamage());
   }
 }

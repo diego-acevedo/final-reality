@@ -13,6 +13,8 @@ import cl.uchile.dcc.finalreality.model.units.playable.MagicUser;
 import cl.uchile.dcc.finalreality.model.units.playable.types.Thief;
 import cl.uchile.dcc.finalreality.model.weapons.MagicWeapon;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.BlockingQueue;
 
@@ -28,9 +30,12 @@ public class Enemy extends AbstractUnit {
 
   private final int damage;
   private final int weight;
-  private Effect burningEffect = new NullEffect(this);
-  private Effect paralyzedEffect = new NullEffect(this);
-  private Effect poisonedEffect = new NullEffect(this);
+
+  private final Effect[] effects = {
+      new NullEffect(), /* poisoned effect  */
+      new NullEffect(), /* burning effect   */
+      new NullEffect()  /* paralyzed effect */
+  };
 
   /**
    * Creates a new enemy.
@@ -100,27 +105,31 @@ public class Enemy extends AbstractUnit {
   }
 
   public Effect getBurningEffect() {
-    return burningEffect;
+    return effects[1];
   }
 
   public Effect getParalyzedEffect() {
-    return paralyzedEffect;
+    return effects[2];
   }
 
   public Effect getPoisonedEffect() {
-    return poisonedEffect;
+    return effects[0];
   }
 
   public void setBurningEffect(Burning burningEffect) {
-    this.burningEffect = burningEffect;
+    this.effects[1] = burningEffect;
   }
 
   public void setParalyzedEffect(Effect paralyzedEffect) {
-    this.paralyzedEffect = paralyzedEffect;
+    this.effects[2] = paralyzedEffect;
   }
 
   public void setPoisonedEffect(Effect poisonedEffect) {
-    this.poisonedEffect = poisonedEffect;
+    this.effects[0] = poisonedEffect;
+  }
+
+  public void applyEffects() throws ParalyzedUnitException {
+    for (Effect effect : effects) effect.apply(this);
   }
 
   @Override

@@ -7,19 +7,9 @@ import java.util.Objects;
 
 public class NullEffect implements Effect {
 
-  private final Enemy enemy;
-
-  public NullEffect(Enemy enemy) {
-    this.enemy = enemy;
-  }
   @Override
   public void apply(Enemy unit) {
 
-  }
-
-  @Override
-  public Enemy getUnit() {
-    return enemy;
   }
 
   @Override
@@ -38,12 +28,11 @@ public class NullEffect implements Effect {
 
     NullEffect nullEffect = (NullEffect) obj;
 
-    return hashCode() == nullEffect.hashCode()
-        && this.getUnit() == nullEffect.getUnit();
+    return hashCode() == nullEffect.hashCode();
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(NullEffect.class, this.getUnit());
+    return Objects.hash(NullEffect.class);
   }
 }
