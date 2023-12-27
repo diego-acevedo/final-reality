@@ -3,8 +3,14 @@ package cl.uchile.dcc.finalreality.model.units.enemy;
 import cl.uchile.dcc.finalreality.exceptions.DeadUnitException;
 import cl.uchile.dcc.finalreality.exceptions.InvalidStatException;
 import cl.uchile.dcc.finalreality.exceptions.InvalidTargetUnitException;
+import cl.uchile.dcc.finalreality.exceptions.ParalyzedUnitException;
+import cl.uchile.dcc.finalreality.model.effects.NullEffect;
+import cl.uchile.dcc.finalreality.model.effects.types.Burning;
+import cl.uchile.dcc.finalreality.model.effects.types.Paralyzed;
+import cl.uchile.dcc.finalreality.model.effects.types.Poisoned;
 import cl.uchile.dcc.finalreality.model.units.AbstractUnitTest;
 import cl.uchile.dcc.finalreality.model.units.playable.types.Engineer;
+import cl.uchile.dcc.finalreality.model.weapons.types.Staff;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -88,6 +94,60 @@ class EnemyTest extends AbstractUnitTest<Enemy> {
   @DisplayName("An Enemy cannot attack another Enemy")
   void attackEnemyTest() {
     assertThrows(InvalidTargetUnitException.class, () -> unit.attack(enemy));
+  }
+
+  @Test
+  @DisplayName("An enemy should receive damage when burning")
+  void burningEffectTest() throws InvalidStatException, ParalyzedUnitException {
+    assertEquals(new NullEffect(), unit.getBurningEffect());
+    Burning burning = new Burning(new Staff("Staff", 10, 12, 40));
+    unit.setBurningEffect(burning);
+    assertEquals(burning, unit.getBurningEffect());
+    assertEquals(100, unit.getCurrentHp());
+    unit.applyEffects();
+    assertEquals(94, unit.getCurrentHp());
+  }
+
+  @Test
+  @DisplayName("An enemy should receive damage when poisoned")
+  void poisonedEffectTest() throws InvalidStatException, ParalyzedUnitException {
+    assertEquals(new NullEffect(), unit.getPoisonedEffect());
+    Poisoned poisoned = new Poisoned(new Staff("Staff", 10, 12, 40));
+    unit.setPoisonedEffect(poisoned);
+    assertEquals(poisoned, unit.getPoisonedEffect());
+    assertEquals(100, unit.getCurrentHp());
+    unit.applyEffects();
+    assertEquals(96, unit.getCurrentHp());
+  }
+
+  @Test
+  @DisplayName("An enemy should not do anything when paralyzed")
+  void paralyzedEffectTest() {
+    assertEquals(new NullEffect(), unit.getParalyzedEffect());
+    Paralyzed paralyzed = new Paralyzed();
+    unit.setParalyzedEffect(paralyzed);
+    assertEquals(paralyzed, unit.getParalyzedEffect());
+    assertThrows(ParalyzedUnitException.class, () -> unit.applyEffects());
+  }
+
+  @Test
+  @DisplayName("An enemy should receive the effect of all effects applied.")
+  void multipleEffectTest() throws InvalidStatException, ParalyzedUnitException {
+    assertEquals(new NullEffect(), unit.getBurningEffect());
+    Burning burning = new Burning(new Staff("Staff", 10, 12, 40));
+    unit.setBurningEffect(burning);
+    assertEquals(burning, unit.getBurningEffect());
+    assertEquals(new NullEffect(), unit.getPoisonedEffect());
+    Poisoned poisoned = new Poisoned(new Staff("Staff", 10, 12, 40));
+    unit.setPoisonedEffect(poisoned);
+    assertEquals(poisoned, unit.getPoisonedEffect());
+    assertEquals(new NullEffect(), unit.getParalyzedEffect());
+    Paralyzed paralyzed = new Paralyzed();
+    unit.setParalyzedEffect(paralyzed);
+    assertEquals(paralyzed, unit.getParalyzedEffect());
+    assertEquals(100, unit.getCurrentHp());
+    assertThrows(ParalyzedUnitException.class, () -> unit.applyEffects());
+    assertEquals(90, unit.getCurrentHp());
   }
 
   @Test
