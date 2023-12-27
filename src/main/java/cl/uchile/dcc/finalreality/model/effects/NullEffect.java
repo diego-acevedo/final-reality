@@ -1,10 +1,18 @@
 package cl.uchile.dcc.finalreality.model.effects;
 
-import cl.uchile.dcc.finalreality.model.effects.types.Burning;
 import cl.uchile.dcc.finalreality.model.units.enemy.Enemy;
 
 import java.util.Objects;
 
+/**
+ * This class represents an effect that doesn't do anything.
+ * This is the effect by default.
+ *
+ * @author <a href=https://github.com/diego-acevedo>Diego Acevedo</a>
+ *
+ * @version 1.0.0
+ * @since 1.0.0
+ */
 public class NullEffect implements Effect {
 
   @Override

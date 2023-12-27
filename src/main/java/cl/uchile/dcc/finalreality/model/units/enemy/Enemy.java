@@ -104,30 +104,61 @@ public class Enemy extends AbstractUnit {
     return damage;
   }
 
+  /**
+   * Returns this character's burning effect.
+   */
   public Effect getBurningEffect() {
     return effects[1];
   }
 
+  /**
+   * Returns this character's paralyzed effect.
+   */
   public Effect getParalyzedEffect() {
     return effects[2];
   }
 
+  /**
+   * Returns this character's poisoned effect.
+   */
   public Effect getPoisonedEffect() {
     return effects[0];
   }
 
+  /**
+   * Sets a new burning effect.
+   *
+   * @param burningEffect the new burning effect.
+   */
   public void setBurningEffect(Burning burningEffect) {
     this.effects[1] = burningEffect;
   }
 
+  /**
+   * Sets a new paralyzed effect.
+   *
+   * @param paralyzedEffect the new paralyzed effect.
+   */
   public void setParalyzedEffect(Effect paralyzedEffect) {
     this.effects[2] = paralyzedEffect;
   }
 
+  /**
+   * Sets a new poisoned effect.
+   *
+   * @param poisonedEffect the new poisoned effect.
+   */
   public void setPoisonedEffect(Effect poisonedEffect) {
     this.effects[0] = poisonedEffect;
   }
 
+  /**
+   * Applies all the effects to this character.
+   *
+   * @throws ParalyzedUnitException if the enemy is paralyzed (that
+   * way, the flow will be interrupted to make the enemy lose their
+   * turn).
+   */
   public void applyEffects() throws ParalyzedUnitException {
     for (Effect effect : effects) effect.apply(this);
   }

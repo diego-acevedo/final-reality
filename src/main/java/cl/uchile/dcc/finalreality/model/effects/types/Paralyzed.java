@@ -6,6 +6,15 @@ import cl.uchile.dcc.finalreality.model.units.enemy.Enemy;
 
 import java.util.Objects;
 
+/**
+ * This class represents an effect that paralyzes
+ * an enemy, making them lose a turn.
+ *
+ * @author <a href=https://github.com/diego-acevedo>Diego Acevedo</a>
+ *
+ * @version 1.0.0
+ * @since 1.0.0
+ */
 public class Paralyzed implements Effect {
 
   @Override
