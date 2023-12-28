@@ -41,23 +41,23 @@ class EnemyTest extends AbstractUnitTest<Enemy> {
   void attackPlayerTest() throws DeadUnitException, InvalidTargetUnitException {
     assertEquals(100, blackMage.getCurrentHp());
     unit.attack(blackMage);
-    assertEquals(85, blackMage.getCurrentHp());
+    assertEquals(87, blackMage.getCurrentHp());
 
     assertEquals(100, engineer.getCurrentHp());
     unit.attack(engineer);
-    assertEquals(85, engineer.getCurrentHp());
+    assertEquals(87, engineer.getCurrentHp());
 
     assertEquals(100, knight.getCurrentHp());
     unit.attack(knight);
-    assertEquals(85, knight.getCurrentHp());
+    assertEquals(87, knight.getCurrentHp());
 
     assertEquals(100, thief.getCurrentHp());
     unit.attack(thief);
-    assertEquals(85, thief.getCurrentHp());
+    assertEquals(87, thief.getCurrentHp());
 
     assertEquals(100, whiteMage.getCurrentHp());
     unit.attack(whiteMage);
-    assertEquals(85, whiteMage.getCurrentHp());
+    assertEquals(87, whiteMage.getCurrentHp());
   }
 
   @Test

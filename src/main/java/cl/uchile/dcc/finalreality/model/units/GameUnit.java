@@ -46,6 +46,16 @@ public interface GameUnit {
   void setCurrentHp(int hp);
 
   /**
+   * Sets a new hp stat value by using a formula with other
+   * stats. The variables are the {@code damage} value and
+   * the {@code defense} stat. The defense stat will decrease
+   * the attack in a certain percentage.
+   *
+   * @param damage the value of the damage inflicted.
+   */
+  void receiveAttack(int damage);
+
+  /**
    * Returns this character's defense stat.
    */
   int getDefense();

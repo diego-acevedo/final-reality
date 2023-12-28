@@ -104,4 +104,10 @@ public abstract class AbstractUnit implements GameUnit {
   public void setCurrentHp(int hp) {
     this.currentHp = Math.max(0, Math.min(maxHp, hp));
   }
+
+  @Override
+  public void receiveAttack(int damage) {
+    double decreasedDamage = (double) damage / ((double) (getDefense() + 100) / 100);
+    setCurrentHp(getCurrentHp() - (int) decreasedDamage);
+  }
 }

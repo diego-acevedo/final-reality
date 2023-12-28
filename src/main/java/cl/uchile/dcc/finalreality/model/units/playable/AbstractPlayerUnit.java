@@ -124,7 +124,7 @@ public abstract class AbstractPlayerUnit extends AbstractUnit implements PlayerU
   @Override
   public void receiveAttackFromEnemy(int damage) throws DeadUnitException {
     if (getCurrentHp() == 0) throw new DeadUnitException("%s is dead.".formatted(this));
-    setCurrentHp(getCurrentHp() - Math.max(1, damage - getDefense()));
+    receiveAttack(damage);
   }
 
   @Override

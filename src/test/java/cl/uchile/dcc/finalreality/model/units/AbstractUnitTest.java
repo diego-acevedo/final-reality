@@ -29,12 +29,12 @@ public abstract class AbstractUnitTest<T extends GameUnit> {
   @BeforeEach
   public void initUnits() throws InvalidStatException {
     turnsQueue = new LinkedBlockingQueue<>();
-    blackMage = new BlackMage("BlackMage", 100, 5, 200, turnsQueue);
-    engineer = new Engineer("Engineer", 100, 5, turnsQueue);
-    knight = new Knight("Knight", 100, 5, turnsQueue);
-    thief = new Thief("Thief", 100, 5, turnsQueue);
-    whiteMage = new WhiteMage("WhiteMage", 100, 5, 200, turnsQueue);
-    enemy = new Enemy("Enemy", 100, 5, 20, 50, turnsQueue);
+    blackMage = new BlackMage("BlackMage", 100, 50, 200, turnsQueue);
+    engineer = new Engineer("Engineer", 100, 50, turnsQueue);
+    knight = new Knight("Knight", 100, 50, turnsQueue);
+    thief = new Thief("Thief", 100, 50, turnsQueue);
+    whiteMage = new WhiteMage("WhiteMage", 100, 50, 200, turnsQueue);
+    enemy = new Enemy("Enemy", 100, 50, 20, 50, turnsQueue);
     name = setName();
     unit = createUnit();
 

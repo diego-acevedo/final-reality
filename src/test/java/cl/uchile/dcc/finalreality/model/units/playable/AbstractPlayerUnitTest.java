@@ -111,13 +111,13 @@ public abstract class AbstractPlayerUnitTest<T extends PlayerUnit> extends Abstr
 
     assertEquals(100, enemy.getCurrentHp());
     unit.attack(enemy);
-    assertEquals(95, enemy.getCurrentHp());
+    assertEquals(94, enemy.getCurrentHp());
 
     unit.equip(createWeapon(20, 30));
     unit.attack(enemy);
-    assertEquals(70, enemy.getCurrentHp());
+    assertEquals(74, enemy.getCurrentHp());
 
-    unit.equip(createWeapon(20, 80));
+    unit.equip(createWeapon(20, 200));
     unit.attack(enemy);
     assertEquals(0, enemy.getCurrentHp());
   }
