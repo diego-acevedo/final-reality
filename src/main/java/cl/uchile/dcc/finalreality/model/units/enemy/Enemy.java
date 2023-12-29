@@ -3,18 +3,15 @@ package cl.uchile.dcc.finalreality.model.units.enemy;
 import cl.uchile.dcc.finalreality.exceptions.*;
 import cl.uchile.dcc.finalreality.model.effects.Effect;
 import cl.uchile.dcc.finalreality.model.effects.NullEffect;
-import cl.uchile.dcc.finalreality.model.effects.types.Burning;
-import cl.uchile.dcc.finalreality.model.effects.types.Paralyzed;
-import cl.uchile.dcc.finalreality.model.effects.types.Poisoned;
+import cl.uchile.dcc.finalreality.model.effects.types.BurningEffect;
+import cl.uchile.dcc.finalreality.model.effects.types.ParalyzedEffect;
+import cl.uchile.dcc.finalreality.model.effects.types.PoisonedEffect;
 import cl.uchile.dcc.finalreality.model.spells.Spell;
 import cl.uchile.dcc.finalreality.model.units.AbstractUnit;
 import cl.uchile.dcc.finalreality.model.units.GameUnit;
 import cl.uchile.dcc.finalreality.model.units.playable.MagicUser;
-import cl.uchile.dcc.finalreality.model.units.playable.types.Thief;
 import cl.uchile.dcc.finalreality.model.weapons.MagicWeapon;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.BlockingQueue;
 
@@ -130,7 +127,7 @@ public class Enemy extends AbstractUnit {
    *
    * @param burningEffect the new burning effect.
    */
-  public void setBurningEffect(Burning burningEffect) {
+  public void setBurningEffect(BurningEffect burningEffect) {
     this.effects[1] = burningEffect;
   }
 
@@ -139,7 +136,7 @@ public class Enemy extends AbstractUnit {
    *
    * @param paralyzedEffect the new paralyzed effect.
    */
-  public void setParalyzedEffect(Effect paralyzedEffect) {
+  public void setParalyzedEffect(ParalyzedEffect paralyzedEffect) {
     this.effects[2] = paralyzedEffect;
   }
 
@@ -148,7 +145,7 @@ public class Enemy extends AbstractUnit {
    *
    * @param poisonedEffect the new poisoned effect.
    */
-  public void setPoisonedEffect(Effect poisonedEffect) {
+  public void setPoisonedEffect(PoisonedEffect poisonedEffect) {
     this.effects[0] = poisonedEffect;
   }
 

@@ -1,9 +1,6 @@
 package cl.uchile.dcc.finalreality.model.spells.types;
 
 import cl.uchile.dcc.finalreality.exceptions.InsufficientMpException;
-import cl.uchile.dcc.finalreality.exceptions.InvalidTargetUnitException;
-import cl.uchile.dcc.finalreality.exceptions.NonMagicWeaponException;
-import cl.uchile.dcc.finalreality.exceptions.NullWeaponException;
 import cl.uchile.dcc.finalreality.model.effects.types.Burning;
 import cl.uchile.dcc.finalreality.model.spells.AbstractBlackSpell;
 import cl.uchile.dcc.finalreality.model.units.enemy.Enemy;

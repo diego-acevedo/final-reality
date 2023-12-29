@@ -1,7 +1,6 @@
 package cl.uchile.dcc.finalreality.model.effects.types;
 
 import cl.uchile.dcc.finalreality.exceptions.ParalyzedUnitException;
-import cl.uchile.dcc.finalreality.model.effects.Effect;
 import cl.uchile.dcc.finalreality.model.units.enemy.Enemy;
 
 import java.util.Objects;
@@ -15,7 +14,7 @@ import java.util.Objects;
  * @version 1.0.0
  * @since 1.0.0
  */
-public class Paralyzed implements Effect {
+public class Paralyzed implements ParalyzedEffect {
 
   @Override
   public void apply(Enemy enemy) throws ParalyzedUnitException {

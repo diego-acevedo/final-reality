@@ -1,5 +1,8 @@
 package cl.uchile.dcc.finalreality.model.effects;
 
+import cl.uchile.dcc.finalreality.model.effects.types.BurningEffect;
+import cl.uchile.dcc.finalreality.model.effects.types.ParalyzedEffect;
+import cl.uchile.dcc.finalreality.model.effects.types.PoisonedEffect;
 import cl.uchile.dcc.finalreality.model.units.enemy.Enemy;
 
 import java.util.Objects;
@@ -13,7 +16,7 @@ import java.util.Objects;
  * @version 1.0.0
  * @since 1.0.0
  */
-public class NullEffect implements Effect {
+public class NullEffect implements BurningEffect, ParalyzedEffect, PoisonedEffect {
 
   @Override
   public void apply(Enemy unit) {

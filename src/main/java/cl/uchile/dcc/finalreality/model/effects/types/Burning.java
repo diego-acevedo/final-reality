@@ -1,6 +1,5 @@
 package cl.uchile.dcc.finalreality.model.effects.types;
 
-import cl.uchile.dcc.finalreality.model.effects.Effect;
 import cl.uchile.dcc.finalreality.model.units.enemy.Enemy;
 import cl.uchile.dcc.finalreality.model.weapons.MagicWeapon;
 
@@ -16,7 +15,7 @@ import java.util.Objects;
  * @version 1.0.0
  * @since 1.0.0
  */
-public class Burning implements Effect {
+public class Burning implements BurningEffect {
 
   private final int damage;
 

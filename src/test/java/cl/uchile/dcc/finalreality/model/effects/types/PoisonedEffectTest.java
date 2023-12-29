@@ -3,13 +3,12 @@ package cl.uchile.dcc.finalreality.model.effects.types;
 import cl.uchile.dcc.finalreality.exceptions.InvalidStatException;
 import cl.uchile.dcc.finalreality.model.effects.EffectTest;
 import cl.uchile.dcc.finalreality.model.weapons.types.Staff;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class PoisonedTest extends EffectTest<Poisoned> {
+class PoisonedEffectTest extends EffectTest<Poisoned> {
 
   @Test
   @DisplayName("getDamage should return the magicDamage/3")

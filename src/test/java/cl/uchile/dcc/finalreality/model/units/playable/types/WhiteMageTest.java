@@ -6,7 +6,6 @@ import cl.uchile.dcc.finalreality.model.effects.types.Paralyzed;
 import cl.uchile.dcc.finalreality.model.effects.types.Poisoned;
 import cl.uchile.dcc.finalreality.model.spells.Spell;
 import cl.uchile.dcc.finalreality.model.spells.types.Cure;
-import cl.uchile.dcc.finalreality.model.spells.types.Fire;
 import cl.uchile.dcc.finalreality.model.spells.types.Paralysis;
 import cl.uchile.dcc.finalreality.model.spells.types.Poison;
 import cl.uchile.dcc.finalreality.model.units.GameUnit;
