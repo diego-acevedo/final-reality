@@ -24,5 +24,17 @@ public interface Effect {
    * @throws ParalyzedUnitException if the effect is {@link Paralyzed paralyzed}.
    * This way the flow can be interrupted to stop this enemy's turn.
    */
-  void apply(Enemy unit) throws ParalyzedUnitException;
+  void apply() throws ParalyzedUnitException;
+
+  /**
+   * Sets a new enemy to be applied the effect.
+   *
+   * @param enemy the enemy receiving the effect.
+   */
+  void setEnemy(Enemy enemy);
+
+  /**
+   * Returns the enemy receiving the effect.
+   */
+  Enemy getEnemy();
 }

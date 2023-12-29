@@ -11,11 +11,12 @@ class NullEffectTest extends EffectTest<NullEffect> {
   @Test
   @DisplayName("NullEffect should have no effect on the unit.")
   void apply() {
+    getEnemy().setBurningEffect(getEffect());
     assertEquals(100, enemy.getCurrentHp());
     assertEquals(15, enemy.getDamage());
     assertEquals(5, enemy.getDefense());
     assertEquals(120, enemy.getWeight());
-    effect.apply(enemy);
+    getEffect().apply();
     assertEquals(100, enemy.getCurrentHp());
     assertEquals(15, enemy.getDamage());
     assertEquals(5, enemy.getDefense());

@@ -129,6 +129,7 @@ public class Enemy extends AbstractUnit {
    */
   public void setBurningEffect(BurningEffect burningEffect) {
     this.effects[1] = burningEffect;
+    burningEffect.setEnemy(this);
   }
 
   /**
@@ -138,6 +139,7 @@ public class Enemy extends AbstractUnit {
    */
   public void setParalyzedEffect(ParalyzedEffect paralyzedEffect) {
     this.effects[2] = paralyzedEffect;
+    paralyzedEffect.setEnemy(this);
   }
 
   /**
@@ -147,6 +149,7 @@ public class Enemy extends AbstractUnit {
    */
   public void setPoisonedEffect(PoisonedEffect poisonedEffect) {
     this.effects[0] = poisonedEffect;
+    poisonedEffect.setEnemy(this);
   }
 
   /**
@@ -157,7 +160,7 @@ public class Enemy extends AbstractUnit {
    * turn).
    */
   public void applyEffects() throws ParalyzedUnitException {
-    for (Effect effect : effects) effect.apply(this);
+    for (Effect effect : effects) effect.apply();
   }
 
   @Override

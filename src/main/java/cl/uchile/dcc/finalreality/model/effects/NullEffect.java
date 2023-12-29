@@ -16,10 +16,10 @@ import java.util.Objects;
  * @version 1.0.0
  * @since 1.0.0
  */
-public class NullEffect implements BurningEffect, ParalyzedEffect, PoisonedEffect {
+public class NullEffect extends AbstractEffect implements BurningEffect, ParalyzedEffect, PoisonedEffect {
 
   @Override
-  public void apply(Enemy unit) {
+  public void apply() {
 
   }
 

@@ -19,8 +19,9 @@ class BurningTest extends EffectTest<Burning> {
   @Test
   @DisplayName("apply should reduce the unit's hp an amount of damage.")
   void apply() {
+    getEnemy().setBurningEffect(getEffect());
     assertEquals(100, getEnemy().getCurrentHp());
-    getEffect().apply(getEnemy());
+    getEffect().apply();
     assertEquals(96, getEnemy().getCurrentHp());
   }
 

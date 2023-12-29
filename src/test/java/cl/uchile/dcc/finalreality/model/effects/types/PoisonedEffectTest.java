@@ -19,8 +19,9 @@ class PoisonedEffectTest extends EffectTest<Poisoned> {
   @Test
   @DisplayName("apply should reduce the unit's hp an amount of damage.")
   void apply() {
+    getEnemy().setPoisonedEffect(getEffect());
     assertEquals(100, getEnemy().getCurrentHp());
-    getEffect().apply(getEnemy());
+    getEffect().apply();
     assertEquals(98, getEnemy().getCurrentHp());
   }
 

@@ -12,7 +12,8 @@ class ParalyzedTest extends EffectTest<Paralyzed> {
   @Test
   @DisplayName("Paralyzed effect should interrupt the programs flow.")
   void apply() {
-    assertThrows(ParalyzedUnitException.class, () -> getEffect().apply(getEnemy()));
+    getEnemy().setParalyzedEffect(getEffect());
+    assertThrows(ParalyzedUnitException.class, () -> getEffect().apply());
   }
 
   @Test

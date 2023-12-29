@@ -1,6 +1,8 @@
 package cl.uchile.dcc.finalreality.model.effects.types;
 
 import cl.uchile.dcc.finalreality.exceptions.ParalyzedUnitException;
+import cl.uchile.dcc.finalreality.model.effects.AbstractEffect;
+import cl.uchile.dcc.finalreality.model.effects.NullEffect;
 import cl.uchile.dcc.finalreality.model.units.enemy.Enemy;
 
 import java.util.Objects;
@@ -14,10 +16,11 @@ import java.util.Objects;
  * @version 1.0.0
  * @since 1.0.0
  */
-public class Paralyzed implements ParalyzedEffect {
+public class Paralyzed extends AbstractEffect implements ParalyzedEffect {
 
   @Override
-  public void apply(Enemy enemy) throws ParalyzedUnitException {
+  public void apply() throws ParalyzedUnitException {
+    getEnemy().setParalyzedEffect(new NullEffect());
     throw new ParalyzedUnitException("%s is paralyzed.".formatted(this));
   }
 

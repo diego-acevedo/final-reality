@@ -1,5 +1,7 @@
 package cl.uchile.dcc.finalreality.model.effects.types;
 
+import cl.uchile.dcc.finalreality.model.effects.AbstractEffect;
+import cl.uchile.dcc.finalreality.model.effects.NullEffect;
 import cl.uchile.dcc.finalreality.model.units.enemy.Enemy;
 import cl.uchile.dcc.finalreality.model.weapons.MagicWeapon;
 
@@ -15,9 +17,11 @@ import java.util.Objects;
  * @version 1.0.0
  * @since 1.0.0
  */
-public class Poisoned implements PoisonedEffect {
+public class Poisoned extends AbstractEffect implements PoisonedEffect {
 
   private final int damage;
+  private int count;
+  private final int turns;
 
   /**
    * Creates a new poisoned effect.
@@ -26,6 +30,8 @@ public class Poisoned implements PoisonedEffect {
    *               set the enemy on fire.
    */
   public Poisoned(MagicWeapon weapon) {
+    this.count = 1;
+    this.turns = 3;
     this.damage = weapon.getMagicDamage() / 3;
   }
 
@@ -37,8 +43,10 @@ public class Poisoned implements PoisonedEffect {
   }
 
   @Override
-  public void apply(Enemy unit) {
-    unit.setCurrentHp(unit.getCurrentHp() - damage);
+  public void apply() {
+    getEnemy().setCurrentHp(getEnemy().getCurrentHp() - damage);
+    if (count > turns) getEnemy().setPoisonedEffect(new NullEffect());
+    count++;
   }
 
   @Override

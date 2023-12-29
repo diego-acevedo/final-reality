@@ -1,6 +1,7 @@
 package cl.uchile.dcc.finalreality.model.effects.types;
 
-import cl.uchile.dcc.finalreality.model.units.enemy.Enemy;
+import cl.uchile.dcc.finalreality.model.effects.AbstractEffect;
+import cl.uchile.dcc.finalreality.model.effects.NullEffect;
 import cl.uchile.dcc.finalreality.model.weapons.MagicWeapon;
 
 import java.util.Objects;
@@ -15,9 +16,12 @@ import java.util.Objects;
  * @version 1.0.0
  * @since 1.0.0
  */
-public class Burning implements BurningEffect {
+public class Burning extends AbstractEffect implements BurningEffect {
 
   private final int damage;
+  private int count;
+  private final int turns;
+
 
   /**
    * Creates a new burning effect.
@@ -26,6 +30,8 @@ public class Burning implements BurningEffect {
    *               set the enemy on fire.
    */
   public Burning(MagicWeapon weapon) {
+    this.count = 1;
+    this.turns = 2;
     this.damage = weapon.getMagicDamage() / 2;
   }
 
@@ -37,8 +43,10 @@ public class Burning implements BurningEffect {
   }
 
   @Override
-  public void apply(Enemy unit) {
-    unit.setCurrentHp(unit.getCurrentHp() - damage);
+  public void apply() {
+    getEnemy().setCurrentHp(getEnemy().getCurrentHp() - damage);
+    if (count > turns) getEnemy().setBurningEffect(new NullEffect());
+    count++;
   }
 
   @Override
