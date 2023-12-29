@@ -2,6 +2,7 @@ package cl.uchile.dcc.finalreality.model.effects.types;
 
 import cl.uchile.dcc.finalreality.exceptions.InvalidStatException;
 import cl.uchile.dcc.finalreality.model.effects.EffectTest;
+import cl.uchile.dcc.finalreality.model.effects.NullEffect;
 import cl.uchile.dcc.finalreality.model.weapons.types.Staff;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -20,9 +21,17 @@ class PoisonedEffectTest extends EffectTest<Poisoned> {
   @DisplayName("apply should reduce the unit's hp an amount of damage.")
   void apply() {
     getEnemy().setPoisonedEffect(getEffect());
+    assertEquals(getEffect(), getEnemy().getPoisonedEffect());
     assertEquals(100, getEnemy().getCurrentHp());
     getEffect().apply();
     assertEquals(98, getEnemy().getCurrentHp());
+    assertEquals(getEffect(), getEnemy().getPoisonedEffect());
+    getEffect().apply();
+    assertEquals(96, getEnemy().getCurrentHp());
+    assertEquals(getEffect(), getEnemy().getPoisonedEffect());
+    getEffect().apply();
+    assertEquals(94, getEnemy().getCurrentHp());
+    assertEquals(new NullEffect(), getEnemy().getPoisonedEffect());
   }
 
   @Test

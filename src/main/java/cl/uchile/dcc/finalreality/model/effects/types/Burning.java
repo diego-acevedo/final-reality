@@ -45,7 +45,7 @@ public class Burning extends AbstractEffect implements BurningEffect {
   @Override
   public void apply() {
     getEnemy().setCurrentHp(getEnemy().getCurrentHp() - damage);
-    if (count > turns) getEnemy().setBurningEffect(new NullEffect());
+    if (count >= turns) getEnemy().setBurningEffect(new NullEffect());
     count++;
   }
 

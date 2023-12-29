@@ -45,7 +45,7 @@ public class Poisoned extends AbstractEffect implements PoisonedEffect {
   @Override
   public void apply() {
     getEnemy().setCurrentHp(getEnemy().getCurrentHp() - damage);
-    if (count > turns) getEnemy().setPoisonedEffect(new NullEffect());
+    if (count >= turns) getEnemy().setPoisonedEffect(new NullEffect());
     count++;
   }
 
