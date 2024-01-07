@@ -51,6 +51,11 @@ public class NullWeapon implements Weapon {
   }
 
   @Override
+  public boolean storable() {
+    return false;
+  }
+
+  @Override
   public boolean equals(Object obj) {
     if (this == obj) {
       return true;

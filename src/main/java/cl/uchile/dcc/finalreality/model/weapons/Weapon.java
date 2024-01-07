@@ -102,4 +102,10 @@ public interface Weapon {
       throws NonMagicWeaponException, NullWeaponException,
       InsufficientMpException, DeadUnitException,
       InvalidMageTypeException, InvalidTargetUnitException;
+
+  /**
+   * Returns true if the weapon can be stored, and false if it cannot.
+   * A player shouldn't store null weapons.
+   */
+  boolean storable();
 }

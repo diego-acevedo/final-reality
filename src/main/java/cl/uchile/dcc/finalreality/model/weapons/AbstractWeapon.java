@@ -67,4 +67,9 @@ public abstract class AbstractWeapon implements Weapon {
       DeadUnitException, InvalidMageTypeException, InvalidTargetUnitException {
     throw new NonMagicWeaponException("%s is not a magic weapon.".formatted(this));
   }
+
+  @Override
+  public boolean storable() {
+    return true;
+  }
 }
