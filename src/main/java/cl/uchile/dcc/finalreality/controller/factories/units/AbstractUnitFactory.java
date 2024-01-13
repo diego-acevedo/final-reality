@@ -5,7 +5,7 @@ import cl.uchile.dcc.finalreality.model.units.GameUnit;
 
 import java.util.concurrent.BlockingQueue;
 
-public abstract class UnitFactory<T extends GameUnit> extends Factory<T> {
+public abstract class AbstractUnitFactory<T extends GameUnit> extends Factory<T> {
 
   protected int meanHp;
   protected int sdHp;
@@ -13,9 +13,9 @@ public abstract class UnitFactory<T extends GameUnit> extends Factory<T> {
   protected int sdDefense;
   protected BlockingQueue<GameUnit> queue;
 
-  protected UnitFactory(int meanHp, int sdHp,
-                        int meanDefense, int sdDefense,
-                        BlockingQueue<GameUnit> queue) {
+  protected AbstractUnitFactory(int meanHp, int sdHp,
+                                int meanDefense, int sdDefense,
+                                BlockingQueue<GameUnit> queue) {
     this.meanHp = meanHp;
     this.sdHp = sdHp;
     this.meanDefense = meanDefense;

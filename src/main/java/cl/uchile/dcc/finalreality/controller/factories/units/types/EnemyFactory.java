@@ -1,13 +1,13 @@
 package cl.uchile.dcc.finalreality.controller.factories.units.types;
 
-import cl.uchile.dcc.finalreality.controller.factories.units.UnitFactory;
+import cl.uchile.dcc.finalreality.controller.factories.units.AbstractUnitFactory;
 import cl.uchile.dcc.finalreality.exceptions.InvalidStatException;
 import cl.uchile.dcc.finalreality.model.units.GameUnit;
 import cl.uchile.dcc.finalreality.model.units.enemy.Enemy;
 
 import java.util.concurrent.BlockingQueue;
 
-public class EnemyFactory extends UnitFactory<Enemy> {
+public class EnemyFactory extends AbstractUnitFactory<Enemy> {
 
   protected int meanWeight;
   protected int sdWeight;

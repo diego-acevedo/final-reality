@@ -3,17 +3,18 @@ package cl.uchile.dcc.finalreality.controller.factories.units.types;
 import cl.uchile.dcc.finalreality.controller.factories.units.AbstractMageFactory;
 import cl.uchile.dcc.finalreality.exceptions.InvalidStatException;
 import cl.uchile.dcc.finalreality.model.units.GameUnit;
+import cl.uchile.dcc.finalreality.model.units.playable.PlayerUnit;
 import cl.uchile.dcc.finalreality.model.units.playable.types.WhiteMage;
 
 import java.util.concurrent.BlockingQueue;
 
-public class WhiteMageFactory extends AbstractMageFactory<WhiteMage> {
+public class WhiteMageFactory extends AbstractMageFactory {
   public WhiteMageFactory(BlockingQueue<GameUnit> queue) {
     super(70, 10, 15, 10, 100, 20, queue);
   }
 
   @Override
-  public WhiteMage create() throws InvalidStatException {
+  public PlayerUnit create() throws InvalidStatException {
     return new WhiteMage(
         "White Mage %d".formatted(getCnt()),
         lowerBound(getStat(meanHp, sdHp), 1),
