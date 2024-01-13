@@ -14,8 +14,8 @@ public class EnemyFactory extends UnitFactory<Enemy> {
   protected int meanAttack;
   protected int sdAttack;
 
-  public EnemyFactory() {
-    super(250, 40, 20, 10);
+  public EnemyFactory(BlockingQueue<GameUnit> queue) {
+    super(250, 40, 20, 10, queue);
     this.meanWeight = 200;
     this.sdWeight = 50;
     this.meanAttack = 60;
@@ -23,7 +23,7 @@ public class EnemyFactory extends UnitFactory<Enemy> {
   }
 
   @Override
-  public Enemy create(BlockingQueue<GameUnit> queue) throws InvalidStatException {
+  public Enemy create() throws InvalidStatException {
     return new Enemy(
         "Enemy %d".formatted(getCnt()),
         lowerBound(getStat(meanHp, sdHp), 1),

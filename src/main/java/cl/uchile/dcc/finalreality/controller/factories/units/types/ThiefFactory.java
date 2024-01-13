@@ -9,12 +9,12 @@ import java.util.concurrent.BlockingQueue;
 
 public class ThiefFactory extends UnitFactory<Thief> {
 
-  public ThiefFactory() {
-    super(125, 15, 30, 10);
+  public ThiefFactory(BlockingQueue<GameUnit> queue) {
+    super(125, 15, 30, 10, queue);
   }
 
   @Override
-  public Thief create(BlockingQueue<GameUnit> queue) throws InvalidStatException {
+  public Thief create() throws InvalidStatException {
     return new Thief(
         "Thief %d".formatted(getCnt()),
         lowerBound(getStat(meanHp, sdHp), 1),

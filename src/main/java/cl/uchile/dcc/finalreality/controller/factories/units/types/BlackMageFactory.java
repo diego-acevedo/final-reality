@@ -8,12 +8,12 @@ import cl.uchile.dcc.finalreality.model.units.playable.types.BlackMage;
 import java.util.concurrent.BlockingQueue;
 
 public class BlackMageFactory extends AbstractMageFactory<BlackMage> {
-  public BlackMageFactory() {
-    super(80, 10, 20, 10, 60, 20);
+  public BlackMageFactory(BlockingQueue<GameUnit> queue) {
+    super(80, 10, 20, 10, 60, 20, queue);
   }
 
   @Override
-  public BlackMage create(BlockingQueue<GameUnit> queue) throws InvalidStatException {
+  public BlackMage create() throws InvalidStatException {
     return new BlackMage(
         "Black Mage %d".formatted(getCnt()),
         lowerBound(getStat(meanHp, sdHp), 1),
