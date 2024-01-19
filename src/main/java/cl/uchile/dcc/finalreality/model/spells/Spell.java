@@ -1,5 +1,6 @@
 package cl.uchile.dcc.finalreality.model.spells;
 
+import cl.uchile.dcc.finalreality.controller.visitors.SpellVisitorElement;
 import cl.uchile.dcc.finalreality.exceptions.*;
 import cl.uchile.dcc.finalreality.model.units.GameUnit;
 import cl.uchile.dcc.finalreality.model.units.enemy.Enemy;
@@ -18,7 +19,7 @@ import cl.uchile.dcc.finalreality.model.weapons.MagicWeapon;
  * @version 1.0.0
  * @since 1.0.0
  */
-public interface Spell {
+public interface Spell extends SpellVisitorElement {
 
   /**
    * Returns this spell's cost.

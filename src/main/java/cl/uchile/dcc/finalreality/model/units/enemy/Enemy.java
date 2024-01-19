@@ -1,5 +1,6 @@
 package cl.uchile.dcc.finalreality.model.units.enemy;
 
+import cl.uchile.dcc.finalreality.controller.visitors.UnitVisitor;
 import cl.uchile.dcc.finalreality.exceptions.*;
 import cl.uchile.dcc.finalreality.model.effects.Effect;
 import cl.uchile.dcc.finalreality.model.effects.NullEffect;
@@ -192,5 +193,10 @@ public class Enemy extends AbstractUnit {
   public int hashCode() {
     return Objects.hash(Enemy.class, this.getUnitName(), this.getMaxHp(), this.getDefense(),
                                      this.getDamage(), this.getWeight());
+  }
+
+  @Override
+  public <T> T accept(UnitVisitor<T> visitor) {
+    return visitor.visitEnemy(this);
   }
 }

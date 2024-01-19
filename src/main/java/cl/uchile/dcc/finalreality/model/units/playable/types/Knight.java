@@ -1,5 +1,6 @@
 package cl.uchile.dcc.finalreality.model.units.playable.types;
 
+import cl.uchile.dcc.finalreality.controller.visitors.UnitVisitor;
 import cl.uchile.dcc.finalreality.exceptions.InvalidStatException;
 import cl.uchile.dcc.finalreality.model.units.GameUnit;
 import cl.uchile.dcc.finalreality.model.units.playable.AbstractPlayerUnit;
@@ -88,4 +89,8 @@ public class Knight extends AbstractPlayerUnit {
     return Objects.hash(Knight.class, this.getUnitName(), this.getMaxHp(), this.getDefense());
   }
 
+  @Override
+  public <T> T accept(UnitVisitor<T> visitor) {
+    return visitor.visitKnight(this);
+  }
 }

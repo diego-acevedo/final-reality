@@ -4,6 +4,8 @@ import cl.uchile.dcc.finalreality.controller.factories.units.PlayerUnitFactory;
 import cl.uchile.dcc.finalreality.controller.factories.units.types.*;
 import cl.uchile.dcc.finalreality.controller.factories.weapons.WeaponFactory;
 import cl.uchile.dcc.finalreality.controller.factories.weapons.types.*;
+import cl.uchile.dcc.finalreality.controller.states.PreGame;
+import cl.uchile.dcc.finalreality.controller.states.State;
 import cl.uchile.dcc.finalreality.exceptions.*;
 import cl.uchile.dcc.finalreality.model.player.Player;
 import cl.uchile.dcc.finalreality.model.spells.Spell;
@@ -28,20 +30,19 @@ import java.util.concurrent.LinkedBlockingQueue;
  */
 public class Controller {
 
-  private final Player player;
-  private final ArrayList<Enemy> enemies;
-  private final BlockingQueue<GameUnit> unitsQueue;
+  private final Player player = new Player();
+  private final ArrayList<Enemy> enemies = new ArrayList<>();
+  private final BlockingQueue<GameUnit> unitsQueue = new LinkedBlockingQueue<>();
+  private State state;
+  private int cursor = 0;
+  private boolean gameOver = false;
+  private GameUnit currentUnit;
   public static int UNITS_AMOUNT = 5;
   public static int ENEMIES_AMOUNT = 3;
   public String actionOutput = "";
 
-  public Controller() {
-    this.enemies = new ArrayList<>();
-    this.player = new Player();
-    this.unitsQueue = new LinkedBlockingQueue<>();
-  }
-
   public void init() throws InvalidStatException {
+    setState(new PreGame());
     Random random = new Random();
     PlayerUnitFactory[] playerUnitFactories = {
         new BlackMageFactory(unitsQueue),
@@ -51,7 +52,9 @@ public class Controller {
         new WhiteMageFactory(unitsQueue)
     };
     for (int i = 0; i < UNITS_AMOUNT; i++) {
-      player.addUnit(playerUnitFactories[random.nextInt(0, playerUnitFactories.length)].create());
+      PlayerUnit unit = playerUnitFactories[random.nextInt(0, playerUnitFactories.length)].create();
+      player.addUnit(unit);
+      unitsQueue.add(unit);
     }
     WeaponFactory[] weaponFactories = {
         new AxeFactory(),
@@ -67,7 +70,9 @@ public class Controller {
     }
     EnemyFactory enemyFactory = new EnemyFactory(unitsQueue);
     for (int i = 0; i < ENEMIES_AMOUNT; i++) {
-      enemies.add(enemyFactory.create());
+      Enemy enemy = enemyFactory.create();
+      enemies.add(enemy);
+      unitsQueue.add(enemy);
     }
   }
 
@@ -88,7 +93,57 @@ public class Controller {
     player.equip(unit, weapon);
   }
 
+  public void execute() throws NullWeaponException {
+    state.execute();
+  }
+
   public void setActionOutput(String actionOutput) {
     this.actionOutput = actionOutput;
+  }
+
+  public ArrayList<Enemy> getEnemies() {
+    return enemies;
+  }
+
+  public BlockingQueue<GameUnit> getUnitsQueue() {
+    return unitsQueue;
+  }
+
+  public Player getPlayer() {
+    return player;
+  }
+
+  public void setState(State state) {
+    this.state = state;
+    this.state.setContext(this);
+  }
+
+  public boolean isGameOver() {
+    return gameOver;
+  }
+
+  public GameUnit getCurrentUnit() {
+    return currentUnit;
+  }
+
+  public GameUnit nextUnit() throws InterruptedException {
+    this.currentUnit = unitsQueue.take();
+    return currentUnit;
+  }
+
+  public int getCursor(int optionsSize) {
+    int selectPos = this.cursor % optionsSize;
+    if (this.cursor % optionsSize < 0) {
+      selectPos += optionsSize;
+    }
+    return selectPos;
+  }
+
+  public void setCursor(int cursor) {
+    this.cursor = cursor;
+  }
+
+  public void resetCursor() {
+    this.cursor = 0;
   }
 }

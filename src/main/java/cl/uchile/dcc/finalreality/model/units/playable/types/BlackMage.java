@@ -1,5 +1,6 @@
 package cl.uchile.dcc.finalreality.model.units.playable.types;
 
+import cl.uchile.dcc.finalreality.controller.visitors.UnitVisitor;
 import cl.uchile.dcc.finalreality.exceptions.*;
 import cl.uchile.dcc.finalreality.model.spells.Spell;
 import cl.uchile.dcc.finalreality.model.units.GameUnit;
@@ -93,5 +94,10 @@ public class BlackMage extends AbstractMage {
       NonMagicWeaponException, NullWeaponException {
     if (getCurrentHp() == 0) throw new DeadUnitException("%s is dead.".formatted(this));
     getWeapon().castSpellByBlackMage(this, spell, target);
+  }
+
+  @Override
+  public <T> T accept(UnitVisitor<T> visitor) {
+    return visitor.visitBlackMage(this);
   }
 }

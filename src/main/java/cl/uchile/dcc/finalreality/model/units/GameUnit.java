@@ -1,5 +1,6 @@
 package cl.uchile.dcc.finalreality.model.units;
 
+import cl.uchile.dcc.finalreality.controller.visitors.UnitVisitorElement;
 import cl.uchile.dcc.finalreality.exceptions.*;
 import cl.uchile.dcc.finalreality.model.spells.Spell;
 import cl.uchile.dcc.finalreality.model.units.enemy.Enemy;
@@ -18,7 +19,7 @@ import java.util.concurrent.BlockingQueue;
  * @version 1.0.0
  * @since 1.0.0
  */
-public interface GameUnit {
+public interface GameUnit extends UnitVisitorElement {
 
   /**
    * Returns this character's name.
@@ -69,6 +70,8 @@ public interface GameUnit {
    * Returns this character's weight stat.
    */
   int getWeight() throws NullWeaponException;
+
+  boolean isDead();
 
   /**
    * This method schedules the character to be inserted in

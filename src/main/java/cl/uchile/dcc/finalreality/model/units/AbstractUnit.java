@@ -1,9 +1,8 @@
 package cl.uchile.dcc.finalreality.model.units;
 
+import cl.uchile.dcc.finalreality.controller.visitors.UnitVisitorElement;
 import cl.uchile.dcc.finalreality.exceptions.InvalidStatException;
 import cl.uchile.dcc.finalreality.exceptions.NullWeaponException;
-import cl.uchile.dcc.finalreality.model.spells.Spell;
-import cl.uchile.dcc.finalreality.model.units.playable.MagicUser;
 
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.Executors;
@@ -80,12 +79,19 @@ public abstract class AbstractUnit implements GameUnit {
   }
 
   @Override
+  public boolean isDead() {
+    return getCurrentHp() <= 0;
+  }
+
+  @Override
   public void waitTurn() throws NullWeaponException {
-    scheduledExecutor = Executors.newSingleThreadScheduledExecutor();
-    scheduledExecutor.schedule(
-        /* command = */ this::addToQueue,
-        /* delay = */ this.getWeight() / 10,
-        /* unit = */ TimeUnit.SECONDS);
+    if (getCurrentHp() > 0) {
+      scheduledExecutor = Executors.newSingleThreadScheduledExecutor();
+      scheduledExecutor.schedule(
+          /* command = */ this::addToQueue,
+          /* delay = */ this.getWeight() / 10,
+          /* unit = */ TimeUnit.SECONDS);
+    }
   }
 
   /**

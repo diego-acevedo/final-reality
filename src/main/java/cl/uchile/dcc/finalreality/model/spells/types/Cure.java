@@ -1,5 +1,6 @@
 package cl.uchile.dcc.finalreality.model.spells.types;
 
+import cl.uchile.dcc.finalreality.controller.visitors.SpellVisitor;
 import cl.uchile.dcc.finalreality.exceptions.InsufficientMpException;
 import cl.uchile.dcc.finalreality.model.spells.AbstractWhiteSpell;
 import cl.uchile.dcc.finalreality.model.units.playable.MagicUser;
@@ -27,5 +28,10 @@ public class Cure extends AbstractWhiteSpell {
       throws InsufficientMpException {
     checkMana(mage);
     unit.setCurrentHp(unit.getCurrentHp() + (int) (unit.getMaxHp() * 0.3));
+  }
+
+  @Override
+  public <T> T accept(SpellVisitor<T> visitor) {
+    return visitor.visitCure(this);
   }
 }

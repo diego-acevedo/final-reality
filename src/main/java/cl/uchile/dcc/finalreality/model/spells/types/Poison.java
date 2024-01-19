@@ -1,5 +1,6 @@
 package cl.uchile.dcc.finalreality.model.spells.types;
 
+import cl.uchile.dcc.finalreality.controller.visitors.SpellVisitor;
 import cl.uchile.dcc.finalreality.exceptions.InsufficientMpException;
 import cl.uchile.dcc.finalreality.model.effects.types.Poisoned;
 import cl.uchile.dcc.finalreality.model.spells.AbstractWhiteSpell;
@@ -26,5 +27,10 @@ public class Poison extends AbstractWhiteSpell {
       throws InsufficientMpException {
     checkMana(mage);
     enemy.setPoisonedEffect(new Poisoned(weapon));
+  }
+
+  @Override
+  public <T> T accept(SpellVisitor<T> visitor) {
+    return visitor.visitPoison(this);
   }
 }

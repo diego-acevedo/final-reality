@@ -1,5 +1,6 @@
 package cl.uchile.dcc.finalreality.model.spells.types;
 
+import cl.uchile.dcc.finalreality.controller.visitors.SpellVisitor;
 import cl.uchile.dcc.finalreality.exceptions.InsufficientMpException;
 import cl.uchile.dcc.finalreality.model.effects.types.Burning;
 import cl.uchile.dcc.finalreality.model.spells.AbstractBlackSpell;
@@ -51,5 +52,10 @@ public class Fire extends AbstractBlackSpell {
     if (random.nextDouble() < 0.2) {
       enemy.setBurningEffect(new Burning(weapon));
     }
+  }
+
+  @Override
+  public <T> T accept(SpellVisitor<T> visitor) {
+    return visitor.visitFire(this);
   }
 }

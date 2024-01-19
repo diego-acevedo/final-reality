@@ -1,5 +1,6 @@
 package cl.uchile.dcc.finalreality.model.spells.types;
 
+import cl.uchile.dcc.finalreality.controller.visitors.SpellVisitor;
 import cl.uchile.dcc.finalreality.exceptions.InsufficientMpException;
 import cl.uchile.dcc.finalreality.model.effects.types.Paralyzed;
 import cl.uchile.dcc.finalreality.model.spells.AbstractBlackSpell;
@@ -43,5 +44,10 @@ public class Thunder extends AbstractBlackSpell {
     if (random.nextDouble() < 0.3) {
       enemy.setParalyzedEffect(new Paralyzed());
     }
+  }
+
+  @Override
+  public <T> T accept(SpellVisitor<T> visitor) {
+    return visitor.visitThunder(this);
   }
 }
