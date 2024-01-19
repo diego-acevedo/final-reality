@@ -38,7 +38,7 @@ class NullWeaponTest extends AbstractWeaponTest<NullWeapon> {
   @DisplayName("Testing wight getter")
   @Override
   void getWeightTest() {
-    assertThrows(NullWeaponException.class, () -> weapon.getWeight());
+    assertEquals(0, weapon.getWeight());
   }
 
   @Test

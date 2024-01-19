@@ -31,8 +31,8 @@ public class NullWeapon implements Weapon {
   }
 
   @Override
-  public int getWeight() throws NullWeaponException {
-    throw new NullWeaponException("Null weapon doesn't have a weight.");
+  public int getWeight() {
+    return 0;
   }
 
   @Override

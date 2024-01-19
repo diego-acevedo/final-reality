@@ -14,4 +14,9 @@ public abstract class AbstractState implements State {
   protected Controller getContext() {
     return context;
   }
+
+  @Override
+  public boolean autoExecute() {
+    return false;
+  }
 }

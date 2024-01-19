@@ -1,5 +1,6 @@
 package cl.uchile.dcc.finalreality.model.units;
 
+import cl.uchile.dcc.finalreality.controller.Controller;
 import cl.uchile.dcc.finalreality.controller.visitors.UnitVisitorElement;
 import cl.uchile.dcc.finalreality.exceptions.*;
 import cl.uchile.dcc.finalreality.model.spells.Spell;
@@ -69,7 +70,7 @@ public interface GameUnit extends UnitVisitorElement {
   /**
    * Returns this character's weight stat.
    */
-  int getWeight() throws NullWeaponException;
+  int getWeight();
 
   boolean isDead();
 
@@ -78,12 +79,8 @@ public interface GameUnit extends UnitVisitorElement {
    * the turns queue after a certain amount of time has passed.
    * This time will be determined by the weight stat associated
    * with the character.
-   *
-   * @throws NullWeaponException if the weight stat of the
-   * character is dependent to the weapon, and the character
-   * has no weapon equipped.
    */
-  void waitTurn() throws NullWeaponException;
+  void waitTurn();
 
   /**
    * This method allows this unit to attack a {@code target}. Not
@@ -142,4 +139,6 @@ public interface GameUnit extends UnitVisitorElement {
   void receiveSpell(Spell spell, MagicUser mage, MagicWeapon weapon)
       throws InvalidTargetUnitException, InsufficientMpException,
       DeadUnitException;
+
+  void setController(Controller controller);
 }

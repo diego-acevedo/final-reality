@@ -25,6 +25,7 @@ public class SelectAttackTarget extends AbstractState {
     try {
       getContext().attack(unit, enemy);
       getContext().setActionOutput("%s attacked %s.".formatted(unit, enemy));
+      unit.waitTurn();
       getContext().setState(new NewTurn());
     } catch (DeadUnitException e) {
       getContext().setActionOutput("%s is dead. They can't be attacked.".formatted(enemy));

@@ -33,10 +33,8 @@ public interface Weapon {
 
   /**
    * Returns this weapon's weight.
-   *
-   * @throws NullWeaponException if the weapon is a {@link NullWeapon null weapon}.
    */
-  int getWeight() throws NullWeaponException;
+  int getWeight();
 
   /**
    * Equips this weapon to a {@link PlayerUnit player unit}. This method is

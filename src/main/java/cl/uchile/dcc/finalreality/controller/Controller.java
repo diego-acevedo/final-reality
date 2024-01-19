@@ -53,6 +53,7 @@ public class Controller {
     };
     for (int i = 0; i < UNITS_AMOUNT; i++) {
       PlayerUnit unit = playerUnitFactories[random.nextInt(0, playerUnitFactories.length)].create();
+      unit.setController(this);
       player.addUnit(unit);
       unitsQueue.add(unit);
     }
@@ -71,6 +72,7 @@ public class Controller {
     EnemyFactory enemyFactory = new EnemyFactory(unitsQueue);
     for (int i = 0; i < ENEMIES_AMOUNT; i++) {
       Enemy enemy = enemyFactory.create();
+      enemy.setController(this);
       enemies.add(enemy);
       unitsQueue.add(enemy);
     }
@@ -93,7 +95,7 @@ public class Controller {
     player.equip(unit, weapon);
   }
 
-  public void execute() throws NullWeaponException {
+  public void execute() {
     state.execute();
   }
 
@@ -105,10 +107,6 @@ public class Controller {
     return enemies;
   }
 
-  public BlockingQueue<GameUnit> getUnitsQueue() {
-    return unitsQueue;
-  }
-
   public Player getPlayer() {
     return player;
   }
@@ -116,14 +114,12 @@ public class Controller {
   public void setState(State state) {
     this.state = state;
     this.state.setContext(this);
+    resetCursor();
+    if (state.autoExecute()) execute();
   }
 
   public boolean isGameOver() {
     return gameOver;
-  }
-
-  public GameUnit getCurrentUnit() {
-    return currentUnit;
   }
 
   public GameUnit nextUnit() throws InterruptedException {
@@ -145,5 +141,10 @@ public class Controller {
 
   public void resetCursor() {
     this.cursor = 0;
+  }
+
+  public void checkGameOver() {
+    gameOver = getPlayer().getParty().stream().map(GameUnit::isDead).reduce(true, (a, b) -> a && b)
+        && getEnemies().stream().map(GameUnit::isDead).reduce(true, (a, b) -> a && b);
   }
 }

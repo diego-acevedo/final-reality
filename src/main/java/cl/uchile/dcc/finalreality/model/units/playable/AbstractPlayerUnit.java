@@ -42,7 +42,7 @@ public abstract class AbstractPlayerUnit extends AbstractUnit implements PlayerU
   }
 
   @Override
-  public int getWeight() throws NullWeaponException {
+  public int getWeight() {
     return weapon.getWeight();
   }
 

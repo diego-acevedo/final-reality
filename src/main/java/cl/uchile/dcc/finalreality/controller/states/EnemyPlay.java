@@ -19,7 +19,7 @@ public class EnemyPlay extends AbstractState {
     this.enemy = enemy;
   }
   @Override
-  public void execute() throws NullWeaponException {
+  public void execute() {
     try {
       enemy.applyEffects();
     } catch (ParalyzedUnitException e) {
@@ -43,6 +43,8 @@ public class EnemyPlay extends AbstractState {
         getContext().setActionOutput("%s tried to attack a dead unit.".formatted(enemy));
       } catch (InvalidTargetUnitException e) {
         getContext().setActionOutput("%s tried to attack an invalid unit.".formatted(enemy));
+      } catch (NullWeaponException e) {
+        getContext().setActionOutput("%s tried to attack without a weapon.".formatted(enemy));
       } finally {
         enemy.waitTurn();
         getContext().setState(new NewTurn());

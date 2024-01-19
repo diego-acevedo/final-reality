@@ -48,7 +48,7 @@ public abstract class AbstractPlayerUnitTest<T extends PlayerUnit> extends Abstr
   @Test
   @DisplayName("Testing getting the weight when a NullWeapon is equipped")
   void getWeightWithNullWeaponTest() {
-    assertThrows(NullWeaponException.class, () -> unit.getWeight());
+    assertEquals(0, unit.getWeight());
   }
 
   @Test

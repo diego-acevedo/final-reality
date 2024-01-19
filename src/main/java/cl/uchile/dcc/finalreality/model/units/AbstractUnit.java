@@ -1,5 +1,6 @@
 package cl.uchile.dcc.finalreality.model.units;
 
+import cl.uchile.dcc.finalreality.controller.Controller;
 import cl.uchile.dcc.finalreality.controller.visitors.UnitVisitorElement;
 import cl.uchile.dcc.finalreality.exceptions.InvalidStatException;
 import cl.uchile.dcc.finalreality.exceptions.NullWeaponException;
@@ -25,6 +26,7 @@ public abstract class AbstractUnit implements GameUnit {
   protected final BlockingQueue<GameUnit> turnsQueue;
   protected final String name;
   private ScheduledExecutorService scheduledExecutor;
+  protected Controller controller;
 
   /**
    * Creates a new character.
@@ -84,7 +86,7 @@ public abstract class AbstractUnit implements GameUnit {
   }
 
   @Override
-  public void waitTurn() throws NullWeaponException {
+  public void waitTurn() {
     if (getCurrentHp() > 0) {
       scheduledExecutor = Executors.newSingleThreadScheduledExecutor();
       scheduledExecutor.schedule(
@@ -109,11 +111,17 @@ public abstract class AbstractUnit implements GameUnit {
   @Override
   public void setCurrentHp(int hp) {
     this.currentHp = Math.max(0, Math.min(maxHp, hp));
+    if (isDead()) controller.checkGameOver();
   }
 
   @Override
   public void receiveAttack(int damage) {
     double decreasedDamage = (double) damage / ((double) (getDefense() + 100) / 100);
     setCurrentHp(getCurrentHp() - (int) decreasedDamage);
+  }
+
+  @Override
+  public void setController(Controller controller) {
+    this.controller = controller;
   }
 }

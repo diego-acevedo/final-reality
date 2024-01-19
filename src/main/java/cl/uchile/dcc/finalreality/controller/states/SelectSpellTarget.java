@@ -25,18 +25,19 @@ public class SelectSpellTarget extends AbstractState implements SpellVisitor<Arr
   }
 
   @Override
-  public void execute() throws NullWeaponException {
+  public void execute() {
     int selectPos = getContext().getCursor(options.size());
     GameUnit target = options.get(selectPos);
     try {
       getContext().castSpell(mage, target, spell);
+      mage.waitTurn();
       getContext().setState(new NewTurn());
     } catch (InsufficientMpException e) {
       getContext().setActionOutput("%s doesn't have enough mana to cast this spell.".formatted(mage));
       getContext().setState(new PlayerSelectAction(mage));
     } catch (DeadUnitException e) {
       getContext().setActionOutput("%s is dead. They can't be attacked.".formatted(target));
-    } catch (NonMagicWeaponException e) {
+    } catch (NonMagicWeaponException | NullWeaponException e) {
       getContext().setActionOutput("%s doesn't have a magic weapon.".formatted(mage));
       getContext().setState(new PlayerSelectAction(mage));
     } catch (InvalidMageTypeException e) {
