@@ -8,7 +8,21 @@ import cl.uchile.dcc.finalreality.model.units.playable.types.WhiteMage;
 
 import java.util.concurrent.BlockingQueue;
 
+/**
+ * This class represents a factory that creates {@link WhiteMage white mages}.
+ *
+ * @author <a href=https://github.com/diego-acevedo>Diego Acevedo</a>
+ *
+ * @version 1.0.0
+ * @since 1.0.0
+ */
 public class WhiteMageFactory extends AbstractMageFactory {
+
+  /**
+   * Creates a new instance of a {@code WhiteMageFactory}.
+   *
+   * @param queue the turns queue of the units.
+   */
   public WhiteMageFactory(BlockingQueue<GameUnit> queue) {
     super(70, 10, 15, 10, 100, 20, queue);
   }

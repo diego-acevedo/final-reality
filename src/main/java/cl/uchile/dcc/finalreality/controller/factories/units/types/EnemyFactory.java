@@ -7,6 +7,14 @@ import cl.uchile.dcc.finalreality.model.units.enemy.Enemy;
 
 import java.util.concurrent.BlockingQueue;
 
+/**
+ * This class represents a factory that creates {@link Enemy enemies}.
+ *
+ * @author <a href=https://github.com/diego-acevedo>Diego Acevedo</a>
+ *
+ * @version 1.0.0
+ * @since 1.0.0
+ */
 public class EnemyFactory extends AbstractUnitFactory<Enemy> {
 
   protected int meanWeight;
@@ -14,6 +22,11 @@ public class EnemyFactory extends AbstractUnitFactory<Enemy> {
   protected int meanAttack;
   protected int sdAttack;
 
+  /**
+   * Creates a new instance of a {@code EnemyFactory}.
+   *
+   * @param queue the turns queue of the units.
+   */
   public EnemyFactory(BlockingQueue<GameUnit> queue) {
     super(250, 40, 20, 10, queue);
     this.meanWeight = 200;
