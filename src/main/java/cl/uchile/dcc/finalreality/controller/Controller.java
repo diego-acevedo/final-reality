@@ -41,6 +41,17 @@ public class Controller {
   public static int ENEMIES_AMOUNT = 3;
   public String actionOutput = "";
 
+  /**
+   * Initializes the basics elements of the game. It sets
+   * an initial state for the game, creates an amount of
+   * {@code UNITS_AMOUNT} player units, an amount of
+   * {@code UNITS_AMOUNT} of each type of weapon, and an amount of
+   * {@code ENEMIES_AMOUNT}. This method is used during the
+   * pre-game phase.
+   *
+   * @throws InvalidStatException if a unit is created with
+   * invalid stats.
+   */
   public void init() throws InvalidStatException {
     setState(new PreGame());
     Random random = new Random();
@@ -78,11 +89,38 @@ public class Controller {
     }
   }
 
+  /**
+   * Makes a {@code target} receive an attack from
+   * an {@code attacker}.
+   *
+   * @param attacker the unit that attacks.
+   * @param target the unit that receives the damage.
+   *
+   * @throws DeadUnitException if one of the units is dead.
+   * @throws NullWeaponException if the attacker is a {@link PlayerUnit player unit}
+   *                             and doesn't have a weapon equipped.
+   * @throws InvalidTargetUnitException if a {@link PlayerUnit player unit} tries to
+   *                                    attack an {@link Enemy enemy} or vice versa.
+   */
   public void attack(GameUnit attacker, GameUnit target)
       throws DeadUnitException, NullWeaponException, InvalidTargetUnitException {
     attacker.attack(target);
   }
 
+  /**
+   * Makes a {@code mage} cast a {@code spell} to a {@code attacker}.
+   *
+   * @param mage the mage casting the spell.
+   * @param target the unit receiving the spell.
+   * @param spell the spell cast.
+   *
+   * @throws InsufficientMpException if the mage doesn't have enough mp.
+   * @throws DeadUnitException if one of the unit is dead.
+   * @throws NonMagicWeaponException if the mage's weapon is not magical.
+   * @throws NullWeaponException if the mage doesn't have a weapon equipped.
+   * @throws InvalidMageTypeException if the spell is not of the same type as the mage.
+   * @throws InvalidTargetUnitException if the target can't receive that type of spell.
+   */
   public void castSpell(MagicUser mage, GameUnit target, Spell spell)
       throws InsufficientMpException, DeadUnitException,
       NonMagicWeaponException, NullWeaponException,
@@ -90,27 +128,60 @@ public class Controller {
     mage.castSpell(spell, target);
   }
 
+  /**
+   * Equips a {@code weapon} to a {@code unit}.
+   *
+   * @param unit the unit receiving the weapon.
+   * @param weapon the weapon being equipped.
+   *
+   * @throws InvalidWeaponException if the unt can't have that type of weapon
+   * equipped.
+   * @throws OwnershipException if the player doesn't own the weapon.
+   */
   public void equip(PlayerUnit unit, Weapon weapon)
       throws InvalidWeaponException, OwnershipException {
     player.equip(unit, weapon);
   }
 
+  /**
+   * Triggers a change of state in the game. The change of
+   * state is managed by a {@link State state pattern}.
+   */
   public void execute() {
     state.execute();
   }
 
+  /**
+   * Sets a new output showing the result of an action.
+   * In this context, an action is a change of state.
+   *
+   * @param actionOutput the new output.
+   */
   public void setActionOutput(String actionOutput) {
     this.actionOutput = actionOutput;
   }
 
+  /**
+   * Returns the enemy's list
+   */
   public ArrayList<Enemy> getEnemies() {
     return enemies;
   }
 
+  /**
+   * Returns the player.
+   */
   public Player getPlayer() {
     return player;
   }
 
+  /**
+   * Sets a new state to the controller. If the new state should
+   * be automatically executed, it will execute it. Everytime a new
+   * state is set, the cursor gets reset.
+   *
+   * @param state the new state.
+   */
   public void setState(State state) {
     this.state = state;
     this.state.setContext(this);
@@ -118,15 +189,33 @@ public class Controller {
     if (state.autoExecute()) execute();
   }
 
+  /**
+   * Returns true if all the player units or all the enemies are dead.
+   */
   public boolean isGameOver() {
     return gameOver;
   }
 
+  /**
+   * Extract the unit at the front of the queue.
+   *
+   * @return the unt at the front of the queue.
+   *
+   * @throws InterruptedException if the program is interrupted
+   * before a unit can be taken from the queue.
+   */
   public GameUnit nextUnit() throws InterruptedException {
     this.currentUnit = unitsQueue.take();
     return currentUnit;
   }
 
+  /**
+   * Calculates the value of the cursor based on the current list of options.
+   *
+   * @param optionsSize the size of the options list.
+   *
+   * @return the value of the cursor.
+   */
   public int getCursor(int optionsSize) {
     int selectPos = this.cursor % optionsSize;
     if (this.cursor % optionsSize < 0) {
@@ -135,16 +224,30 @@ public class Controller {
     return selectPos;
   }
 
+  /**
+   * Adds a value to the current value of the cursor.
+   * This value can be negative to decrease the value of
+   * the cursor.
+   *
+   * @param cursor the amount to increase the cursor
+   */
   public void setCursor(int cursor) {
-    this.cursor = cursor;
+    this.cursor += cursor;
   }
 
+  /**
+   * Sets the cursor value to 0.
+   */
   public void resetCursor() {
     this.cursor = 0;
   }
 
+  /**
+   * Checks if the game is over. If it is, it sets the {@code gameOver}
+   * variable to true.
+   */
   public void checkGameOver() {
     gameOver = getPlayer().getParty().stream().map(GameUnit::isDead).reduce(true, (a, b) -> a && b)
-        && getEnemies().stream().map(GameUnit::isDead).reduce(true, (a, b) -> a && b);
+        || getEnemies().stream().map(GameUnit::isDead).reduce(true, (a, b) -> a && b);
   }
 }
