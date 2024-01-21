@@ -72,6 +72,9 @@ public interface GameUnit extends UnitVisitorElement {
    */
   int getWeight();
 
+  /**
+   * Returns true if this unit is dead.
+   */
   boolean isDead();
 
   /**
@@ -140,5 +143,11 @@ public interface GameUnit extends UnitVisitorElement {
       throws InvalidTargetUnitException, InsufficientMpException,
       DeadUnitException;
 
+  /**
+   * Sets a new controller to this unit. The controller is subscribing
+   * to this unit to get notified when this unit dies.
+   *
+   * @param controller the controller to be set.
+   */
   void setController(Controller controller);
 }

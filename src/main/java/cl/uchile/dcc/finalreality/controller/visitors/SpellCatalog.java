@@ -8,6 +8,14 @@ import cl.uchile.dcc.finalreality.model.units.playable.types.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * This class manages the spells each unit can use.
+ *
+ * @author <a href=https://github.com/diego-acevedo>Diego Acevedo</a>
+ *
+ * @version 1.0.0
+ * @since 1.0.0
+ */
 public class SpellCatalog implements UnitVisitor<ArrayList<Spell>> {
   @Override
   public ArrayList<Spell> visitEnemy(Enemy enemy) {

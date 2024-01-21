@@ -8,6 +8,14 @@ import cl.uchile.dcc.finalreality.model.units.playable.types.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * This class manages actions each unit can chose.
+ *
+ * @author <a href=https://github.com/diego-acevedo>Diego Acevedo</a>
+ *
+ * @version 1.0.0
+ * @since 1.0.0
+ */
 public class ActionsCatalog implements UnitVisitor<ArrayList<State>> {
 
   @Override
