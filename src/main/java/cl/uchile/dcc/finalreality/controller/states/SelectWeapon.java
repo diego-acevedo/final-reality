@@ -8,11 +8,25 @@ import cl.uchile.dcc.finalreality.model.weapons.Weapon;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 
+/**
+ * This class represents a state that handles the selection of a
+ * weapon to be equipped by a player unit.
+ *
+ * @author <a href=https://github.com/diego-acevedo>Diego Acevedo</a>
+ *
+ * @version 1.0.0
+ * @since 1.0.0
+ */
 public class SelectWeapon extends AbstractState {
 
   private final PlayerUnit unit;
   private final ArrayList<Weapon> options;
 
+  /**
+   * Creates a new instance of a {@code SelectWeapon} state.
+   *
+   * @param unit the player unit currently playing.
+   */
   public SelectWeapon(PlayerUnit unit) {
     this.unit = unit;
     this.options = getContext().getPlayer().getInventory();
@@ -37,5 +51,10 @@ public class SelectWeapon extends AbstractState {
   public ArrayList<String> getOptions() {
     return this.options.stream().map(Object::toString)
         .collect(Collectors.toCollection(ArrayList::new));
+  }
+
+  @Override
+  public void goBack() {
+    getContext().setState(new PlayerSelectAction(unit));
   }
 }

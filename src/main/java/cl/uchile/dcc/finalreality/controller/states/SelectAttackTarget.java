@@ -9,11 +9,25 @@ import cl.uchile.dcc.finalreality.model.units.playable.PlayerUnit;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 
+/**
+ * This class represents a state that handles the selection of
+ * a target to be attacked by a player unit.
+ *
+ * @author <a href=https://github.com/diego-acevedo>Diego Acevedo</a>
+ *
+ * @version 1.0.0
+ * @since 1.0.0
+ */
 public class SelectAttackTarget extends AbstractState {
 
   private final ArrayList<Enemy> options;
   private final PlayerUnit unit;
 
+  /**
+   * Creates a new instance of a {@code SelectAttackTarget} state.
+   *
+   * @param unit the player unit currently playing.
+   */
   public SelectAttackTarget(PlayerUnit unit) {
     this.unit = unit;
     this.options = getContext().getEnemies();
@@ -41,5 +55,10 @@ public class SelectAttackTarget extends AbstractState {
   public ArrayList<String> getOptions() {
     return this.options.stream().map(Object::toString)
         .collect(Collectors.toCollection(ArrayList::new));
+  }
+
+  @Override
+  public void goBack() {
+    getContext().setState(new PlayerSelectAction(unit));
   }
 }

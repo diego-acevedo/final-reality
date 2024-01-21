@@ -11,10 +11,23 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.stream.Collectors;
 
+/**
+ * This class represents the state of an enemy's turn.
+ *
+ * @author <a href=https://github.com/diego-acevedo>Diego Acevedo</a>
+ *
+ * @version 1.0.0
+ * @since 1.0.0
+ */
 public class EnemyPlay extends AbstractState {
 
   private final Enemy enemy;
 
+  /**
+   * Creates a new instance of a {@code EnemyPlay} state.
+   *
+   * @param enemy the enemy currently playing.
+   */
   public EnemyPlay(Enemy enemy) {
     this.enemy = enemy;
   }
@@ -55,5 +68,10 @@ public class EnemyPlay extends AbstractState {
   @Override
   public ArrayList<String> getOptions() {
     return new ArrayList<>();
+  }
+
+  @Override
+  public void goBack() {
+    getContext().setState(this);
   }
 }

@@ -250,4 +250,11 @@ public class Controller {
     gameOver = getPlayer().getParty().stream().map(GameUnit::isDead).reduce(true, (a, b) -> a && b)
         || getEnemies().stream().map(GameUnit::isDead).reduce(true, (a, b) -> a && b);
   }
+
+  /**
+   * Goes back to a previous state.
+   */
+  public void goBack() {
+    state.goBack();
+  }
 }

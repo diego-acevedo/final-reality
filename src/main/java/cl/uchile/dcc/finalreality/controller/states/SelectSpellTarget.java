@@ -12,12 +12,27 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * This class represents a state that handles the selection of a
+ * target to receive a spell cast by a mage.
+ *
+ * @author <a href=https://github.com/diego-acevedo>Diego Acevedo</a>
+ *
+ * @version 1.0.0
+ * @since 1.0.0
+ */
 public class SelectSpellTarget extends AbstractState implements SpellVisitor<ArrayList<GameUnit>> {
 
   private final MagicUser mage;
   private final Spell spell;
   private final ArrayList<GameUnit> options;
 
+  /**
+   * Creates a new instance of a {@code SelectSpellTarget} state.
+   *
+   * @param mage the mage currently playing.
+   * @param spell the spell being cast.
+   */
   public SelectSpellTarget(MagicUser mage, Spell spell) {
     this.mage = mage;
     this.spell = spell;
@@ -53,6 +68,11 @@ public class SelectSpellTarget extends AbstractState implements SpellVisitor<Arr
   public ArrayList<String> getOptions() {
     return this.options.stream().map(Object::toString)
         .collect(Collectors.toCollection(ArrayList::new));
+  }
+
+  @Override
+  public void goBack() {
+    getContext().setState(new SelectSpell(mage));
   }
 
   @Override
