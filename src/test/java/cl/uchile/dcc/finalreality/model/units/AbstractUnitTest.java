@@ -1,5 +1,6 @@
 package cl.uchile.dcc.finalreality.model.units;
 
+import cl.uchile.dcc.finalreality.controller.Controller;
 import cl.uchile.dcc.finalreality.exceptions.InvalidStatException;
 import cl.uchile.dcc.finalreality.model.units.enemy.Enemy;
 import cl.uchile.dcc.finalreality.model.units.playable.types.*;
@@ -37,6 +38,15 @@ public abstract class AbstractUnitTest<T extends GameUnit> {
     enemy = new Enemy("Enemy", 100, 50, 20, 50, turnsQueue);
     name = setName();
     unit = createUnit();
+
+    Controller controller = new Controller();
+    blackMage.setController(controller);
+    engineer.setController(controller);
+    enemy.setController(controller);
+    knight.setController(controller);
+    thief.setController(controller);
+    whiteMage.setController(controller);
+    unit.setController(controller);
 
     turnsQueue.addAll(List.of(blackMage, engineer, knight, thief, whiteMage, enemy, unit));
   }

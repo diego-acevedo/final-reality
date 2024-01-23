@@ -35,7 +35,7 @@ public abstract class Factory<T> {
   }
 
   /**
-   * Sets a new {@code Random} known object.
+   * Sets a new known {@code Random} object.
    *
    * @param random the {@code Random} object to be set.
    */
