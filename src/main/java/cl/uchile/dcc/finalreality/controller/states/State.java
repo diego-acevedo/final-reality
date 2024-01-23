@@ -1,6 +1,6 @@
 package cl.uchile.dcc.finalreality.controller.states;
 
-import cl.uchile.dcc.finalreality.controller.Controller;
+import cl.uchile.dcc.finalreality.controller.GameDriver;
 
 import java.util.ArrayList;
 
@@ -27,7 +27,7 @@ public interface State {
    *
    * @param context the controller being set.
    */
-  void setContext(Controller context);
+  void setContext(GameDriver context);
 
   /**
    * Returns a list of options (as strings) indicating

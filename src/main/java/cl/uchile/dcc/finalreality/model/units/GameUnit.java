@@ -1,6 +1,6 @@
 package cl.uchile.dcc.finalreality.model.units;
 
-import cl.uchile.dcc.finalreality.controller.Controller;
+import cl.uchile.dcc.finalreality.controller.GameDriver;
 import cl.uchile.dcc.finalreality.controller.visitors.UnitVisitorElement;
 import cl.uchile.dcc.finalreality.exceptions.*;
 import cl.uchile.dcc.finalreality.model.spells.Spell;
@@ -147,7 +147,7 @@ public interface GameUnit extends UnitVisitorElement {
    * Sets a new controller to this unit. The controller is subscribing
    * to this unit to get notified when this unit dies.
    *
-   * @param controller the controller to be set.
+   * @param gameDriver the controller to be set.
    */
-  void setController(Controller controller);
+  void setController(GameDriver gameDriver);
 }

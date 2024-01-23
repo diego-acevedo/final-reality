@@ -28,7 +28,7 @@ import java.util.concurrent.LinkedBlockingQueue;
  * @version 1.0.0
  * @since 1.0.0
  */
-public class Controller {
+public class GameDriver {
 
   private final Player player = new Player();
   private final ArrayList<Enemy> enemies = new ArrayList<>();

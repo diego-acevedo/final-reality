@@ -1,9 +1,7 @@
 package cl.uchile.dcc.finalreality.model.units;
 
-import cl.uchile.dcc.finalreality.controller.Controller;
-import cl.uchile.dcc.finalreality.controller.visitors.UnitVisitorElement;
+import cl.uchile.dcc.finalreality.controller.GameDriver;
 import cl.uchile.dcc.finalreality.exceptions.InvalidStatException;
-import cl.uchile.dcc.finalreality.exceptions.NullWeaponException;
 
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.Executors;
@@ -26,7 +24,7 @@ public abstract class AbstractUnit implements GameUnit {
   protected final BlockingQueue<GameUnit> turnsQueue;
   protected final String name;
   private ScheduledExecutorService scheduledExecutor;
-  protected Controller controller;
+  protected GameDriver gameDriver;
 
   /**
    * Creates a new character.
@@ -111,7 +109,7 @@ public abstract class AbstractUnit implements GameUnit {
   @Override
   public void setCurrentHp(int hp) {
     this.currentHp = Math.max(0, Math.min(maxHp, hp));
-    if (isDead()) controller.checkGameOver();
+    if (isDead()) gameDriver.checkGameOver();
   }
 
   @Override
@@ -121,7 +119,7 @@ public abstract class AbstractUnit implements GameUnit {
   }
 
   @Override
-  public void setController(Controller controller) {
-    this.controller = controller;
+  public void setController(GameDriver gameDriver) {
+    this.gameDriver = gameDriver;
   }
 }

@@ -1,6 +1,6 @@
 package cl.uchile.dcc.finalreality.controller.states;
 
-import cl.uchile.dcc.finalreality.controller.Controller;
+import cl.uchile.dcc.finalreality.controller.GameDriver;
 
 /**
  * This class contains the common behavior of all states.
@@ -12,17 +12,17 @@ import cl.uchile.dcc.finalreality.controller.Controller;
  */
 public abstract class AbstractState implements State {
 
-  private Controller context;
+  private GameDriver context;
 
   @Override
-  public void setContext(Controller context) {
+  public void setContext(GameDriver context) {
     this.context = context;
   }
 
   /**
    * Returns the state's context.
    */
-  protected Controller getContext() {
+  protected GameDriver getContext() {
     return context;
   }
 

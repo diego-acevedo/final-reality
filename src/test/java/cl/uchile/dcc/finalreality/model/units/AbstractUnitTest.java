@@ -1,10 +1,9 @@
 package cl.uchile.dcc.finalreality.model.units;
 
-import cl.uchile.dcc.finalreality.controller.Controller;
+import cl.uchile.dcc.finalreality.controller.GameDriver;
 import cl.uchile.dcc.finalreality.exceptions.InvalidStatException;
 import cl.uchile.dcc.finalreality.model.units.enemy.Enemy;
 import cl.uchile.dcc.finalreality.model.units.playable.types.*;
-import cl.uchile.dcc.finalreality.model.weapons.Weapon;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -39,14 +38,14 @@ public abstract class AbstractUnitTest<T extends GameUnit> {
     name = setName();
     unit = createUnit();
 
-    Controller controller = new Controller();
-    blackMage.setController(controller);
-    engineer.setController(controller);
-    enemy.setController(controller);
-    knight.setController(controller);
-    thief.setController(controller);
-    whiteMage.setController(controller);
-    unit.setController(controller);
+    GameDriver gameDriver = new GameDriver();
+    blackMage.setController(gameDriver);
+    engineer.setController(gameDriver);
+    enemy.setController(gameDriver);
+    knight.setController(gameDriver);
+    thief.setController(gameDriver);
+    whiteMage.setController(gameDriver);
+    unit.setController(gameDriver);
 
     turnsQueue.addAll(List.of(blackMage, engineer, knight, thief, whiteMage, enemy, unit));
   }
