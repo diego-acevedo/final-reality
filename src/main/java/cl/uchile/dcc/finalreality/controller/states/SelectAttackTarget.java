@@ -1,5 +1,6 @@
 package cl.uchile.dcc.finalreality.controller.states;
 
+import cl.uchile.dcc.finalreality.controller.GameDriver;
 import cl.uchile.dcc.finalreality.exceptions.DeadUnitException;
 import cl.uchile.dcc.finalreality.exceptions.InvalidTargetUnitException;
 import cl.uchile.dcc.finalreality.exceptions.NullWeaponException;
@@ -7,6 +8,7 @@ import cl.uchile.dcc.finalreality.model.units.enemy.Enemy;
 import cl.uchile.dcc.finalreality.model.units.playable.PlayerUnit;
 
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 /**
@@ -20,7 +22,7 @@ import java.util.stream.Collectors;
  */
 public class SelectAttackTarget extends AbstractState {
 
-  private final ArrayList<Enemy> options;
+  private ArrayList<Enemy> options;
   private final PlayerUnit unit;
 
   /**
@@ -30,8 +32,14 @@ public class SelectAttackTarget extends AbstractState {
    */
   public SelectAttackTarget(PlayerUnit unit) {
     this.unit = unit;
+  }
+
+  @Override
+  public void setContext(GameDriver context) {
+    super.setContext(context);
     this.options = getContext().getEnemies();
   }
+
   @Override
   public void execute() {
     int selectPos = getContext().getCursor(options.size());
@@ -60,5 +68,43 @@ public class SelectAttackTarget extends AbstractState {
   @Override
   public void goBack() {
     getContext().setState(new PlayerSelectAction(unit));
+  }
+
+  @Override
+  public boolean equals(Object obj) {
+    if (this == obj) {
+      return true;
+    }
+
+    if (obj == null) {
+      return false;
+    }
+
+    if (getClass() != obj.getClass()) {
+      return false;
+    }
+
+    SelectAttackTarget state = (SelectAttackTarget) obj;
+
+    return hashCode() == state.hashCode()
+        && getContext() == state.getContext()
+        && getUnit() == state.getUnit();
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(SelectAttackTarget.class, getContext(), getUnit());
+  }
+
+  /**
+   * Returns this state's unit.
+   */
+  public PlayerUnit getUnit() {
+    return unit;
+  }
+
+  @Override
+  public String toString() {
+    return "Attack";
   }
 }

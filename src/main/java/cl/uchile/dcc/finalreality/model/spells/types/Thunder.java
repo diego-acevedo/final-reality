@@ -8,6 +8,7 @@ import cl.uchile.dcc.finalreality.model.units.enemy.Enemy;
 import cl.uchile.dcc.finalreality.model.units.playable.MagicUser;
 import cl.uchile.dcc.finalreality.model.weapons.MagicWeapon;
 
+import java.util.Objects;
 import java.util.Random;
 
 /**
@@ -49,5 +50,34 @@ public class Thunder extends AbstractBlackSpell {
   @Override
   public <T> T accept(SpellVisitor<T> visitor) {
     return visitor.visitThunder(this);
+  }
+
+  @Override
+  public boolean equals(Object obj) {
+    if (this == obj) {
+      return true;
+    }
+
+    if (obj == null) {
+      return false;
+    }
+
+    if (getClass() != obj.getClass()) {
+      return false;
+    }
+
+    Thunder state = (Thunder) obj;
+
+    return hashCode() == state.hashCode();
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(Thunder.class);
+  }
+
+  @Override
+  public String toString() {
+    return "Thunder";
   }
 }

@@ -8,6 +8,7 @@ import cl.uchile.dcc.finalreality.model.units.enemy.Enemy;
 import cl.uchile.dcc.finalreality.model.units.playable.PlayerUnit;
 
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.Random;
 import java.util.stream.Collectors;
 
@@ -73,5 +74,43 @@ public class EnemyPlay extends AbstractState {
   @Override
   public void goBack() {
     getContext().setState(this);
+  }
+
+  @Override
+  public boolean autoExecute() {
+    return true;
+  }
+
+  @Override
+  public boolean equals(Object obj) {
+    if (this == obj) {
+      return true;
+    }
+
+    if (obj == null) {
+      return false;
+    }
+
+    if (getClass() != obj.getClass()) {
+      return false;
+    }
+
+    EnemyPlay state = (EnemyPlay) obj;
+
+    return hashCode() == state.hashCode()
+        && getContext() == state.getContext()
+        && getEnemy() == state.getEnemy();
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(EnemyPlay.class, getContext(), getEnemy());
+  }
+
+  /**
+   * Returns this state's enemy.
+   */
+  public Enemy getEnemy() {
+    return enemy;
   }
 }

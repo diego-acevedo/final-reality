@@ -5,6 +5,7 @@ import cl.uchile.dcc.finalreality.model.spells.Spell;
 import cl.uchile.dcc.finalreality.model.units.playable.MagicUser;
 
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 /**
@@ -47,5 +48,43 @@ public class SelectSpell extends AbstractState {
   @Override
   public void goBack() {
     getContext().setState(new PlayerSelectAction(mage));
+  }
+
+  @Override
+  public boolean equals(Object obj) {
+    if (this == obj) {
+      return true;
+    }
+
+    if (obj == null) {
+      return false;
+    }
+
+    if (getClass() != obj.getClass()) {
+      return false;
+    }
+
+    SelectSpell state = (SelectSpell) obj;
+
+    return hashCode() == state.hashCode()
+        && getContext() == state.getContext()
+        && getMage() == state.getMage();
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(SelectSpell.class, getContext(), getMage());
+  }
+
+  /**
+   * Returns this state's mage.
+   */
+  public MagicUser getMage() {
+    return mage;
+  }
+
+  @Override
+  public String toString() {
+    return "Cast spell";
   }
 }

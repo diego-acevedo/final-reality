@@ -8,6 +8,8 @@ import cl.uchile.dcc.finalreality.model.units.enemy.Enemy;
 import cl.uchile.dcc.finalreality.model.units.playable.MagicUser;
 import cl.uchile.dcc.finalreality.model.weapons.MagicWeapon;
 
+import java.util.Objects;
+
 /**
  * This class represents a spell that poisons an enemy.
  *
@@ -32,5 +34,34 @@ public class Poison extends AbstractWhiteSpell {
   @Override
   public <T> T accept(SpellVisitor<T> visitor) {
     return visitor.visitPoison(this);
+  }
+
+  @Override
+  public boolean equals(Object obj) {
+    if (this == obj) {
+      return true;
+    }
+
+    if (obj == null) {
+      return false;
+    }
+
+    if (getClass() != obj.getClass()) {
+      return false;
+    }
+
+    Poison state = (Poison) obj;
+
+    return hashCode() == state.hashCode();
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(Poison.class);
+  }
+
+  @Override
+  public String toString() {
+    return "Poison";
   }
 }

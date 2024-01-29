@@ -5,7 +5,10 @@ import cl.uchile.dcc.finalreality.exceptions.InsufficientMpException;
 import cl.uchile.dcc.finalreality.model.spells.AbstractWhiteSpell;
 import cl.uchile.dcc.finalreality.model.units.playable.MagicUser;
 import cl.uchile.dcc.finalreality.model.units.playable.PlayerUnit;
+import cl.uchile.dcc.finalreality.model.units.playable.types.Engineer;
 import cl.uchile.dcc.finalreality.model.weapons.MagicWeapon;
+
+import java.util.Objects;
 
 /**
  * This class represents a spell that can cure a player unit up to
@@ -33,5 +36,34 @@ public class Cure extends AbstractWhiteSpell {
   @Override
   public <T> T accept(SpellVisitor<T> visitor) {
     return visitor.visitCure(this);
+  }
+
+  @Override
+  public boolean equals(Object obj) {
+    if (this == obj) {
+      return true;
+    }
+
+    if (obj == null) {
+      return false;
+    }
+
+    if (getClass() != obj.getClass()) {
+      return false;
+    }
+
+    Cure state = (Cure) obj;
+
+    return hashCode() == state.hashCode();
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(Cure.class);
+  }
+
+  @Override
+  public String toString() {
+    return "Cure";
   }
 }

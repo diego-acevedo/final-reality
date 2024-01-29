@@ -1,11 +1,13 @@
 package cl.uchile.dcc.finalreality.controller.states;
 
+import cl.uchile.dcc.finalreality.controller.GameDriver;
 import cl.uchile.dcc.finalreality.exceptions.InvalidWeaponException;
 import cl.uchile.dcc.finalreality.exceptions.OwnershipException;
 import cl.uchile.dcc.finalreality.model.units.playable.PlayerUnit;
 import cl.uchile.dcc.finalreality.model.weapons.Weapon;
 
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 /**
@@ -20,7 +22,7 @@ import java.util.stream.Collectors;
 public class SelectWeapon extends AbstractState {
 
   private final PlayerUnit unit;
-  private final ArrayList<Weapon> options;
+  private ArrayList<Weapon> options;
 
   /**
    * Creates a new instance of a {@code SelectWeapon} state.
@@ -29,6 +31,11 @@ public class SelectWeapon extends AbstractState {
    */
   public SelectWeapon(PlayerUnit unit) {
     this.unit = unit;
+  }
+
+  @Override
+  public void setContext(GameDriver context) {
+    super.setContext(context);
     this.options = getContext().getPlayer().getInventory();
   }
 
@@ -56,5 +63,40 @@ public class SelectWeapon extends AbstractState {
   @Override
   public void goBack() {
     getContext().setState(new PlayerSelectAction(unit));
+  }
+
+  @Override
+  public boolean equals(Object obj) {
+    if (this == obj) {
+      return true;
+    }
+
+    if (obj == null) {
+      return false;
+    }
+
+    if (getClass() != obj.getClass()) {
+      return false;
+    }
+
+    SelectWeapon state = (SelectWeapon) obj;
+
+    return hashCode() == state.hashCode()
+        && getContext() == state.getContext()
+        && getUnit() == state.getUnit();
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(SelectWeapon.class, getContext(), getUnit());
+  }
+
+  public PlayerUnit getUnit() {
+    return unit;
+  }
+
+  @Override
+  public String toString() {
+    return "Equip weapon";
   }
 }

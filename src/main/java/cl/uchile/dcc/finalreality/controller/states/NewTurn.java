@@ -6,6 +6,7 @@ import cl.uchile.dcc.finalreality.model.units.enemy.Enemy;
 import cl.uchile.dcc.finalreality.model.units.playable.types.*;
 
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -98,5 +99,35 @@ public class NewTurn extends AbstractState implements UnitVisitor<Void> {
   public Void visitWhiteMage(WhiteMage whiteMage) {
     getContext().setState(new PlayerSelectAction(whiteMage));
     return null;
+  }
+
+  @Override
+  public boolean autoExecute() {
+    return true;
+  }
+
+  @Override
+  public boolean equals(Object obj) {
+    if (this == obj) {
+      return true;
+    }
+
+    if (obj == null) {
+      return false;
+    }
+
+    if (getClass() != obj.getClass()) {
+      return false;
+    }
+
+    NewTurn state = (NewTurn) obj;
+
+    return hashCode() == state.hashCode()
+        && getContext() == state.getContext();
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(NewTurn.class, getContext());
   }
 }

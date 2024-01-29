@@ -1,5 +1,6 @@
 package cl.uchile.dcc.finalreality.controller.states;
 
+import cl.uchile.dcc.finalreality.controller.GameDriver;
 import cl.uchile.dcc.finalreality.controller.visitors.SpellVisitor;
 import cl.uchile.dcc.finalreality.exceptions.*;
 import cl.uchile.dcc.finalreality.model.spells.Spell;
@@ -10,6 +11,7 @@ import cl.uchile.dcc.finalreality.model.units.playable.MagicUser;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 /**
@@ -25,7 +27,7 @@ public class SelectSpellTarget extends AbstractState implements SpellVisitor<Arr
 
   private final MagicUser mage;
   private final Spell spell;
-  private final ArrayList<GameUnit> options;
+  private ArrayList<GameUnit> options;
 
   /**
    * Creates a new instance of a {@code SelectSpellTarget} state.
@@ -36,6 +38,11 @@ public class SelectSpellTarget extends AbstractState implements SpellVisitor<Arr
   public SelectSpellTarget(MagicUser mage, Spell spell) {
     this.mage = mage;
     this.spell = spell;
+  }
+
+  @Override
+  public void setContext(GameDriver context) {
+    super.setContext(context);
     this.options = spell.accept(this);
   }
 
@@ -108,5 +115,43 @@ public class SelectSpellTarget extends AbstractState implements SpellVisitor<Arr
     return getContext().getEnemies()
         .stream().filter(unit -> !unit.isDead())
         .collect(Collectors.toCollection(ArrayList::new));
+  }
+
+  @Override
+  public boolean equals(Object obj) {
+    if (this == obj) {
+      return true;
+    }
+
+    if (obj == null) {
+      return false;
+    }
+
+    if (getClass() != obj.getClass()) {
+      return false;
+    }
+
+    SelectSpellTarget state = (SelectSpellTarget) obj;
+
+    return getSpell().equals(state.getSpell());
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(SelectSpellTarget.class, getContext(), getMage(), getSpell());
+  }
+
+  /**
+   * Returns this state's mage.
+   */
+  public MagicUser getMage() {
+    return mage;
+  }
+
+  /**
+   * Returns this state's spell.
+   */
+  public Spell getSpell() {
+    return spell;
   }
 }

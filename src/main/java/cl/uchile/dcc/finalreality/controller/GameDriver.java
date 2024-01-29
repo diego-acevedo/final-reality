@@ -176,6 +176,17 @@ public class GameDriver {
   }
 
   /**
+   * Returns the driver's current unit.
+   */
+  public GameUnit getCurrentUnit() {
+    return currentUnit;
+  }
+
+  public void setCurrentUnit(GameUnit currentUnit) {
+    this.currentUnit = currentUnit;
+  }
+
+  /**
    * Sets a new state to the controller. If the new state should
    * be automatically executed, it will execute it. Everytime a new
    * state is set, the cursor gets reset.
@@ -205,7 +216,7 @@ public class GameDriver {
    * before a unit can be taken from the queue.
    */
   public GameUnit nextUnit() throws InterruptedException {
-    this.currentUnit = unitsQueue.take();
+    setCurrentUnit(unitsQueue.take());
     return currentUnit;
   }
 
@@ -256,5 +267,12 @@ public class GameDriver {
    */
   public void goBack() {
     state.goBack();
+  }
+
+  /**
+   * Returns the driver's current state.
+   */
+  public State getState() {
+    return state;
   }
 }

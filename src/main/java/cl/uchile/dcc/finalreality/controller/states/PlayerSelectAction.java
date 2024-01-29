@@ -4,6 +4,7 @@ import cl.uchile.dcc.finalreality.controller.visitors.ActionsCatalog;
 import cl.uchile.dcc.finalreality.model.units.playable.PlayerUnit;
 
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 /**
@@ -17,6 +18,7 @@ import java.util.stream.Collectors;
 public class PlayerSelectAction extends AbstractState {
 
   private final ArrayList<State> options;
+  private final PlayerUnit unit;
 
   /**
    * Creates a new instance of a {@code PlayerSelectAction} state.
@@ -24,6 +26,7 @@ public class PlayerSelectAction extends AbstractState {
    * @param unit the player unit currently playing.
    */
   public PlayerSelectAction(PlayerUnit unit) {
+    this.unit = unit;
     ActionsCatalog catalog = new ActionsCatalog();
     this.options = unit.accept(catalog);
   }
@@ -42,5 +45,38 @@ public class PlayerSelectAction extends AbstractState {
   @Override
   public void goBack() {
     getContext().setState(this);
+  }
+
+  /**
+   * Returns this state's unit.
+   */
+  public PlayerUnit getUnit() {
+    return unit;
+  }
+
+  @Override
+  public boolean equals(Object obj) {
+    if (this == obj) {
+      return true;
+    }
+
+    if (obj == null) {
+      return false;
+    }
+
+    if (getClass() != obj.getClass()) {
+      return false;
+    }
+
+    PlayerSelectAction state = (PlayerSelectAction) obj;
+
+    return hashCode() == state.hashCode()
+        && getContext() == state.getContext()
+        && getUnit() == state.getUnit();
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(PlayerSelectAction.class, getContext(), getUnit());
   }
 }
