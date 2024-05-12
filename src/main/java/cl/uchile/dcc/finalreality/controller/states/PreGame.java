@@ -1,8 +1,10 @@
 package cl.uchile.dcc.finalreality.controller.states;
 
 import cl.uchile.dcc.finalreality.exceptions.InvalidStatException;
+import cl.uchile.dcc.finalreality.gui.FinalReality;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -19,7 +21,9 @@ public class PreGame extends AbstractState {
   public void execute() {
     try {
       getContext().init();
+      if (FinalReality.BATTLE_CONTROLLER != null) FinalReality.BATTLE_CONTROLLER.updateUnitSprites();
       getContext().setState(new NewTurn());
+      FinalReality.changeToBattleScreen();
     } catch (InvalidStatException e) {
       getContext().setState(new PreGame());
     }
@@ -27,12 +31,17 @@ public class PreGame extends AbstractState {
 
   @Override
   public ArrayList<String> getOptions() {
-    return new ArrayList<>();
+    return new ArrayList<>(List.of(""));
   }
 
   @Override
   public void goBack() {
     getContext().setState(this);
+  }
+
+  @Override
+  public boolean userInputAllowed() {
+    return true;
   }
 
   @Override

@@ -99,4 +99,9 @@ public class SelectWeapon extends AbstractState {
   public String toString() {
     return "Equip weapon";
   }
+
+  @Override
+  public boolean userInputAllowed() {
+    return true;
+  }
 }

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.shape.Rectangle?>
+<StackPane xmlns="http://javafx.com/javafx"
+           xmlns:fx="http://javafx.com/fxml"
+           fx:controller="cl.uchile.dcc.finalreality.gui.BattleScreenController"
+           fx:id="sceneContainer">
+
+    <AnchorPane fx:id="contentContainer">
+        <FlowPane fx:id="menuWrapper">
+            <VBox styleClass="menuContainer">
+                <VBox fx:id="output" styleClass="menuText" />
+                <HBox styleClass="menuContainer">
+                    <VBox fx:id="options" styleClass="menuText">
+                        <Text fx:id="option1" styleClass="textContent" />
+                        <Text fx:id="option2" styleClass="textContent" />
+                        <Text fx:id="option3" styleClass="textContent" />
+                    </VBox>
+                    <HBox fx:id="enemiesInfo" styleClass="menuText">
+                        <VBox fx:id="enemiesNames" />
+                        <VBox fx:id="enemiesHealthDetails" />
+                        <VBox fx:id="enemiesHealthBars" />
+                    </HBox>
+                    <HBox fx:id="partyInfo" styleClass="menuText" alignment="CENTER">
+                        <VBox fx:id="unitsNames" />
+                        <VBox fx:id="unitsHealthDetails" />
+                        <VBox fx:id="unitsHealthBars" />
+                    </HBox>
+                </HBox>
+            </VBox>
+        </FlowPane>
+        <Pane fx:id="unitsContainer" />
+        <Pane fx:id="enemiesContainer" />
+    </AnchorPane>
+
+</StackPane>

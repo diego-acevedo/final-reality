@@ -2,15 +2,17 @@ package cl.uchile.dcc.finalreality.controller.states;
 
 import cl.uchile.dcc.finalreality.controller.GameDriver;
 import cl.uchile.dcc.finalreality.controller.visitors.SpellVisitor;
+import cl.uchile.dcc.finalreality.controller.visitors.UnitVisitor;
 import cl.uchile.dcc.finalreality.exceptions.*;
+import cl.uchile.dcc.finalreality.gui.FinalReality;
 import cl.uchile.dcc.finalreality.model.spells.Spell;
 import cl.uchile.dcc.finalreality.model.spells.types.*;
 import cl.uchile.dcc.finalreality.model.units.GameUnit;
 import cl.uchile.dcc.finalreality.model.units.enemy.Enemy;
 import cl.uchile.dcc.finalreality.model.units.playable.MagicUser;
+import cl.uchile.dcc.finalreality.model.units.playable.types.*;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
@@ -23,7 +25,7 @@ import java.util.stream.Collectors;
  * @version 1.0.0
  * @since 1.0.0
  */
-public class SelectSpellTarget extends AbstractState implements SpellVisitor<ArrayList<GameUnit>> {
+public class SelectSpellTarget extends AbstractState implements SpellVisitor<ArrayList<GameUnit>>, UnitVisitor<Void> {
 
   private final MagicUser mage;
   private final Spell spell;
@@ -52,8 +54,14 @@ public class SelectSpellTarget extends AbstractState implements SpellVisitor<Arr
     GameUnit target = options.get(selectPos);
     try {
       getContext().castSpell(mage, target, spell);
+      getContext().setActionOutput("%s used %s on %s.".formatted(mage, spell, target));
+      if (FinalReality.BATTLE_CONTROLLER != null) {
+        FinalReality.BATTLE_CONTROLLER.updateUnitDetails();
+        FinalReality.BATTLE_CONTROLLER.useWeapon(mage);
+        target.accept(this);
+      }
       mage.waitTurn();
-      getContext().setState(new NewTurn());
+      getContext().setState(new PlayerAttacking(mage));
     } catch (InsufficientMpException e) {
       getContext().setActionOutput("%s doesn't have enough mana to cast this spell.".formatted(mage));
       getContext().setState(new PlayerSelectAction(mage));
@@ -85,7 +93,7 @@ public class SelectSpellTarget extends AbstractState implements SpellVisitor<Arr
   @Override
   public ArrayList<GameUnit> visitCure(Cure cure) {
     return getContext().getPlayer().getParty()
-        .stream().filter(unit -> !unit.isDead())
+        .stream().filter(unit -> !unit.isDead() && unit != mage)
         .collect(Collectors.toCollection(ArrayList::new));
   }
 
@@ -153,5 +161,44 @@ public class SelectSpellTarget extends AbstractState implements SpellVisitor<Arr
    */
   public Spell getSpell() {
     return spell;
+  }
+
+  @Override
+  public Void visitEnemy(Enemy enemy) {
+    if (FinalReality.BATTLE_CONTROLLER != null) {
+      FinalReality.BATTLE_CONTROLLER.enemyGetAttacked(enemy);
+      FinalReality.BATTLE_CONTROLLER.updateEffects(enemy);
+    }
+    return null;
+  }
+
+  @Override
+  public Void visitBlackMage(BlackMage blackMage) {
+    return null;
+  }
+
+  @Override
+  public Void visitEngineer(Engineer engineer) {
+    return null;
+  }
+
+  @Override
+  public Void visitKnight(Knight knight) {
+    return null;
+  }
+
+  @Override
+  public Void visitThief(Thief thief) {
+    return null;
+  }
+
+  @Override
+  public Void visitWhiteMage(WhiteMage whiteMage) {
+    return null;
+  }
+
+  @Override
+  public boolean userInputAllowed() {
+    return true;
   }
 }

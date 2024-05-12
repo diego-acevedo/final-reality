@@ -1,5 +1,7 @@
 package cl.uchile.dcc.finalreality.model.weapons;
 
+import cl.uchile.dcc.finalreality.controller.visitors.WeaponVisitor;
+import cl.uchile.dcc.finalreality.controller.visitors.WeaponVisitorElement;
 import cl.uchile.dcc.finalreality.exceptions.*;
 import cl.uchile.dcc.finalreality.model.spells.Spell;
 import cl.uchile.dcc.finalreality.model.units.GameUnit;
@@ -15,7 +17,7 @@ import cl.uchile.dcc.finalreality.model.units.playable.types.WhiteMage;
  * @version 1.0.0
  * @since 1.0.0
  */
-public interface Weapon {
+public interface Weapon extends WeaponVisitorElement {
 
   /**
    * Returns this weapon's name.

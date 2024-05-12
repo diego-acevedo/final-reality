@@ -32,4 +32,9 @@ public abstract class AbstractState implements State {
   public boolean autoExecute() {
     return false;
   }
+
+  @Override
+  public boolean userInputAllowed() {
+    return false;
+  }
 }

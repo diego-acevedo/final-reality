@@ -122,4 +122,9 @@ public abstract class AbstractUnit implements GameUnit {
   public void setController(GameDriver gameDriver) {
     this.gameDriver = gameDriver;
   }
+
+  @Override
+  public String toString() {
+    return name;
+  }
 }

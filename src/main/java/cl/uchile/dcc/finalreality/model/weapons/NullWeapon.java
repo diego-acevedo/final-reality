@@ -1,5 +1,6 @@
 package cl.uchile.dcc.finalreality.model.weapons;
 
+import cl.uchile.dcc.finalreality.controller.visitors.WeaponVisitor;
 import cl.uchile.dcc.finalreality.exceptions.NullWeaponException;
 import cl.uchile.dcc.finalreality.model.spells.Spell;
 import cl.uchile.dcc.finalreality.model.units.GameUnit;
@@ -77,5 +78,10 @@ public class NullWeapon implements Weapon {
   @Override
   public int hashCode() {
     return Objects.hash(NullWeapon.class);
+  }
+
+  @Override
+  public <T> T accept(WeaponVisitor<T> visitor) {
+    return visitor.visitNullWeapon(this);
   }
 }

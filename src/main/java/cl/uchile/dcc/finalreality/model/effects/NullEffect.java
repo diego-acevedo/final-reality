@@ -1,5 +1,6 @@
 package cl.uchile.dcc.finalreality.model.effects;
 
+import cl.uchile.dcc.finalreality.controller.visitors.EffectVisitor;
 import cl.uchile.dcc.finalreality.model.effects.types.BurningEffect;
 import cl.uchile.dcc.finalreality.model.effects.types.ParalyzedEffect;
 import cl.uchile.dcc.finalreality.model.effects.types.PoisonedEffect;
@@ -45,5 +46,10 @@ public class NullEffect extends AbstractEffect implements BurningEffect, Paralyz
   @Override
   public int hashCode() {
     return Objects.hash(NullEffect.class);
+  }
+
+  @Override
+  public <T> T accept(EffectVisitor<T> visitor) {
+    return visitor.visitNullEffect(this);
   }
 }

@@ -1,6 +1,7 @@
 package cl.uchile.dcc.finalreality.controller.states;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -19,7 +20,7 @@ public class EndGame extends AbstractState {
 
   @Override
   public ArrayList<String> getOptions() {
-    return new ArrayList<>();
+    return new ArrayList<>(List.of(""));
   }
 
   @Override

@@ -47,6 +47,11 @@ public class PlayerSelectAction extends AbstractState {
     getContext().setState(this);
   }
 
+  @Override
+  public boolean userInputAllowed() {
+    return true;
+  }
+
   /**
    * Returns this state's unit.
    */

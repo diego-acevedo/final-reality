@@ -1,8 +1,8 @@
 module cl.uchile.dcc.finalreality {
   requires javafx.controls;
   requires javafx.fxml;
+  requires javafx.media;
 
-
-  opens cl.uchile.dcc.finalreality to javafx.fxml;
-  exports cl.uchile.dcc.finalreality;
+  exports cl.uchile.dcc.finalreality.gui;
+  opens cl.uchile.dcc.finalreality.gui to javafx.fxml, javafx.media, javafx.controls;
 }

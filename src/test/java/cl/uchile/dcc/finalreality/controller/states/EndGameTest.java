@@ -7,6 +7,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -31,7 +32,7 @@ class EndGameTest extends StateTest {
   @Test
   @DisplayName("EndGame should have no options.")
   void getOptions() {
-    assertEquals(new ArrayList<String>(), state.getOptions());
+    assertEquals(new ArrayList<String>(List.of("")), state.getOptions());
   }
 
   @Test

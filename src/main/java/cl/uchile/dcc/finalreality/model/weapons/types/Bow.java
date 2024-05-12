@@ -1,5 +1,6 @@
 package cl.uchile.dcc.finalreality.model.weapons.types;
 
+import cl.uchile.dcc.finalreality.controller.visitors.WeaponVisitor;
 import cl.uchile.dcc.finalreality.exceptions.InvalidStatException;
 import cl.uchile.dcc.finalreality.exceptions.InvalidWeaponException;
 import cl.uchile.dcc.finalreality.model.units.playable.PlayerUnit;
@@ -62,5 +63,10 @@ public class Bow extends AbstractWeapon {
   @Override
   public int hashCode() {
     return Objects.hash(Bow.class, this.getWeaponName(), this.getWeight(), this.getDamage());
+  }
+
+  @Override
+  public <T> T accept(WeaponVisitor<T> visitor) {
+    return visitor.visitBow(this);
   }
 }

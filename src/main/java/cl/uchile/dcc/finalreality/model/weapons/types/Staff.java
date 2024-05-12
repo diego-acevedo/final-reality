@@ -1,5 +1,6 @@
 package cl.uchile.dcc.finalreality.model.weapons.types;
 
+import cl.uchile.dcc.finalreality.controller.visitors.WeaponVisitor;
 import cl.uchile.dcc.finalreality.exceptions.*;
 import cl.uchile.dcc.finalreality.model.spells.Spell;
 import cl.uchile.dcc.finalreality.model.units.GameUnit;
@@ -93,5 +94,10 @@ public class Staff extends AbstractWeapon implements MagicWeapon {
   @Override
   public int hashCode() {
     return Objects.hash(Staff.class, this.getWeaponName(), this.getWeight(), this.getDamage(), this.getMagicDamage());
+  }
+
+  @Override
+  public <T> T accept(WeaponVisitor<T> visitor) {
+    return visitor.visitStaff(this);
   }
 }

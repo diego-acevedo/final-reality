@@ -19,7 +19,7 @@ public class KnifeFactory extends AbstractWeaponFactory {
    * Creates a new instance of an {@code KnifeFactory}.
    */
   public KnifeFactory() {
-    super(20, 10, 20, 10);
+    super(20, 10, 10, 10);
   }
 
   @Override

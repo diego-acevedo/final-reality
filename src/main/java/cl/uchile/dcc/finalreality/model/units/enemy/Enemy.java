@@ -13,6 +13,8 @@ import cl.uchile.dcc.finalreality.model.units.GameUnit;
 import cl.uchile.dcc.finalreality.model.units.playable.MagicUser;
 import cl.uchile.dcc.finalreality.model.weapons.MagicWeapon;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.BlockingQueue;
 
@@ -121,6 +123,10 @@ public class Enemy extends AbstractUnit {
    */
   public Effect getPoisonedEffect() {
     return effects[0];
+  }
+
+  public ArrayList<Effect> getEffects() {
+    return new ArrayList<>(List.of(effects));
   }
 
   /**

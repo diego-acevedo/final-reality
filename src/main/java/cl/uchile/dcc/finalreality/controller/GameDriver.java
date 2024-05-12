@@ -7,6 +7,7 @@ import cl.uchile.dcc.finalreality.controller.factories.weapons.types.*;
 import cl.uchile.dcc.finalreality.controller.states.PreGame;
 import cl.uchile.dcc.finalreality.controller.states.State;
 import cl.uchile.dcc.finalreality.exceptions.*;
+import cl.uchile.dcc.finalreality.gui.FinalReality;
 import cl.uchile.dcc.finalreality.model.player.Player;
 import cl.uchile.dcc.finalreality.model.spells.Spell;
 import cl.uchile.dcc.finalreality.model.units.GameUnit;
@@ -30,6 +31,7 @@ import java.util.concurrent.LinkedBlockingQueue;
  */
 public class GameDriver {
 
+  private static GameDriver driver;
   private final Player player = new Player();
   private final ArrayList<Enemy> enemies = new ArrayList<>();
   private final BlockingQueue<GameUnit> unitsQueue = new LinkedBlockingQueue<>();
@@ -37,9 +39,22 @@ public class GameDriver {
   private int cursor = 0;
   private boolean gameOver = false;
   private GameUnit currentUnit;
-  public static int UNITS_AMOUNT = 5;
+  public static int UNITS_AMOUNT = 4;
   public static int ENEMIES_AMOUNT = 3;
   public String actionOutput = "";
+
+  private GameDriver() {
+    setState(new PreGame());
+  }
+
+  public static GameDriver DRIVER() {
+    if (driver == null) driver = new GameDriver();
+    return driver;
+  }
+
+  public static void resetDriver() {
+    driver = null;
+  }
 
   /**
    * Initializes the basics elements of the game. It sets
@@ -53,7 +68,6 @@ public class GameDriver {
    * invalid stats.
    */
   public void init() throws InvalidStatException {
-    setState(new PreGame());
     Random random = new Random();
     PlayerUnitFactory[] playerUnitFactories = {
         new BlackMageFactory(unitsQueue),
@@ -159,6 +173,13 @@ public class GameDriver {
    */
   public void setActionOutput(String actionOutput) {
     this.actionOutput = actionOutput;
+  }
+
+  /**
+   * Returns the current action output.
+   */
+  public String getActionOutput() {
+    return actionOutput;
   }
 
   /**
@@ -274,5 +295,9 @@ public class GameDriver {
    */
   public State getState() {
     return state;
+  }
+
+  public boolean userInputAllowed() {
+    return state.userInputAllowed();
   }
 }

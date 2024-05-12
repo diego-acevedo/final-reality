@@ -13,6 +13,7 @@ public abstract class StateTest {
   public State state;
 
   void setUp() throws InvalidStatException, InvalidWeaponException {
-    this.driver = new GameDriver();
+    GameDriver.resetDriver();
+    this.driver = GameDriver.DRIVER();
   }
 }

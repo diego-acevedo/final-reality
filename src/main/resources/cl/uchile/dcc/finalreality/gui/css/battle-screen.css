@@ -1,0 +1,54 @@
+@font-face {
+    font-family: 'Pixelade';
+    src: url('../fonts/pixelade.ttf');
+}
+
+.root {
+    black-background: #121212;
+    health: #ffc22d;
+    white-text: #dedede;
+    selected: #ffc868;
+}
+
+.textContent {
+    -fx-font-family: 'Pixelade';
+    -fx-fill: white-text;
+    -fx-effect: dropshadow(one-pass-box, black-background, 3, 1, 1, 1);
+}
+
+.selected {
+    -fx-fill: selected !important;
+}
+
+#sceneContainer {
+    -fx-background-color: black-background;
+}
+
+.menuText {
+    -fx-background-color: #999999, #7D7D7D, #C4C4C4, #B2B2B2, #767676, #8C8C8C, linear-gradient(to top, #305ADD, #01238C);
+    -fx-background-insets: 0 4 4 0, 4 0 0 4, 4 8 8 4, 8 4 4 8, 8 12 12 8, 12 8 8 12, 12;
+}
+
+.menuContainer {
+    -fx-spacing: 5px;
+}
+
+#menuWrapper {
+    -fx-alignment: center;
+}
+
+.health-bar {
+    -fx-control-inner-background: transparent;
+    -fx-border-color: linear-gradient(to top, #989898, white-text);
+    -fx-border-width: 3px;
+    -fx-border-radius: 12px;
+}
+
+.health-bar .track {
+    -fx-background-color: transparent;
+}
+
+.health-bar .bar {
+    -fx-background-color: linear-gradient(to top, #4d3a00, health);
+    -fx-background-radius: 10px;
+}

@@ -1,5 +1,6 @@
 package cl.uchile.dcc.finalreality.model.effects.types;
 
+import cl.uchile.dcc.finalreality.controller.visitors.EffectVisitor;
 import cl.uchile.dcc.finalreality.exceptions.ParalyzedUnitException;
 import cl.uchile.dcc.finalreality.model.effects.AbstractEffect;
 import cl.uchile.dcc.finalreality.model.effects.NullEffect;
@@ -46,5 +47,10 @@ public class Paralyzed extends AbstractEffect implements ParalyzedEffect {
   @Override
   public int hashCode() {
     return Objects.hash(Paralyzed.class);
+  }
+
+  @Override
+  public <T> T accept(EffectVisitor<T> visitor) {
+    return visitor.visitParalyzed(this);
   }
 }

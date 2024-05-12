@@ -22,7 +22,7 @@ public class StaffFactory extends AbstractWeaponFactory {
    * Creates a new instance of an {@code StaffFactory}.
    */
   public StaffFactory() {
-    super(15, 10, 40, 10);
+    super(15, 10, 20, 10);
     this.meanMagicDamage = 60;
     this.sdMagicDamage = 10;
   }

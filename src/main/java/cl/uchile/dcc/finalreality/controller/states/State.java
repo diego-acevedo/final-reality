@@ -46,4 +46,9 @@ public interface State {
    * CPU instead of the player.
    */
   boolean autoExecute();
+
+  /**
+   * Returns true if this state allows the user to give an input.
+   */
+  boolean userInputAllowed();
 }

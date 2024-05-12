@@ -26,12 +26,12 @@ tasks.withType(JavaCompile) {
 
 application {
     mainModule = 'cl.uchile.dcc.finalreality'
-    mainClass = 'cl.uchile.dcc.finalreality.HelloApplication'
+    mainClass = 'cl.uchile.dcc.finalreality.gui.FinalReality'
 }
 
 javafx {
     version = '19.0.2'
-    modules = ['javafx.controls', 'javafx.fxml']
+    modules = ['javafx.controls', 'javafx.fxml', 'javafx.media']
 }
 
 dependencies {
@@ -54,4 +54,22 @@ jlink {
 
 jlinkZip {
     group = 'distribution'
+}
+
+jar {
+    manifest {
+        attributes(
+                'Main-Class': 'cl.uchile.dcc.finalreality.gui.Main'
+        )
+    }
+}
+
+task customFatJar(type: Jar) {
+    manifest {
+        attributes 'Main-Class': 'cl.uchile.dcc.finalreality.gui.Main'
+    }
+    archiveBaseName = 'final-reality'
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    from { configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) } }
+    with jar
 }

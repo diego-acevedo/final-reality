@@ -4,12 +4,17 @@ import cl.uchile.dcc.finalreality.exceptions.DeadUnitException;
 import cl.uchile.dcc.finalreality.exceptions.InvalidTargetUnitException;
 import cl.uchile.dcc.finalreality.exceptions.NullWeaponException;
 import cl.uchile.dcc.finalreality.exceptions.ParalyzedUnitException;
+import cl.uchile.dcc.finalreality.gui.FinalReality;
 import cl.uchile.dcc.finalreality.model.units.enemy.Enemy;
 import cl.uchile.dcc.finalreality.model.units.playable.PlayerUnit;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import java.util.Random;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 /**
@@ -42,6 +47,9 @@ public class EnemyPlay extends AbstractState {
       getContext().setState(new NewTurn());
       return;
     }
+    if (FinalReality.BATTLE_CONTROLLER != null) {
+      FinalReality.BATTLE_CONTROLLER.updateEffects(enemy);
+    }
     if (enemy.isDead()) {
       getContext().setState(new NewTurn());
     } else {
@@ -52,6 +60,10 @@ public class EnemyPlay extends AbstractState {
       PlayerUnit target = targets.get(random.nextInt(targets.size()));
       try {
         getContext().attack(enemy, target);
+        if (FinalReality.BATTLE_CONTROLLER != null) {
+          if (target.isDead()) FinalReality.BATTLE_CONTROLLER.die(target);
+          FinalReality.BATTLE_CONTROLLER.getAttacked(target);
+        }
         getContext().setActionOutput("%s attacked %s.".formatted(enemy, target));
       } catch (DeadUnitException e) {
         getContext().setActionOutput("%s tried to attack a dead unit.".formatted(enemy));
@@ -60,25 +72,25 @@ public class EnemyPlay extends AbstractState {
       } catch (NullWeaponException e) {
         getContext().setActionOutput("%s tried to attack without a weapon.".formatted(enemy));
       } finally {
+        if (FinalReality.BATTLE_CONTROLLER != null) {
+          FinalReality.BATTLE_CONTROLLER.updateOutput();
+          FinalReality.BATTLE_CONTROLLER.updateUnitDetails();
+          FinalReality.BATTLE_CONTROLLER.enemyAttacking();
+        }
         enemy.waitTurn();
-        getContext().setState(new NewTurn());
+        getContext().setState(new EnemyAttacking());
       }
     }
   }
 
   @Override
   public ArrayList<String> getOptions() {
-    return new ArrayList<>();
+    return new ArrayList<>(List.of(""));
   }
 
   @Override
   public void goBack() {
     getContext().setState(this);
-  }
-
-  @Override
-  public boolean autoExecute() {
-    return true;
   }
 
   @Override

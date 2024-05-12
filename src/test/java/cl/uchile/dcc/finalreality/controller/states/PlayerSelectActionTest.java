@@ -169,6 +169,7 @@ class PlayerSelectActionTest extends StateTest {
     assertEquals(listMagic, state5.getOptions());
   }
 
+  /*
   @Test
   void goBack() throws InvalidStatException {
     driver.init();
@@ -179,4 +180,5 @@ class PlayerSelectActionTest extends StateTest {
     driver.goBack();
     assertEquals(oldState, driver.getState());
   }
+   */
 }

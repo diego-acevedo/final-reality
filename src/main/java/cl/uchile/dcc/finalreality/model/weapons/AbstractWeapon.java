@@ -72,4 +72,9 @@ public abstract class AbstractWeapon implements Weapon {
   public boolean storable() {
     return true;
   }
+
+  @Override
+  public String toString() {
+    return name;
+  }
 }

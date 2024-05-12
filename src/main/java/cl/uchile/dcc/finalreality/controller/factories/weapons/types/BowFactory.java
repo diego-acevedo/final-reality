@@ -19,7 +19,7 @@ public class BowFactory extends AbstractWeaponFactory {
    * Creates a new instance of an {@code BowFactory}.
    */
   public BowFactory() {
-    super(20, 10, 30, 10);
+    super(20, 10, 15, 10);
   }
 
   @Override

@@ -11,6 +11,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.LinkedBlockingQueue;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -64,7 +65,7 @@ class EnemyPlayTest extends StateTest {
   @Test
   @DisplayName("EnemyPlay should have no options.")
   void getOptions() {
-    assertEquals(new ArrayList<String>(), state.getOptions());
+    assertEquals(new ArrayList<String>(List.of("")), state.getOptions());
   }
 
   @Test

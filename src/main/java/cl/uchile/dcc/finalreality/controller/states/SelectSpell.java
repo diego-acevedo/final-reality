@@ -87,4 +87,9 @@ public class SelectSpell extends AbstractState {
   public String toString() {
     return "Cast spell";
   }
+
+  @Override
+  public boolean userInputAllowed() {
+    return true;
+  }
 }

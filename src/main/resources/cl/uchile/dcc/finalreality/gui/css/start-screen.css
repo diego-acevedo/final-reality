@@ -1,0 +1,36 @@
+@font-face {
+    font-family: 'Final Fantasy';
+    src: url('../fonts/finalf.ttf');
+}
+
+@font-face {
+    font-family: 'Pixelade';
+    src: url('../fonts/pixelade.ttf');
+}
+
+.root {
+    black-background: #121212;
+    white-text: #dedede;
+}
+
+#startTitle {
+    -fx-font-family: 'Final Fantasy';
+    -fx-font-size: 100;
+}
+
+.label {
+    -fx-font-family: 'Pixelade';
+    -fx-font-size: 40;
+    -fx-text-fill: white-text;
+}
+
+.title-screen {
+    -fx-alignment: center;
+    -fx-spacing: 20px;
+    -fx-pref-width: 100%;
+    -fx-pref-height: 100%;
+}
+
+.background {
+    -fx-background-color: black-background;
+}

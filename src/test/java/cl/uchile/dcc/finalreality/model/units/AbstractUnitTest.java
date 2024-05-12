@@ -38,7 +38,7 @@ public abstract class AbstractUnitTest<T extends GameUnit> {
     name = setName();
     unit = createUnit();
 
-    GameDriver gameDriver = new GameDriver();
+    GameDriver gameDriver = GameDriver.DRIVER();
     blackMage.setController(gameDriver);
     engineer.setController(gameDriver);
     enemy.setController(gameDriver);

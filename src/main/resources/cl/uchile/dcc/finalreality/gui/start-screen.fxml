@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<StackPane xmlns="http://javafx.com/javafx"
+           xmlns:fx="http://javafx.com/fxml"
+           fx:controller="cl.uchile.dcc.finalreality.gui.StartSceneController"
+           styleClass="background">
+
+    <VBox styleClass="title-screen" fx:id="title">
+        <Label fx:id="startTitle">FINAL REALITY</Label>
+        <Label>Press enter to start</Label>
+    </VBox>
+
+</StackPane>

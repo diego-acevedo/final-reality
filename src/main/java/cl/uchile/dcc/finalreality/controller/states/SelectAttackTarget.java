@@ -4,6 +4,7 @@ import cl.uchile.dcc.finalreality.controller.GameDriver;
 import cl.uchile.dcc.finalreality.exceptions.DeadUnitException;
 import cl.uchile.dcc.finalreality.exceptions.InvalidTargetUnitException;
 import cl.uchile.dcc.finalreality.exceptions.NullWeaponException;
+import cl.uchile.dcc.finalreality.gui.FinalReality;
 import cl.uchile.dcc.finalreality.model.units.enemy.Enemy;
 import cl.uchile.dcc.finalreality.model.units.playable.PlayerUnit;
 
@@ -37,7 +38,9 @@ public class SelectAttackTarget extends AbstractState {
   @Override
   public void setContext(GameDriver context) {
     super.setContext(context);
-    this.options = getContext().getEnemies();
+    this.options = getContext().getEnemies()
+        .stream().filter(unit -> !unit.isDead())
+        .collect(Collectors.toCollection(ArrayList::new));
   }
 
   @Override
@@ -47,8 +50,13 @@ public class SelectAttackTarget extends AbstractState {
     try {
       getContext().attack(unit, enemy);
       getContext().setActionOutput("%s attacked %s.".formatted(unit, enemy));
+      if (FinalReality.BATTLE_CONTROLLER != null) {
+        FinalReality.BATTLE_CONTROLLER.updateUnitDetails();
+        FinalReality.BATTLE_CONTROLLER.useWeapon(unit);
+        FinalReality.BATTLE_CONTROLLER.enemyGetAttacked(enemy);
+      }
       unit.waitTurn();
-      getContext().setState(new NewTurn());
+      getContext().setState(new PlayerAttacking(unit));
     } catch (DeadUnitException e) {
       getContext().setActionOutput("%s is dead. They can't be attacked.".formatted(enemy));
     } catch (NullWeaponException e) {
@@ -106,5 +114,10 @@ public class SelectAttackTarget extends AbstractState {
   @Override
   public String toString() {
     return "Attack";
+  }
+
+  @Override
+  public boolean userInputAllowed() {
+    return true;
   }
 }

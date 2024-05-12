@@ -1,5 +1,6 @@
 package cl.uchile.dcc.finalreality.model.effects.types;
 
+import cl.uchile.dcc.finalreality.controller.visitors.EffectVisitor;
 import cl.uchile.dcc.finalreality.model.effects.AbstractEffect;
 import cl.uchile.dcc.finalreality.model.effects.NullEffect;
 import cl.uchile.dcc.finalreality.model.weapons.MagicWeapon;
@@ -72,5 +73,10 @@ public class Burning extends AbstractEffect implements BurningEffect {
   @Override
   public int hashCode() {
     return Objects.hash(Burning.class, this.getDamage());
+  }
+
+  @Override
+  public <T> T accept(EffectVisitor<T> visitor) {
+    return visitor.visitBurning(this);
   }
 }

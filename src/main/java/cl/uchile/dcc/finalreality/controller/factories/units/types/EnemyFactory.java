@@ -28,10 +28,10 @@ public class EnemyFactory extends AbstractUnitFactory<Enemy> {
    * @param queue the turns queue of the units.
    */
   public EnemyFactory(BlockingQueue<GameUnit> queue) {
-    super(250, 40, 20, 10, queue);
-    this.meanWeight = 200;
-    this.sdWeight = 50;
-    this.meanAttack = 60;
+    super(125, 20, 20, 10, queue);
+    this.meanWeight = 50;
+    this.sdWeight = 10;
+    this.meanAttack = 20;
     this.sdAttack = 10;
   }
 
